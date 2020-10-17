@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Map {
 
     private Country Alaska, Alberta, CA, EUS, Greenland, NT, Ontario, Quebec, WUS;
@@ -6,6 +8,9 @@ public class Map {
     private Country Congo, EA, Egypt, Madagascar, NA, SA;
     private Country Afghanistan, China, India, Irkutsk, Japan, Kamchatka, ME, Mongolia, Siam, Siberia, Ural, Yakutsk;
     private Country EAUS, Indonesia, NG, WAUS;
+
+    private ArrayList<Country> FullMap;
+    private int CountriesOcc = 0;
 
     public Map(){
         Alaska = new Country("Alaska");
@@ -50,6 +55,52 @@ public class Map {
         Indonesia = new Country("Indonesia");
         NG = new Country("New Guinea");
         WAUS = new Country("Western Australia");
+
+        FullMap = new ArrayList<Country>();
+
+        FullMap.add(Alaska);
+        FullMap.add(Alberta);
+        FullMap.add(CA);
+        FullMap.add(EUS);
+        FullMap.add(Greenland);
+        FullMap.add(NT);
+        FullMap.add(Ontario);
+        FullMap.add(Quebec);
+        FullMap.add(WUS);
+        FullMap.add(Argentina);
+        FullMap.add(Brazil);
+        FullMap.add(Peru);
+        FullMap.add(Venezuela);
+        FullMap.add(GB);
+        FullMap.add(Iceland);
+        FullMap.add(Scandinavia);
+        FullMap.add(SE);
+        FullMap.add(Ukraine);
+        FullMap.add(WE);
+        FullMap.add(Congo);
+        FullMap.add(EA);
+        FullMap.add(Egypt);
+        FullMap.add(Madagascar);
+        FullMap.add(NA);
+        FullMap.add(SA);
+        FullMap.add(Afghanistan);
+        FullMap.add(China);
+        FullMap.add(India);
+        FullMap.add(Irkutsk);
+        FullMap.add(Japan);
+        FullMap.add(Kamchatka);
+        FullMap.add(ME);
+        FullMap.add(Mongolia);
+        FullMap.add(Siam);
+        FullMap.add(Siberia);
+        FullMap.add(Ural);
+        FullMap.add(Yakutsk);
+        FullMap.add(EAUS);
+        FullMap.add(Indonesia);
+        FullMap.add(NG);
+        FullMap.add(WAUS);
+
+
 
         setMap();
     }
@@ -188,8 +239,98 @@ public class Map {
         SA.addNeighbor(Congo);
 
         //Asia
+        Afghanistan.addNeighbor(China);
+        Afghanistan.addNeighbor(ME);
+        Afghanistan.addNeighbor(India);
+        Afghanistan.addNeighbor(Ural);
+        Afghanistan.addNeighbor(Ukraine);
+
+        China.addNeighbor(India);
+        China.addNeighbor(Afghanistan);
+        China.addNeighbor(Siam);
+        China.addNeighbor(Mongolia);
+
+        India.addNeighbor(China);
+        India.addNeighbor(Siam);
+        India.addNeighbor(ME);
+        India.addNeighbor(Afghanistan);
+
+        Irkutsk.addNeighbor(Mongolia);
+        Irkutsk.addNeighbor(Kamchatka);
+        Irkutsk.addNeighbor(Yakutsk);
+        Irkutsk.addNeighbor(Siberia);
+
+        Japan.addNeighbor(Kamchatka);
+        Japan.addNeighbor(Mongolia);
+
+        Kamchatka.addNeighbor(Alaska);
+        Kamchatka.addNeighbor(Yakutsk);
+        Kamchatka.addNeighbor(Irkutsk);
+        Kamchatka.addNeighbor(Japan);
+        Kamchatka.addNeighbor(Mongolia);
+
+        ME.addNeighbor(Ukraine);
+        ME.addNeighbor(Egypt);
+        ME.addNeighbor(EA);
+        ME.addNeighbor(India);
+        ME.addNeighbor(Afghanistan);
+        ME.addNeighbor(SE);
+
+        Mongolia.addNeighbor(Japan);
+        Mongolia.addNeighbor(China);
+        Mongolia.addNeighbor(Kamchatka);
+        Mongolia.addNeighbor(Irkutsk);
+        Mongolia.addNeighbor(Siberia);
+
+        Siam.addNeighbor(India);
+        Siam.addNeighbor(China);
+        Siam.addNeighbor(Indonesia);
+
+        Siberia.addNeighbor(Yakutsk);
+        Siberia.addNeighbor(Mongolia);
+        Siberia.addNeighbor(Irkutsk);
+        Siberia.addNeighbor(China);
+        Siberia.addNeighbor(Ural);
+
+        Ural.addNeighbor(Siberia);
+        Ural.addNeighbor(China);
+        Ural.addNeighbor(Afghanistan);
+        Ural.addNeighbor(Ukraine);
+
+        Yakutsk.addNeighbor(Kamchatka);
+        Yakutsk.addNeighbor(Irkutsk);
+        Yakutsk.addNeighbor(Siberia);
+
+        //Australia
+        EAUS.addNeighbor(WAUS);
+        EAUS.addNeighbor(NG);
+
+        Indonesia.addNeighbor(NG);
+        Indonesia.addNeighbor(Siam);
+        Indonesia.addNeighbor(WAUS);
+
+        NG.addNeighbor(Indonesia);
+        NG.addNeighbor(EAUS);
+        NG.addNeighbor(WAUS);
+
+        WAUS.addNeighbor(Indonesia);
+        WAUS.addNeighbor(NG);
+        WAUS.addNeighbor(EAUS);
+
+    }
 
 
+    public void PrintMap(){}
 
+    public ArrayList<Country> getFullMap(){
+        return FullMap;
+    }
+
+    public int getCountriesOcc() {
+        for(int x = 0; x < FullMap.size(); x++){
+            Country temp = FullMap.get(x);
+            CountriesOcc = CountriesOcc + temp.getOccupied();
+        }
+        return CountriesOcc;
     }
 }
