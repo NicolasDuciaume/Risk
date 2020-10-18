@@ -10,7 +10,7 @@ public class Map {
     private Country EAUS, Indonesia, NG, WAUS;
 
     private ArrayList<Country> FullMap;
-    private int CountriesOcc = 0;
+    private int CountriesO = 0;
 
     public Map(){
         Alaska = new Country("Alaska");
@@ -73,6 +73,7 @@ public class Map {
         FullMap.add(Venezuela);
         FullMap.add(GB);
         FullMap.add(Iceland);
+        FullMap.add(NE);
         FullMap.add(Scandinavia);
         FullMap.add(SE);
         FullMap.add(Ukraine);
@@ -320,17 +321,25 @@ public class Map {
     }
 
 
-    public void PrintMap(){}
+    public void PrintMap(){
+        for (int x = 0; x < FullMap.size(); x++){
+            Country temp = FullMap.get(x);
+            Player play = temp.getPlayerOnCountry();
+            System.out.println(temp.getName() + " has " + temp.getArmiesOnCountry() + " armies owned by " + play.getName() + " on it");
+        }
+    }
 
     public ArrayList<Country> getFullMap(){
         return FullMap;
     }
 
     public int getCountriesOcc() {
+        int CountriesOcc = 0;
         for(int x = 0; x < FullMap.size(); x++){
             Country temp = FullMap.get(x);
             CountriesOcc = CountriesOcc + temp.getOccupied();
         }
+        CountriesO = CountriesOcc;
         return CountriesOcc;
     }
 }

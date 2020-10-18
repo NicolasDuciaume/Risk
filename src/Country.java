@@ -51,7 +51,7 @@ public class Country {
     }
 
     public void setOccupied() {
-        this.occupied = 1;
+        occupied = 1;
     }
 
     public int getOccupied() {

@@ -35,26 +35,53 @@ public class Game {
     }
 
     public void Populate(){
-
-
-    }
-
-    /*public void PopulateInit(){
         Random rand = new Random();
-        while(map.getCountriesOcc() != 42){
-            for (int x = 0; x < PlayersInGame.size(); x++){
-                Player play = PlayersInGame.get(x);
-                Country temp = fullMap.get(rand.nextInt(fullMap.size()));
-                while(temp.getOccupied() != 0)
-                {
-                    temp = fullMap.get(rand.nextInt(fullMap.size()));
-                }
-                play.AddCountry(temp);
+        PopulateInit();
+        for(int x = 0; x < PlayersInGame.size(); x++){
+            Player play = PlayersInGame.get(x);
+            ArrayList<Country> PlayCountry = play.getArmiesOn();
+            while(play.getArmiesToPlace() != 0){
+                Country temp = PlayCountry.get(rand.nextInt(PlayCountry.size()));
                 temp.addArmiesOnCountry(1);
                 play.remArmiesToPlace();
             }
         }
-    }*/
+    }
+
+    public void PopulateInit(){
+        Random rand = new Random();
+        while(map.getCountriesOcc() != 42){
+            if(((PlayersInGame.size() == 4 ) || (PlayersInGame.size() == 5)) && (map.getCountriesOcc() == 40)){ //because they 42 is not divisible by 4 or 5
+                for (int x = 0; x < 2; x++){
+                    Player play = PlayersInGame.get(x);
+                    Country temp = fullMap.get(rand.nextInt(fullMap.size()));
+                    while(temp.getOccupied() != 0)
+                    {
+                        temp = fullMap.get(rand.nextInt(fullMap.size()));
+                    }
+                    play.AddCountry(temp);
+                    temp.addArmiesOnCountry(1);
+                    temp.setOccupied();
+                    temp.setPlayerOnCountry(play);
+                    play.remArmiesToPlace();
+                }
+            }
+            else{
+                for (int x = 0; x < PlayersInGame.size(); x++){
+                    Player play = PlayersInGame.get(x);
+                    Country temp = fullMap.get(rand.nextInt(fullMap.size()));
+                    while(temp.getOccupied() != 0)
+                    {
+                        temp = fullMap.get(rand.nextInt(fullMap.size()));
+                    }
+                    play.AddCountry(temp);
+                    temp.addArmiesOnCountry(1);
+                    temp.setOccupied();
+                    temp.setPlayerOnCountry(play);
+                    play.remArmiesToPlace();
+            }
+        }
+    }}
 
     public void Introduction()
     {
@@ -75,7 +102,8 @@ public class Game {
     public void Play()
     {
         Introduction();
-        //PopulateInit();
+        Populate();
+        map.PrintMap();
         boolean Finished = false;
         /*while (! Finished){
 
