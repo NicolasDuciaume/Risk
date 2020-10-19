@@ -165,23 +165,19 @@ public class Game {
         return end;
     }
 
-    /**
-     * 
-     * @param dice The instance of Dice class
-     * 
-     * This method is responsible for rolling the dice. It asks user for number of 
-     * dice that needs to be rolled and rolls them and returns the rolled values.
-     */
-	private void RollDice(Dice dice) {
-		//roll the dice        	
-		System.out.println("Enter the number of dice to roll (between 1 to 3): ");
-		int numberOfDice = Integer.valueOf(parser.getIntroSelect());
-		int[] rolledValues = dice.roll(numberOfDice);
+
+	private int[] RollDice(int dices) {
+	    int[] rolledValues = new int[dices];
+	    for(int x = 0; x < dices; x++){
+	        Dice temp = new Dice();
+	        temp.rollDice();
+	        rolledValues[x] = temp.getRoll();
+        }
+
 		for(int i = 0; i < rolledValues.length; i++) {
-			
 			System.out.println("Got value: " + rolledValues[i]);
 		}
-
+        return rolledValues;
 	}
 
 
@@ -293,13 +289,98 @@ public class Game {
             }
         }
 
+        boolean noOwnedNeighbors = true;
         ArrayList<Country> neighbors = attackerC.getNeighbors();
         System.out.println(attackerC.getName() + " can attack:");
         for(int x = 0; x < neighbors.size(); x++){
             Country temp = neighbors.get(x);
             System.out.println(temp.getName() + " which has " + temp.getArmiesOnCountry() + " on it");
+            noOwnedNeighbors = false;
         }
-            //actual attacking ...
+
+        if (noOwnedNeighbors == true) {
+            System.out.println("You have know neighbors to this country that you can move troops to");
+            return false;
+        }
+
+        System.out.println("Which Country do you wish to attack?");
+
+        boolean correctNeighbor = false;
+        Country attackedC = null;
+        Player attackedPlayer = null;
+        while (!correctNeighbor) {
+            String attacked = parser.getIntroSelect();
+            if (attacked.equals("back")) {
+                return true;
+            }
+            for (int y = 0; y < neighbors.size(); y++) {
+                Country temp = neighbors.get(y);
+                if (temp.getName().equals(attacked)) {
+                    attackedC = temp;
+                    attackedPlayer = temp.getPlayerOnCountry();
+                    correctNeighbor = true;
+                }
+            }
+            if (correctNeighbor == false) {
+                System.out.println("Please select a valid country");
+            }
+        }
+
+        System.out.println(player.getName() + "'s " + attackerC.getName() + " is attacking " + attackedPlayer.getName() + "'s " + attackedC.getName());
+        System.out.println(attackerC.getName() + " has " + attackerC.getArmiesOnCountry() + " armies on it");
+        System.out.println(attackedC.getName() + " has " + attackedC.getArmiesOnCountry() + " armies on it");
+
+        System.out.println(player.getName() + " how many dices would you like to have?");
+        System.out.println("Between 1 and 3, must have one more army on Country then amount of dice");
+
+        boolean CorrectNumber = false;
+        int[] attackerDice;
+        while (!CorrectNumber) {
+            String ans = parser.getIntroSelect();
+            if (ans.equals("back")){
+                return true;
+            }
+            else if(!isNumeric(ans)){
+                System.out.println("Please input a number");
+            }
+            else {
+                int numDice = Integer.valueOf(ans);
+                if ((numDice < attackerC.getArmiesOnCountry()) && (numDice >= 1) && (numDice <= 3)) {
+                    attackerDice = RollDice(numDice);
+                    CorrectNumber = true;
+                } else {
+                    System.out.println("Please select a valid number of armies to move");
+                }
+            }
+        }
+
+        System.out.println(attackedPlayer.getName() + " how many dices would you like to have?");
+        System.out.println("Between 1 and 2. If 2, you must have at least 2 armies on the Country");
+
+        CorrectNumber = false;
+        int[] DefenderDice;
+        while (!CorrectNumber) {
+            String ans = parser.getIntroSelect();
+            if(!isNumeric(ans)){
+                System.out.println("Please input a number");
+            }
+            else {
+                int numDice = Integer.valueOf(ans);
+                if ((numDice >= 1) && (numDice <= 2)) {
+                    if((numDice == 2) && (attackedC.getArmiesOnCountry() < 2)){
+                        System.out.println("You do not have enough armies for 2 dices");
+                    }
+                    else{
+                        DefenderDice = RollDice(numDice);
+                        CorrectNumber = true;
+                    }
+                }
+                else {
+                    System.out.println("Please select a valid number of armies to move");
+                }
+            }
+        }
+
         return false;
     }
 

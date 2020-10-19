@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -5,14 +6,22 @@ public class Dice {
 
 	private int roll;
 	private Random dice;
-	private int[] dices;
 
 	/**
 	 * Default constructor
 	 */
 	public Dice() {
-
+		dice = new Random();
 	}
+
+	public void rollDice(){
+		roll = dice.nextInt(5) + 1;
+	}
+
+	public int getRoll(){
+		return roll;
+	}
+
 
 	/**
 	 * Replicates the dice roll.
@@ -23,7 +32,7 @@ public class Dice {
 	 * Returns the dice roll value
 	 * 
 	 **/
-	public int[] roll(int numberOfDice) {
+	/*public int[] roll(int numberOfDice) {
 
 		dices = new int[numberOfDice];
 		// go through the dices one by one
@@ -38,5 +47,5 @@ public class Dice {
 		Arrays.sort(dices);
 
 		return dices;
-	}
+	}*/
 }
