@@ -5,6 +5,7 @@ public class Player {
     private int armies;
     private int armiesToPlace;
     private ArrayList<Country> armiesOn;
+    private boolean moved = false;
 
     public Player(String name)
     {
@@ -62,5 +63,13 @@ public class Player {
 
     public void remArmiesToPlace() {
         armiesToPlace = armiesToPlace - 1;
+    }
+
+    public boolean isMoved() {
+        return moved;
+    }
+
+    public void setMoved(boolean moved) {
+        this.moved = moved;
     }
 }

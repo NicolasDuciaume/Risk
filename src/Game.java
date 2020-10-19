@@ -147,13 +147,19 @@ public class Game {
         {
             endTurn();
             end = true;
+            player.setMoved(false);
         }
         else if(commandWord.equals("attack")){
             attack(player);
             System.out.println("Select a command:");
         }
         else if(commandWord.equals("move")){
-            move(player);
+            if (!player.isMoved()){
+                move(player);
+            }
+            else{
+                System.out.println("You have already moved armies this turn");
+            }
             System.out.println("Select a command:");
         }
         return end;
@@ -261,7 +267,7 @@ public class Game {
         System.out.println(parser.getCommands());
     }
 
-    private void attack(Player player){
+    private boolean attack(Player player){
         System.out.println("With which Country would you like to attack:");
         ArrayList<Country> playCount = player.getArmiesOn();
         for(int x = 0; x < playCount.size(); x++){
@@ -272,6 +278,9 @@ public class Game {
         Country attackerC = null;
         while(!correctSelect){
             String attacker = parser.getIntroSelect();
+            if(attacker.equals("back")){
+                return true;
+            }
             for(int y = 0; y < playCount.size(); y++){
                 Country temp = playCount.get(y);
                 if(temp.getName().equals(attacker)){
@@ -290,30 +299,33 @@ public class Game {
             Country temp = neighbors.get(x);
             System.out.println(temp.getName() + " which has " + temp.getArmiesOnCountry() + " on it");
         }
-
-        //actual attacking ...
+            //actual attacking ...
+        return false;
     }
 
-    private void move(Player player){
+    private boolean move(Player player) {
         System.out.println("With which Country would you like to move armies from:");
         ArrayList<Country> playCount = player.getArmiesOn();
-        for(int x = 0; x < playCount.size(); x++){
+        for (int x = 0; x < playCount.size(); x++) {
             Country temp = playCount.get(x);
             System.out.println(temp.getName() + " which has " + temp.getArmiesOnCountry() + " on it");
         }
 
         boolean correctSelect = false;
         Country mover = null;
-        while(!correctSelect){
+        while (!correctSelect) {
             String attacker = parser.getIntroSelect();
-            for(int y = 0; y < playCount.size(); y++){
+            if (attacker.equals("back")) {
+                return true;
+            }
+            for (int y = 0; y < playCount.size(); y++) {
                 Country temp = playCount.get(y);
-                if(temp.getName().equals(attacker)){
+                if (temp.getName().equals(attacker)) {
                     mover = temp;
                     correctSelect = true;
                 }
             }
-            if(correctSelect == false){
+            if (correctSelect == false) {
                 System.out.println("Please select a valid country");
             }
         }
@@ -321,58 +333,84 @@ public class Game {
         ArrayList<Country> neighbors = mover.getNeighbors();
         System.out.println("Neighbor Countries you can move to:");
         boolean noOwnedNeighbors = true;
-        for(int x = 0; x < neighbors.size(); x++){
+        for (int x = 0; x < neighbors.size(); x++) {
             Country temp = neighbors.get(x);
-            if(mover.getPlayerOnCountry() == temp.getPlayerOnCountry()) {
+            if (mover.getPlayerOnCountry() == temp.getPlayerOnCountry()) {
                 System.out.println(temp.getName() + " which has " + temp.getArmiesOnCountry() + " on it");
                 noOwnedNeighbors = false;
             }
         }
 
-        if(noOwnedNeighbors == true){
+        if (noOwnedNeighbors == true) {
             System.out.println("You have know neighbors to this country that you can move troops to");
+            return false;
         }
-        else{
-            System.out.println("Which Country would you like to move your troops to");
-            boolean correctNeighbor = false;
-            Country moving = null;
-            while(!correctNeighbor){
-                String neighbor = parser.getIntroSelect();
-                for(int y = 0; y < playCount.size(); y++){
-                    Country temp = playCount.get(y);
-                    if(temp.getName().equals(neighbor)){
-                        moving = temp;
-                        correctNeighbor = true;
-                    }
-                }
-                if(correctNeighbor == false){
-                    System.out.println("Please select a valid country");
+
+        System.out.println("Which Country would you like to move your troops to");
+        boolean correctNeighbor = false;
+        Country moving = null;
+        while (!correctNeighbor) {
+            String neighbor = parser.getIntroSelect();
+            if (neighbor.equals("back")) {
+                return true;
+            }
+            for (int y = 0; y < playCount.size(); y++) {
+                Country temp = playCount.get(y);
+                if (temp.getName().equals(neighbor)) {
+                    moving = temp;
+                    correctNeighbor = true;
                 }
             }
+            if (correctNeighbor == false) {
+                System.out.println("Please select a valid country");
+            }
+        }
 
-            System.out.println("How many armies would you like to move? (must leave 1 army)");
-            boolean CorrectNumber = false;
-            while(!CorrectNumber){
+        System.out.println("How many armies would you like to move? (must leave 1 army)");
+        boolean CorrectNumber = false;
+        while (!CorrectNumber) {
+            String ans = parser.getIntroSelect();
+            if (ans.equals("back")){
+                return true;
+            }
+            else if(!isNumeric(ans)){
+                System.out.println("Please input a number");
+            }
+            else {
                 int num = mover.getArmiesOnCountry();
-                int numToMove = Integer.valueOf(parser.getIntroSelect());
-                if((numToMove < num) && (numToMove >= 0)){
+                int numToMove = Integer.valueOf(ans);
+                if ((numToMove < num) && (numToMove >= 0)) {
                     System.out.println("Moving armies...");
                     mover.removeArmiesOnCountry(numToMove);
                     moving.addArmiesOnCountry(numToMove);
                     System.out.println(mover.getName() + " now has " + mover.getArmiesOnCountry());
                     System.out.println(moving.getName() + " now has " + moving.getArmiesOnCountry());
                     CorrectNumber = true;
-                }
-                else{
+                } else {
                     System.out.println("Please select a valid number of armies to move");
                 }
             }
         }
 
+        player.setMoved(true);
+
+        return false;
     }
 
     private void endTurn(){
 	    System.out.println("Ending turn...");
+    }
+
+    public static boolean isNumeric(String strNum) {
+        if (strNum == null) {
+            return false;
+        }
+        try {
+            double d = Double.parseDouble(strNum);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
     }
 
     private void MapPrint(){
