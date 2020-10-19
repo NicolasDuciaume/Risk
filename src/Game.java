@@ -101,15 +101,41 @@ public class Game {
 
     public void Play()
     {
+    	Dice dice = new Dice();
+    	
         Introduction();
         Populate();
         map.PrintMap();
+        
+        
         boolean Finished = false;
-        /*while (! Finished){
-
-        }*/
+        while (! Finished){
+        	//roll the dice
+        	RollDice(dice);
+        	
+        	
+        }
 
     }
+
+    /**
+     * 
+     * @param dice The instance of Dice class
+     * 
+     * This method is responsible for rolling the dice. It asks user for number of 
+     * dice that needs to be rolled and rolls them and returns the rolled values.
+     */
+	private void RollDice(Dice dice) {
+		//roll the dice        	
+		System.out.println("Enter the number of dice to roll (between 1 to 3): ");
+		int numberOfDice = Integer.valueOf(parser.getCommand());
+		int[] rolledValues = dice.roll(numberOfDice);
+		for(int i = 0; i < rolledValues.length; i++) {
+			
+			System.out.println("Got value: " + rolledValues[i]);
+		}
+
+	}
 
     public void PlayerSelection(String selection){
         switch (selection){
