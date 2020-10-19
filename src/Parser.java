@@ -2,14 +2,31 @@ import java.util.Scanner;
 
 public class Parser {
     private Scanner reader;
+    private CommandWords commands;
 
     public Parser()
     {
         reader = new Scanner(System.in);
+        commands = new CommandWords();
     }
 
-    public String getCommand()
+    public Command getCommand()
     {
+        String input;
+
+        input = reader.nextLine();
+
+        if(commands.isCommand(input)){
+            return new Command(input);
+        }
+        return new Command(null);
+    }
+
+    public String getCommands(){
+        return commands.getCommandList();
+    }
+
+    public String getIntroSelect(){
         String input;
 
         input = reader.nextLine();

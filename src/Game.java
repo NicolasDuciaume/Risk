@@ -90,10 +90,10 @@ public class Game {
         for(int x = 2; x <= 6; x++){
             System.out.println(x + " Players");
         }
-        PlayerSelection(parser.getCommand());
+        PlayerSelection(parser.getIntroSelect());
         while(PlayersInGame.size() == 0){
             System.out.println("Please select a valid option:");
-            PlayerSelection(parser.getCommand());
+            PlayerSelection(parser.getIntroSelect());
         }
         System.out.println("You have selected " + PlayersInGame.size());
         System.out.println("Starting Game...");
@@ -108,14 +108,46 @@ public class Game {
         map.PrintMap();
         
         
-        boolean Finished = false;
-        while (! Finished){
-        	//roll the dice
-        	RollDice(dice);
-        	
-        	
+
+
+        while (!CheckEnd()){
+            for(int x = 0; x < PlayersInGame.size(); x++){
+                Player play = PlayersInGame.get(x);
+                if(play.getArmies() != 0){
+                    System.out.println(play.getName() + "'s turn:");
+                    System.out.println("Select a command:");
+                    System.out.println(parser.getCommands());
+                    boolean endTurn = false;
+                    while(!endTurn){
+                        Command command = parser.getCommand();
+                        endTurn = processCommand(command);
+                    }
+                }
+                //check if finished
+            }
+        }
+    }
+
+    private boolean processCommand(Command command){
+        boolean end = false;
+        if(command.isUnknown()){
+            System.out.println("Please select a valid command");
+            return false;
         }
 
+        String commandWord = command.getCommandWord();
+        if (commandWord.equals("help")) {
+            printHelp();
+        }
+        else if (commandWord.equals("map")){
+            MapPrint();
+        }
+        else if (commandWord.equals("end turn"))
+        {
+            endTurn();
+            end = true;
+        }
+        return end;
     }
 
     /**
@@ -128,7 +160,7 @@ public class Game {
 	private void RollDice(Dice dice) {
 		//roll the dice        	
 		System.out.println("Enter the number of dice to roll (between 1 to 3): ");
-		int numberOfDice = Integer.valueOf(parser.getCommand());
+		int numberOfDice = Integer.valueOf(parser.getIntroSelect());
 		int[] rolledValues = dice.roll(numberOfDice);
 		for(int i = 0; i < rolledValues.length; i++) {
 			
@@ -136,6 +168,23 @@ public class Game {
 		}
 
 	}
+
+
+
+	public boolean CheckEnd(){
+	    boolean Finished = false;
+	    int playersAlive = PlayersInGame.size();
+	    for(int x = 0; x < PlayersInGame.size(); x++){
+	        Player play = PlayersInGame.get(x);
+	        if(play.getArmies() == 0){
+	            playersAlive = playersAlive - 1;
+            }
+        }
+        if(playersAlive == 1){
+            Finished = true;
+        }
+        return Finished;
+    }
 
     public void PlayerSelection(String selection){
         switch (selection){
@@ -196,6 +245,29 @@ public class Game {
                 break;
         }
 
+    }
+
+    private void printHelp(){
+	    System.out.println("The possible commands are:");
+        System.out.println(parser.getCommands());
+    }
+
+    private void attack(){
+
+    }
+
+    private void move(){
+
+    }
+
+    private void endTurn(){
+	    System.out.println("Ending turn...");
+    }
+
+    private void MapPrint(){
+	    System.out.println("The current map is:");
+        map.PrintMap();
+        System.out.println("Select a command:");
     }
 
     public static void main(String[] args) {
