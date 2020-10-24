@@ -124,9 +124,13 @@ public class Game {
                         endTurn = processCommand(command, play);
                     }
                 }
-                //check if finished
+                else{
+                    PlayersInGame.remove(x);
+                }
             }
         }
+        Player play = PlayersInGame.get(0);
+        System.out.println(play.getName() + "has won the game!");
     }
 
     private boolean processCommand(Command command, Player player){
@@ -188,12 +192,6 @@ public class Game {
 	public boolean CheckEnd(){
 	    boolean Finished = false;
 	    int playersAlive = PlayersInGame.size();
-	    for(int x = 0; x < PlayersInGame.size(); x++){
-	        Player play = PlayersInGame.get(x);
-	        if(play.getArmies() == 0){
-	            playersAlive = playersAlive - 1;
-            }
-        }
         if(playersAlive == 1){
             Finished = true;
         }
@@ -429,6 +427,10 @@ public class Game {
         else{
             System.out.println(attackedPlayer.getName() + "'s " + attackedC.getName() + " now has " + attackedC.getArmiesOnCountry() + " on it");
             System.out.println(player.getName() + "'s " + attackerC.getName() + " now has " + attackerC.getArmiesOnCountry() + " on it");
+        }
+
+        if(attackedPlayer.getArmies() == 0){
+            System.out.println(attackedPlayer.getName() + " has been eliminated");
         }
 
         return false;
