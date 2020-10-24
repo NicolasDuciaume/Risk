@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 public class Country {
+
     private String name;
     private ArrayList<Country> neighbors;
     private Player playerOnCountry;
@@ -14,8 +15,8 @@ public class Country {
         occupied = 0;
     }
 
-    public void addNeighbor(Country n){
-        neighbors.add(n);
+    public void addNeighbor(Country country){
+        neighbors.add(country);
     }
 
     public ArrayList<Country> getNeighbors(){
@@ -38,12 +39,12 @@ public class Country {
         return playerOnCountry;
     }
 
-    public void addArmiesOnCountry(int x){
-        armiesOnCountry = armiesOnCountry + x;
+    public void addArmiesOnCountry(int numOfArmy){
+        armiesOnCountry = armiesOnCountry + numOfArmy;
     }
 
-    public void removeArmiesOnCountry(int x){
-        armiesOnCountry = armiesOnCountry - x;
+    public void removeArmiesOnCountry(int numOfArmy){
+        armiesOnCountry = armiesOnCountry - numOfArmy;
     }
 
     public int getArmiesOnCountry(){

@@ -1,4 +1,5 @@
 public class Command {
+    
     private String commandWord;
 
     public Command(String commandWord){

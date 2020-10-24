@@ -10,7 +10,7 @@ public class Map {
     private Country EAUS, Indonesia, NG, WAUS;
 
     private ArrayList<Country> FullMap;
-    private int CountriesO = 0;
+    private int countriesOccupied = 0;
 
     public Map(){
         Alaska = new Country("Alaska");
@@ -100,8 +100,6 @@ public class Map {
         FullMap.add(Indonesia);
         FullMap.add(NG);
         FullMap.add(WAUS);
-
-
 
         setMap();
     }
@@ -334,12 +332,12 @@ public class Map {
     }
 
     public int getCountriesOcc() {
-        int CountriesOcc = 0;
+        int countriesOcc = 0;
         for(int x = 0; x < FullMap.size(); x++){
             Country temp = FullMap.get(x);
-            CountriesOcc = CountriesOcc + temp.getOccupied();
+            countriesOcc = countriesOcc + temp.getOccupied();
         }
-        CountriesO = CountriesOcc;
-        return CountriesOcc;
+        countriesOccupied = countriesOcc;
+        return countriesOcc;
     }
 }
