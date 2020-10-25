@@ -1,7 +1,10 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
-
+/**
+ * The main class of the Risk Game
+ *
+ */
 public class Game {
 
     private Player player1;
@@ -18,7 +21,10 @@ public class Game {
     private Map map;
 
     private ArrayList<Country> fullMap;
-
+    private Dice dice;
+    /**
+     * The default constructor of the Game class
+     */
     public Game(){
         parser = new Parser();
         player1 = new Player("Player 1");
@@ -31,9 +37,12 @@ public class Game {
         map = new Map();
 
         fullMap = new ArrayList<Country>();
-        fullMap = map.getFullMap();
+        fullMap = map.getCompleteGameMap();
+        dice = new Dice();
     }
-
+    /**
+     * This class is responsible for adding the armies on the map
+     */
     public void Populate(){
         Random rand = new Random();
         PopulateInit();
@@ -47,11 +56,14 @@ public class Game {
             }
         }
     }
-
+    /**
+     * This method is responsible for initializing the Risk 
+     * game with default settings
+     */
     public void PopulateInit(){
         Random rand = new Random();
-        while(map.getCountriesOccupied() != 42){
-            if(((PlayersInGame.size() == 4 ) || (PlayersInGame.size() == 5)) && (map.getCountriesOccupied() == 40)){ //because they 42 is not divisible by 4 or 5
+        while(map.getOccupiedCountries() != 42){
+            if(((PlayersInGame.size() == 4 ) || (PlayersInGame.size() == 5)) && (map.getOccupiedCountries() == 40)){ //because they 42 is not divisible by 4 or 5
                 for (int x = 0; x < 2; x++){
                     Player play = PlayersInGame.get(x);
                     Country temp = fullMap.get(rand.nextInt(fullMap.size()));
@@ -82,7 +94,10 @@ public class Game {
             }
         }
     }}
-
+    /**
+     * This method is responsible for instantiating the introduction 
+     * of the game upon game start up
+     */
     public void introduction()
     {
         System.out.println("Welcome to the game of Risk!");
@@ -90,18 +105,19 @@ public class Game {
         for(int x = 2; x <= 6; x++){
             System.out.println(x + " Players");
         }
-        playerSelection(parser.getIntroSelect());
+        playerSelection(parser.getUserInput());
         while(PlayersInGame.size() == 0){
             System.out.println("Please select a valid option:");
-            playerSelection(parser.getIntroSelect());
+            playerSelection(parser.getUserInput());
         }
         System.out.println("You have selected " + PlayersInGame.size());
         System.out.println("Starting Game...");
     }
-
+    /**
+     * This method is responsible for interfacing with the user as the game proceeds
+     */
     public void play()
     {
-    	Dice dice = new Dice();
     	
         introduction();
         Populate();
@@ -128,7 +144,13 @@ public class Game {
         Player play = PlayersInGame.get(0);
         System.out.println(play.getName() + "has won the game!");
     }
-
+    /**
+     * This method is responsible for processing the user entered commands and making 
+     * calls to appropriate methods based on the entered command
+     * @param command the user entered command
+     * @param player the player which entered the command
+     * @return true if the command was processed successfully
+     */
     private boolean processCommand(Command command, Player player){
         boolean end = false;
         if(command.isUnknown()){
@@ -167,24 +189,12 @@ public class Game {
     }
 
 
-	private int[] rollDice(int dices) {
-	    int[] rolledValues = new int[dices];
-	    for(int x = 0; x < dices; x++){
-	        Dice temp = new Dice();
-	        temp.rollDice();
-	        rolledValues[x] = temp.getRoll();
-        }
-
-        Arrays.sort(rolledValues);
-
-		for(int i = 0; i < rolledValues.length; i++) {
-			System.out.println("Got value: " + rolledValues[i]);
-		}
-        return rolledValues;
-	}
 
 
-
+    /**
+     * This function checks if the end of the game is reached or not
+     * @return
+     */
 	public boolean checkEnd(){
 	    boolean Finished = false;
 	    int playersAlive = PlayersInGame.size();
@@ -193,9 +203,13 @@ public class Game {
         }
         return Finished;
     }
-
-    public void playerSelection(String selection){
-        switch (selection){
+	/**
+	 * This function takes a number representing the number of players that will be
+	 * playing the game and initializes the game for them
+	 * @param numberOfPlayers the number of players that will be playing the game
+	 */
+    public void playerSelection(String numberOfPlayers){
+        switch (numberOfPlayers){
             case "2":
             case "2 Players":
                 player1.setArmies(50);
@@ -254,12 +268,18 @@ public class Game {
         }
 
     }
-
+    /**
+     * This function is responsible for printing out the help 
+     */
     private void printHelp(){
 	    System.out.println("The possible commands are:");
         System.out.println(parser.getCommands());
     }
-
+    /**
+     * This function is responsible for making an attack
+     * @param player the player that is about to attack
+     * @return true if the attach was made
+     */
     private boolean attack(Player player){
         System.out.println("With which Country would you like to attack:");
         ArrayList<Country> playCount = player.getPlacedArmies();
@@ -270,7 +290,7 @@ public class Game {
         boolean correctSelect = false;
         Country attackerC = null;
         while(!correctSelect){
-            String attacker = parser.getIntroSelect();
+            String attacker = parser.getUserInput();
             if(attacker.equals("back")){
                 return true;
             }
@@ -310,7 +330,7 @@ public class Game {
         Country attackedC = null;
         Player attackedPlayer = null;
         while (!correctNeighbor) {
-            String attacked = parser.getIntroSelect();
+            String attacked = parser.getUserInput();
             if (attacked.equals("back")) {
                 return true;
             }
@@ -339,7 +359,7 @@ public class Game {
         boolean CorrectNumber = false;
         int[] attackerDice = {0};
         while (!CorrectNumber) {
-            String ans = parser.getIntroSelect();
+            String ans = parser.getUserInput();
             if (ans.equals("back")){
                 return true;
             }
@@ -349,7 +369,7 @@ public class Game {
             else {
                 int numDice = Integer.valueOf(ans);
                 if ((numDice < attackerC.getArmiesOnCountry()) && (numDice >= 1) && (numDice <= 3)) {
-                    attackerDice = rollDice(numDice);
+                    attackerDice = dice.roll(numDice);
                     CorrectNumber = true;
                 } else {
                     System.out.println("Please select a valid number of armies to move");
@@ -363,7 +383,7 @@ public class Game {
         CorrectNumber = false;
         int[] DefenderDice = {0};
         while (!CorrectNumber) {
-            String ans = parser.getIntroSelect();
+            String ans = parser.getUserInput();
             if(!isNumeric(ans)){
                 System.out.println("Please input a number");
             }
@@ -374,7 +394,7 @@ public class Game {
                         System.out.println("You do not have enough armies for 2 dices");
                     }
                     else{
-                        DefenderDice = rollDice(numDice);
+                        DefenderDice = dice.roll(numDice);
                         CorrectNumber = true;
                     }
                 }
@@ -431,7 +451,11 @@ public class Game {
 
         return false;
     }
-
+    /**
+     * This function provides the move functionality to the game
+     * @param player the player that wants to move
+     * @return true if move has been made
+     */
     private boolean move(Player player) {
         System.out.println("With which Country would you like to move armies from:");
         ArrayList<Country> playCount = player.getPlacedArmies();
@@ -443,13 +467,13 @@ public class Game {
         boolean correctSelect = false;
         Country mover = null;
         while (!correctSelect) {
-            String attacker = parser.getIntroSelect();
-            if (attacker.equals("back")) {
+            String attackerInput = parser.getUserInput();
+            if (attackerInput.equals("back")) {
                 return true;
             }
             for (int y = 0; y < playCount.size(); y++) {
                 Country temp = playCount.get(y);
-                if (temp.getName().equals(attacker)) {
+                if (temp.getName().equals(attackerInput)) {
                     mover = temp;
                     correctSelect = true;
                 }
@@ -479,7 +503,7 @@ public class Game {
         boolean correctNeighbor = false;
         Country moving = null;
         while (!correctNeighbor) {
-            String neighbor = parser.getIntroSelect();
+            String neighbor = parser.getUserInput();
             if (neighbor.equals("back")) {
                 return true;
             }
@@ -498,7 +522,7 @@ public class Game {
         System.out.println("How many armies would you like to move? (must leave 1 army)");
         boolean CorrectNumber = false;
         while (!CorrectNumber) {
-            String ans = parser.getIntroSelect();
+            String ans = parser.getUserInput();
             if (ans.equals("back")){
                 return true;
             }
@@ -525,11 +549,17 @@ public class Game {
 
         return false;
     }
-
+    /**
+     * This function ends the player turn
+     */
     private void endTurn(){
 	    System.out.println("Ending turn...");
     }
-
+    /**
+     * This function checks if the value is numeric or not
+     * @param strNum number with String as its type
+     * @return true if the value is numeric or not
+     */
     public static boolean isNumeric(String strNum) {
         if (strNum == null) {
             return false;
@@ -541,12 +571,16 @@ public class Game {
         }
         return true;
     }
-
+    /**
+     * This function prints out the map
+     */
     private void mapPrint(){
 	    System.out.println("The current map is:");
         map.printMap();
     }
-
+    /**
+     * The main  function that runs the game
+     */
     public static void main(String[] args) {
         Game game = new Game();
         game.play();
