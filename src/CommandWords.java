@@ -23,7 +23,6 @@ public class CommandWords {
      * @return the list of all the commands
      */
     public void getCommandList() {
-        StringBuilder s = new StringBuilder();
         for(String command: VALID_COMMANDS) {
             System.out.print(command + " ");
         }

@@ -61,40 +61,57 @@ public class Game {
      * game with default settings
      */
     public void PopulateInit(){
-        Random rand = new Random();
         while(map.getOccupiedCountries() != 42){
             if(((PlayersInGame.size() == 4 ) || (PlayersInGame.size() == 5)) && (map.getOccupiedCountries() == 40)){ //because they 42 is not divisible by 4 or 5
-                for (int x = 0; x < 2; x++){
-                    Player play = PlayersInGame.get(x);
-                    Country temp = fullMap.get(rand.nextInt(fullMap.size()));
-                    while(temp.getOccupied() != 0)
-                    {
-                        temp = fullMap.get(rand.nextInt(fullMap.size()));
-                    }
-                    play.AddCountry(temp);
-                    temp.addArmiesOnCountry(1);
-                    temp.setOccupied();
-                    temp.setPlayerOnCountry(play);
-                    play.remArmiesToPlace();
-                }
+                gameSetUpFornonDevisibleCountriesByPlayersCase();
             }
             else{
-                for (int x = 0; x < PlayersInGame.size(); x++){
-                    Player play = PlayersInGame.get(x);
-                    Country temp = fullMap.get(rand.nextInt(fullMap.size()));
-                    while(temp.getOccupied() != 0)
-                    {
-                        temp = fullMap.get(rand.nextInt(fullMap.size()));
-                    }
-                    play.AddCountry(temp);
-                    temp.addArmiesOnCountry(1);
-                    temp.setOccupied();
-                    temp.setPlayerOnCountry(play);
-                    play.remArmiesToPlace();
-                }
+            	standardCaseGameSetup();
             }
         }
     }
+    /**
+     * This function is responsible for the case when we have have to set up the game
+     * such that the number of countries are divisible by the number of players i.e., 2 and 42 
+     */
+	private void standardCaseGameSetup() {
+		Random rand = new Random();
+		for (int x = 0; x < PlayersInGame.size(); x++){
+		    Player play = PlayersInGame.get(x);
+		    Country temp = fullMap.get(rand.nextInt(fullMap.size()));
+		    while(temp.getOccupied() != 0)
+		    {
+		        temp = fullMap.get(rand.nextInt(fullMap.size()));
+		    }
+		    play.AddCountry(temp);
+		    temp.addArmiesOnCountry(1);
+		    temp.setOccupied();
+		    temp.setPlayerOnCountry(play);
+		    play.remArmiesToPlace();
+		}
+	}
+    /**
+     * This function is responsible for setting up the game
+     * when we have 4 or 5 players and the total number of 
+     * countries i.e., 45 is not divisible by 4 or 5
+     * @param rand
+     */
+	private void gameSetUpFornonDevisibleCountriesByPlayersCase() {
+		Random rand = new Random();
+		for (int x = 0; x < 2; x++){
+		    Player play = PlayersInGame.get(x);
+		    Country temp = fullMap.get(rand.nextInt(fullMap.size()));
+		    while(temp.getOccupied() != 0)
+		    {
+		        temp = fullMap.get(rand.nextInt(fullMap.size()));
+		    }
+		    play.AddCountry(temp);
+		    temp.addArmiesOnCountry(1);
+		    temp.setOccupied();
+		    temp.setPlayerOnCountry(play);
+		    play.remArmiesToPlace();
+		}
+	}
 
 
     /**
@@ -160,46 +177,47 @@ public class Game {
      */
     private boolean processCommand(Command command, Player player){
         boolean end = false;
+        
         if(command.isUnknown()){
             System.out.println("Please select a valid command");
             return false;
         }
-
-        String commandWord = command.getCommandWord();
-        if (commandWord.trim().equalsIgnoreCase("help")) {
-            printHelp();
+        else {        
+        	String commandWord = command.getCommandWord().trim().toLowerCase();
+        	switch(commandWord) {
+        	case "help":
+        		printHelp();
+        		break;
+        	case "map": 
+        		mapPrint();
+	            System.out.println("Select a command:");
+	            break;
+        	case "pass" : 
+        		endTurn();
+ 	            end = true;
+ 	            player.setMoved(false);
+ 	            break;
+        	case "attack": 
+        		attack(player);
+ 	            System.out.println("Select a command:");
+ 	            break;
+        	case "quit": 
+	        	System.out.println("GAME OVER.");
+	        	System.exit(0);
+	        	break;  		
+        	}
+	        //Troop movement phase is to be implemented in Milestone 3
+	        
+	        /*else if(commandWord.equals("move")){
+	            if (!player.isMoved()){
+	                move(player);
+	            }
+	            else{
+	                System.out.println("You have already moved armies this turn");
+	            }
+	            System.out.println("Select a command:");
+	        }*/ 
         }
-        else if (commandWord.trim().equalsIgnoreCase("map")){
-            mapPrint();
-            System.out.println("Select a command:");
-        }
-        else if (commandWord.trim().equalsIgnoreCase("pass"))
-        {
-            endTurn();
-            end = true;
-            player.setMoved(false);
-        }
-        else if(commandWord.trim().equalsIgnoreCase("attack")){
-            attack(player);
-            System.out.println("Select a command:");
-        }
-        else if(commandWord.trim().equalsIgnoreCase("quit")){
-        	
-        	System.out.println("GAME OVER.");
-        	System.exit(0);
-        }
-        
-        //Troop movement phase is to be implemented in Milestone 3
-        
-        /*else if(commandWord.equals("move")){
-            if (!player.isMoved()){
-                move(player);
-            }
-            else{
-                System.out.println("You have already moved armies this turn");
-            }
-            System.out.println("Select a command:");
-        }*/ 
         return end;
     }
 
@@ -296,10 +314,7 @@ public class Game {
     private boolean attack(Player player){
         System.out.println("With which Country would you like to attack:");
         ArrayList<Country> playCount = player.getPlacedArmies();
-        for(int x = 0; x < playCount.size(); x++){
-            Country temp = playCount.get(x);
-            System.out.println(temp.getName() + " which has " + temp.getArmiesOnCountry() + " on it");
-        }
+        printCountriesAlongWithArmies(playCount);
         boolean correctSelect = false;
         Country attackerC = null;
         while(!correctSelect){
@@ -465,7 +480,7 @@ public class Game {
         return false;
     }
     /**
-     * To be provded later
+     * To be provided later
      * This function provides the move functionality to the game.
      * @param player the player that wants to move
      * @return true if move has been made
@@ -564,6 +579,16 @@ public class Game {
 
         return false;
     } */
+    /**
+     * This function prints out the countries along with the armies on on it.
+     * @param countries 
+     */
+	private void printCountriesAlongWithArmies(ArrayList<Country> countries) {
+		for(int x = 0; x < countries.size(); x++){
+            Country temp = countries.get(x);
+            System.out.println(temp.getName() + " which has " + temp.getArmiesOnCountry() + " on it");
+        }
+	}
                 		
 
 	/**
