@@ -13,11 +13,16 @@ public class Dice {
 	public Dice() {
 		dice = new Random();
 	}
-
+	/**
+	 * this function rolls a dice
+	 */
 	public void rollDice(){
 		roll = dice.nextInt(5) + 1;
 	}
-
+	/**
+	 *
+	 * @return the value that is obtained as a result of rolling the dice
+	 */
 	public int getRoll(){
 		return roll;
 	}
@@ -29,23 +34,22 @@ public class Dice {
 	 * Takes in the total number of dices that needs to be rolled. The number of
 	 * dices that can be rolled at a time ranges from 1 - 3 inclusive.
 	 * 
-	 * Returns the dice roll value
-	 * 
-	 **/
-	/*public int[] roll(int numberOfDice) {
+     * @param dices the number of dices to be rolled
+     * @return the dice roll value
+     */
+	protected int[] roll(int dices) {
+	    int[] rolledValues = new int[dices];
+	    for(int x = 0; x < dices; x++){
+	        Dice temp = new Dice();
+	        temp.rollDice();
+	        rolledValues[x] = temp.getRoll();
+        }
 
-		dices = new int[numberOfDice];
-		// go through the dices one by one
-		for (int i = 0; i < dices.length; i++) {
-			dice = new Random();
-			// roll the dice
-			roll = dice.nextInt(5) + 1;
-			dices[i] = roll;
+        Arrays.sort(rolledValues);
+
+		for(int i = 0; i < rolledValues.length; i++) {
+			System.out.println("Got value: " + rolledValues[i]);
 		}
-
-		// sort the values in ascending order
-		Arrays.sort(dices);
-
-		return dices;
-	}*/
+        return rolledValues;
+	}
 }
