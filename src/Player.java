@@ -7,8 +7,8 @@ public class Player {
 
     private String name;
     private int armies;
-    private int armiesToPlace;
-    private ArrayList<Country> armiesOn;
+    private int numberOfArmiesToMove;
+    private ArrayList<Country> placedArmies;
     private boolean moved = false;
     /**
      * Player constructor with one parameter.
@@ -18,8 +18,8 @@ public class Player {
     {
         this.name = name;
         armies = 0;
-        armiesToPlace = 0;
-        armiesOn = new ArrayList<Country>();
+        numberOfArmiesToMove = 0;
+        placedArmies = new ArrayList<Country>();
     }
     /**
      * This function gets the name of the Player
@@ -41,7 +41,7 @@ public class Player {
      */
     public void setArmies(int armies) {
         this.armies = armies;
-        armiesToPlace = armies;
+        numberOfArmiesToMove = armies;
     }
     /**
      * This function gets the armies 
@@ -52,57 +52,57 @@ public class Player {
     }
     /**
      * This function removes the armies
-     * @param x the number of armies to be removed.
+     * @param numberOfArmies the number of armies to be removed.
      */
-    public void removeArmies(int x){
-        armies = armies - x;
+    public void removeArmies(int numberOfArmies){
+        armies = armies - numberOfArmies;
     }
     /**
      * This function is responsible for adding the country to the players controlled countries
-     * @param a the country to add armies to in order to claim it
+     * @param countryName the country to add armies to in order to claim it
      */
-    public void AddCountry(Country a){
-        armiesOn.add(a);
+    public void AddCountry(Country countryName){
+        placedArmies.add(countryName);
     }
     /**
      * This function is responsible for removing the country i.e., removing the hold of the 
      * player on the country
-     * @param a the country to be removed i.e., the country for which the current player lost hold of
+     * @param countryName the country to be removed i.e., the country for which the current player lost hold of
      */
-    public void removeCountry(Country a){
-        for(int x = 0; x < armiesOn.size(); x++){
-            Country temp = armiesOn.get(x);
-            if(a.getName() == temp.getName()){
-                armiesOn.remove(x);
+    public void removeCountry(Country countryName){
+        for(int x = 0; x < placedArmies.size(); x++){
+            Country temp = placedArmies.get(x);
+            if(countryName.getName() == temp.getName()){
+                placedArmies.remove(x);
             }
         }
     }
 	/**
-	 * 
-	 * @param armiesOn
+	 * This function places the armies on a country
+	 * @param placedArmies
 	 */
-    public void setArmiesOn(ArrayList<Country> armiesOn) {
-        this.armiesOn = armiesOn;
+    public void setArmiesOn(ArrayList<Country> placedArmies) {
+        this.placedArmies = placedArmies;
     }
     /**
      * This function gets the armies that are present on a country
      * @return the armies that are present on a country
      */
-    public ArrayList<Country> getArmiesOn() {
-        return armiesOn;
+    public ArrayList<Country> getPlacedArmies() {
+        return placedArmies;
     }
     /**
      * This function gets the number of remaining armies that needs to be placed 
      * @return the number of remaining armies that needs to be placed 
      */
     public int getArmiesToPlace() {
-        return armiesToPlace;
+        return numberOfArmiesToMove;
     }
     /**
      * This function updates the number of armies that are left to be placed
      */
     public void remArmiesToPlace() {
-        armiesToPlace = armiesToPlace - 1;
+        numberOfArmiesToMove = numberOfArmiesToMove - 1;
     }
     /**
      * This function checks if the player has moved or not
