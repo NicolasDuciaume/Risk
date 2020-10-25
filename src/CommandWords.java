@@ -1,7 +1,8 @@
 public class CommandWords {
 
     private static final String[] VALID_COMMANDS = {
-      "help", "attack", "move", "map", "end turn"
+      "help", "attack", "map", "pass", "quit"
+      //, "move"
     };
     /**
      * This function checks if the word is a command or not
@@ -11,7 +12,7 @@ public class CommandWords {
      */
     public boolean isCommand(String userInput){
         for(int i = 0; i < VALID_COMMANDS.length; i++){
-            if(VALID_COMMANDS[i].equals(userInput)){
+            if(VALID_COMMANDS[i].equalsIgnoreCase(userInput.trim())){
                 return true;
             }
         }
@@ -21,12 +22,11 @@ public class CommandWords {
      * This function gets all the command word
      * @return the list of all the commands
      */
-    public String getCommandList() {
+    public void getCommandList() {
         StringBuilder s = new StringBuilder();
         for(String command: VALID_COMMANDS) {
-            s.append(command + "  ");
+            System.out.print(command + " ");
         }
-        String str = s.toString();
-        return str.trim();
+        System.out.println();
     }
 }

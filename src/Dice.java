@@ -2,6 +2,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
+/**
+ * Represents a dice with a specified number of sides (1-6)
+ *
+ */
 public class Dice {
 
 	private int roll;
@@ -26,7 +30,6 @@ public class Dice {
 	public int getRoll(){
 		return roll;
 	}
-
 
 	/**
 	 * Replicates the dice roll.

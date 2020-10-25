@@ -11,15 +11,15 @@ public class Game {
     private Player player2;
     private Player player3;
     private Player player4;
-    private  Player player5;
-    private  Player player6;
+    private Player player5;
+    private Player player6;
 
     private ArrayList<Player> PlayersInGame = new ArrayList<Player>();
 
     private Parser parser;
 
-    private Map map;
-
+    private Map map; 
+    
     private ArrayList<Country> fullMap;
     private Dice dice;
     /**
@@ -45,7 +45,7 @@ public class Game {
      */
     public void Populate(){
         Random rand = new Random();
-        PopulateInit();
+        PopulateInit(); 
         for(int x = 0; x < PlayersInGame.size(); x++){
             Player play = PlayersInGame.get(x);
             ArrayList<Country> PlayCountry = play.getPlacedArmies();
@@ -91,17 +91,24 @@ public class Game {
                     temp.setOccupied();
                     temp.setPlayerOnCountry(play);
                     play.remArmiesToPlace();
+                }
             }
         }
-    }}
+    }
+
+
     /**
      * This method is responsible for instantiating the introduction 
      * of the game upon game start up
      */
     public void introduction()
     {
-        System.out.println("Welcome to the game of Risk!");
-        System.out.println("Select the number of players:");
+        System.out.println("Welcome to the game of RISK!\n"
+        		+ "The goal is simple: players aim to conquer their enemies' territories\n"
+        		+ "by building an army, moving their troops in, and engaging in battle.\n"
+        		+ "Depending on the roll of the dice, a player will either defeat the enemy or be defeated.\n\n"
+        		+ "select the number of players:");
+        
         for(int x = 2; x <= 6; x++){
             System.out.println(x + " Players");
         }
@@ -128,8 +135,8 @@ public class Game {
                 Player play = PlayersInGame.get(x);
                 if(play.getArmies() != 0){
                     System.out.println(play.getName() + "'s turn:");
-                    System.out.println("Select a command:");
-                    System.out.println(parser.getCommands());
+                    System.out.println("\nSelect a command:");
+                    parser.getCommands();
                     boolean endTurn = false;
                     while(!endTurn){
                         Command command = parser.getCommand();
@@ -159,24 +166,32 @@ public class Game {
         }
 
         String commandWord = command.getCommandWord();
-        if (commandWord.equals("help")) {
+        if (commandWord.trim().equalsIgnoreCase("help")) {
             printHelp();
         }
-        else if (commandWord.equals("map")){
+        else if (commandWord.trim().equalsIgnoreCase("map")){
             mapPrint();
             System.out.println("Select a command:");
         }
-        else if (commandWord.equals("end turn"))
+        else if (commandWord.trim().equalsIgnoreCase("pass"))
         {
             endTurn();
             end = true;
             player.setMoved(false);
         }
-        else if(commandWord.equals("attack")){
+        else if(commandWord.trim().equalsIgnoreCase("attack")){
             attack(player);
             System.out.println("Select a command:");
         }
-        else if(commandWord.equals("move")){
+        else if(commandWord.trim().equalsIgnoreCase("quit")){
+        	
+        	System.out.println("GAME OVER.");
+        	System.exit(0);
+        }
+        
+        //Troop movement phase is to be implemented in Milestone 3
+        
+        /*else if(commandWord.equals("move")){
             if (!player.isMoved()){
                 move(player);
             }
@@ -184,12 +199,9 @@ public class Game {
                 System.out.println("You have already moved armies this turn");
             }
             System.out.println("Select a command:");
-        }
+        }*/ 
         return end;
     }
-
-
-
 
     /**
      * This function checks if the end of the game is reached or not
@@ -209,16 +221,17 @@ public class Game {
 	 * @param numberOfPlayers the number of players that will be playing the game
 	 */
     public void playerSelection(String numberOfPlayers){
-        switch (numberOfPlayers){
+		//toUpperCase to make it case insensitive.
+        switch (numberOfPlayers.toUpperCase().trim()){
             case "2":
-            case "2 Players":
+            case "2 PLAYERS":
                 player1.setArmies(50);
                 player2.setArmies(50);
                 PlayersInGame.add(player1);
                 PlayersInGame.add(player2);
                 break;
             case "3":
-            case "3 Players":
+            case "3 PLAYERS":
                 player1.setArmies(35);
                 player2.setArmies(35);
                 player3.setArmies(35);
@@ -227,7 +240,7 @@ public class Game {
                 PlayersInGame.add(player3);
                 break;
             case "4":
-            case "4 Players":
+            case "4 PLAYERS":
                 player1.setArmies(30);
                 player2.setArmies(30);
                 player3.setArmies(30);
@@ -238,7 +251,7 @@ public class Game {
                 PlayersInGame.add(player4);
                 break;
             case "5":
-            case "5 Players":
+            case "5 PLAYERS":
                 player1.setArmies(25);
                 player2.setArmies(25);
                 player3.setArmies(25);
@@ -251,7 +264,7 @@ public class Game {
                 PlayersInGame.add(player5);
                 break;
             case "6":
-            case "6 Players":
+            case "6 PLAYERS":
                 player1.setArmies(20);
                 player2.setArmies(20);
                 player3.setArmies(20);
@@ -273,7 +286,7 @@ public class Game {
      */
     private void printHelp(){
 	    System.out.println("The possible commands are:");
-        System.out.println(parser.getCommands());
+	    parser.getCommands(); //prints out the available commands 
     }
     /**
      * This function is responsible for making an attack
@@ -291,20 +304,20 @@ public class Game {
         Country attackerC = null;
         while(!correctSelect){
             String attacker = parser.getUserInput();
-            if(attacker.equals("back")){
+            if(attacker.trim().equalsIgnoreCase("back")){
                 return true;
             }
             for(int y = 0; y < playCount.size(); y++){
                 Country temp = playCount.get(y);
-                if(temp.getArmiesOnCountry() != 1){
-                    if(temp.getName().equals(attacker)){
+                if(temp.getArmiesOnCountry() > 1){
+                    if(temp.getName().equalsIgnoreCase(attacker.trim())){
                         attackerC = temp;
                         correctSelect = true;
                     }
                 }
             }
             if(correctSelect == false){
-                System.out.println("Please select a valid country that you own with more then 1 army on it");
+                System.out.println("Please select a valid country that you own with more than 1 army on it");
             }
         }
 
@@ -320,24 +333,24 @@ public class Game {
         }
 
         if (noOwnedNeighbors == true) {
-            System.out.println("You have know neighbors to this country that you can attack");
+            System.out.println("You have no neighbors to this country that you can attack.");
             return false;
         }
 
-        System.out.println("Which Country do you wish to attack?");
+        System.out.println("Which Country do you wish to attack? (input \"back\" if you wish to cancel)");
 
         boolean correctNeighbor = false;
         Country attackedC = null;
         Player attackedPlayer = null;
         while (!correctNeighbor) {
             String attacked = parser.getUserInput();
-            if (attacked.equals("back")) {
+            if (attacked.trim().equalsIgnoreCase("back")) {
                 return true;
             }
             for (int y = 0; y < neighbors.size(); y++) {
                 Country temp = neighbors.get(y);
                 if(temp.getPlayerOnCountry().getName() != player.getName()){
-                    if (temp.getName().equals(attacked)) {
+                    if (temp.getName().equalsIgnoreCase(attacked.trim())) {
                         attackedC = temp;
                         attackedPlayer = temp.getPlayerOnCountry();
                         correctNeighbor = true;
@@ -354,7 +367,7 @@ public class Game {
         System.out.println(attackedC.getName() + " has " + attackedC.getArmiesOnCountry() + " armies on it");
 
         System.out.println(player.getName() + " how many dices would you like to have?");
-        System.out.println("Between 1 and 3, must have one more army on Country then amount of dice");
+        System.out.println("Between 1 and 3, must have one more army on Country than amount of dice");
 
         boolean CorrectNumber = false;
         int[] attackerDice = {0};
@@ -364,7 +377,7 @@ public class Game {
                 return true;
             }
             else if(!isNumeric(ans)){
-                System.out.println("Please input a number");
+                System.out.println("Please input a number: ");
             }
             else {
                 int numDice = Integer.valueOf(ans);
@@ -452,10 +465,12 @@ public class Game {
         return false;
     }
     /**
-     * This function provides the move functionality to the game
+     * To be provded later
+     * This function provides the move functionality to the game.
      * @param player the player that wants to move
      * @return true if move has been made
      */
+    /*
     private boolean move(Player player) {
         System.out.println("With which Country would you like to move armies from:");
         ArrayList<Country> playCount = player.getPlacedArmies();
@@ -548,10 +563,12 @@ public class Game {
         player.setMoved(true);
 
         return false;
-    }
-    /**
-     * This function ends the player turn
-     */
+    } */
+                		
+
+	/**
+	 * This function ends the player turn
+	 */
     private void endTurn(){
 	    System.out.println("Ending turn...");
     }
@@ -564,18 +581,13 @@ public class Game {
         if (strNum == null) {
             return false;
         }
-        try {
-            double d = Double.parseDouble(strNum);
-        } catch (NumberFormatException nfe) {
-            return false;
-        }
         return true;
     }
     /**
      * This function prints out the map
      */
     private void mapPrint(){
-	    System.out.println("The current map is:");
+	    System.out.println("The current map is: ");
         map.printMap();
     }
     /**

@@ -333,7 +333,9 @@ public class Map {
             Country temp = completeGameMap.get(x);
             Player play = temp.getPlayerOnCountry();
             System.out.println(temp.getName() + " has " + temp.getArmiesOnCountry() + " armies owned by " + play.getName() + " on it");
+            
         }
+        System.out.println();
     }
     /**
      * This function gets the entire game map
