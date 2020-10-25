@@ -1,7 +1,3 @@
-/**
- * The class is responsible for processing the user entered commands
- *
- */
 public class Command {
     
     private String commandWord;
