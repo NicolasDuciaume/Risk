@@ -37,7 +37,7 @@ public class Game {
 
     public void Populate(){
         Random rand = new Random();
-        PopulateInit(); //populates the PlayersInGame Array with players
+        PopulateInit(); 
         for(int x = 0; x < PlayersInGame.size(); x++){
             Player play = PlayersInGame.get(x);
             ArrayList<Country> PlayCountry = play.getArmiesOn();
@@ -316,7 +316,7 @@ public class Game {
             return false;
         }
 
-        System.out.println("Which Country do you wish to attack? (input \\\"back\\\" if you wish to cancel)");
+        System.out.println("Which Country do you wish to attack? (input \"back\" if you wish to cancel)");
 
         boolean correctNeighbor = false;
         Country attackedC = null;
