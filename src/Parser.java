@@ -22,8 +22,8 @@ public class Parser {
         return new Command(null);
     }
 
-    public String getCommands(){
-        return commands.getCommandList();
+    public void getCommands(){
+        commands.getCommandList();
     }
 
     public String getIntroSelect(){

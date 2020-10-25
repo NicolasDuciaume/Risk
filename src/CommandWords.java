@@ -1,25 +1,24 @@
 public class CommandWords {
 
     private static final String[] VALID_COMMANDS = {
-      "help", "attack", "move", "map", "end turn"
+      "help", "attack", "map", "pass", "quit"
+      //, "move"
     };
 
     public boolean isCommand(String aString){
         for(int i = 0; i < VALID_COMMANDS.length; i++){
-            if(VALID_COMMANDS[i].equals(aString)){
+            if(VALID_COMMANDS[i].equalsIgnoreCase(aString.trim())){
                 return true;
             }
         }
         return false;
     }
 
-    public String getCommandList() {
-        // let's use a StringBuilder (not required)
-        StringBuilder s = new StringBuilder();
+    public void getCommandList() { //prints out all the valid commands
+
         for(String command: VALID_COMMANDS) {
-            s.append(command + "  ");
+            System.out.print(command + " ");
         }
-        String str = s.toString();
-        return str.trim(); // removes spaces from beginning/end
+        System.out.println();
     }
 }
