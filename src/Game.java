@@ -1,24 +1,23 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
-import java.util.Scanner;
 
 public class Game {
 
-    Player player1;
-    Player player2;
-    Player player3;
-    Player player4;
-    Player player5;
-    Player player6;
+    private Player player1;
+    private Player player2;
+    private Player player3;
+    private Player player4;
+    private  Player player5;
+    private  Player player6;
 
-    ArrayList<Player> PlayersInGame = new ArrayList<Player>();
+    private ArrayList<Player> PlayersInGame = new ArrayList<Player>();
 
-    Parser parser;
+    private Parser parser;
 
-    Map map;
+    private Map map;
 
-    ArrayList<Country> fullMap;
+    private ArrayList<Country> fullMap;
 
     public Game(){
         parser = new Parser();
@@ -51,8 +50,8 @@ public class Game {
 
     public void PopulateInit(){
         Random rand = new Random();
-        while(map.getCountriesOcc() != 42){
-            if(((PlayersInGame.size() == 4 ) || (PlayersInGame.size() == 5)) && (map.getCountriesOcc() == 40)){ //because they 42 is not divisible by 4 or 5
+        while(map.getCountriesOccupied() != 42){
+            if(((PlayersInGame.size() == 4 ) || (PlayersInGame.size() == 5)) && (map.getCountriesOccupied() == 40)){ //because they 42 is not divisible by 4 or 5
                 for (int x = 0; x < 2; x++){
                     Player play = PlayersInGame.get(x);
                     Country temp = fullMap.get(rand.nextInt(fullMap.size()));
@@ -84,34 +83,31 @@ public class Game {
         }
     }}
 
-    public void Introduction()
+    public void introduction()
     {
         System.out.println("Welcome to the game of Risk!");
         System.out.println("Select the number of players:");
         for(int x = 2; x <= 6; x++){
             System.out.println(x + " Players");
         }
-        PlayerSelection(parser.getIntroSelect());
+        playerSelection(parser.getIntroSelect());
         while(PlayersInGame.size() == 0){
             System.out.println("Please select a valid option:");
-            PlayerSelection(parser.getIntroSelect());
+            playerSelection(parser.getIntroSelect());
         }
         System.out.println("You have selected " + PlayersInGame.size());
         System.out.println("Starting Game...");
     }
 
-    public void Play()
+    public void play()
     {
     	Dice dice = new Dice();
     	
-        Introduction();
+        introduction();
         Populate();
-        map.PrintMap();
-        
-        
+        map.printMap();
 
-
-        while (!CheckEnd()){
+        while (!checkEnd()){
             for(int x = 0; x < PlayersInGame.size(); x++){
                 Player play = PlayersInGame.get(x);
                 if(play.getArmies() != 0){
@@ -145,7 +141,7 @@ public class Game {
             printHelp();
         }
         else if (commandWord.equals("map")){
-            MapPrint();
+            mapPrint();
             System.out.println("Select a command:");
         }
         else if (commandWord.equals("end turn"))
@@ -171,7 +167,7 @@ public class Game {
     }
 
 
-	private int[] RollDice(int dices) {
+	private int[] rollDice(int dices) {
 	    int[] rolledValues = new int[dices];
 	    for(int x = 0; x < dices; x++){
 	        Dice temp = new Dice();
@@ -189,7 +185,7 @@ public class Game {
 
 
 
-	public boolean CheckEnd(){
+	public boolean checkEnd(){
 	    boolean Finished = false;
 	    int playersAlive = PlayersInGame.size();
         if(playersAlive == 1){
@@ -198,7 +194,7 @@ public class Game {
         return Finished;
     }
 
-    public void PlayerSelection(String selection){
+    public void playerSelection(String selection){
         switch (selection){
             case "2":
             case "2 Players":
@@ -353,7 +349,7 @@ public class Game {
             else {
                 int numDice = Integer.valueOf(ans);
                 if ((numDice < attackerC.getArmiesOnCountry()) && (numDice >= 1) && (numDice <= 3)) {
-                    attackerDice = RollDice(numDice);
+                    attackerDice = rollDice(numDice);
                     CorrectNumber = true;
                 } else {
                     System.out.println("Please select a valid number of armies to move");
@@ -378,7 +374,7 @@ public class Game {
                         System.out.println("You do not have enough armies for 2 dices");
                     }
                     else{
-                        DefenderDice = RollDice(numDice);
+                        DefenderDice = rollDice(numDice);
                         CorrectNumber = true;
                     }
                 }
@@ -546,13 +542,13 @@ public class Game {
         return true;
     }
 
-    private void MapPrint(){
+    private void mapPrint(){
 	    System.out.println("The current map is:");
-        map.PrintMap();
+        map.printMap();
     }
 
     public static void main(String[] args) {
         Game game = new Game();
-        game.Play();
+        game.play();
     }
 }

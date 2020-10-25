@@ -319,7 +319,7 @@ public class Map {
     }
 
 
-    public void PrintMap(){
+    public void printMap(){
         for (int x = 0; x < FullMap.size(); x++){
             Country temp = FullMap.get(x);
             Player play = temp.getPlayerOnCountry();
@@ -331,7 +331,7 @@ public class Map {
         return FullMap;
     }
 
-    public int getCountriesOcc() {
+    public int getCountriesOccupied() {
         int countriesOcc = 0;
         for(int x = 0; x < FullMap.size(); x++){
             Country temp = FullMap.get(x);
