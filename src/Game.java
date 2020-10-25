@@ -588,7 +588,6 @@ public class Game {
             System.out.println(temp.getName() + " which has " + temp.getArmiesOnCountry() + " on it");
         }
 	}       		
-
 	/**
 	 * This function ends the player turn
 	 */
