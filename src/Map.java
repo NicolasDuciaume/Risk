@@ -321,10 +321,13 @@ public class Map {
 
     public void printMap(){
         for (int x = 0; x < FullMap.size(); x++){
+        	    
             Country temp = FullMap.get(x);
             Player play = temp.getPlayerOnCountry();
             System.out.println(temp.getName() + " has " + temp.getArmiesOnCountry() + " armies owned by " + play.getName() + " on it");
+            
         }
+        System.out.println();
     }
 
     public ArrayList<Country> getFullMap(){

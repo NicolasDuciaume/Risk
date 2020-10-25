@@ -143,24 +143,24 @@ public class Game {
         }
 
         String commandWord = command.getCommandWord();
-        if (commandWord.equalsIgnoreCase("help".trim())) {
+        if (commandWord.trim().equalsIgnoreCase("help")) {
             printHelp();
         }
-        else if (commandWord.equalsIgnoreCase("map".trim())){
+        else if (commandWord.trim().equalsIgnoreCase("map")){
             mapPrint();
             System.out.println("Select a command:");
         }
-        else if (commandWord.equalsIgnoreCase("pass".trim()))
+        else if (commandWord.trim().equalsIgnoreCase("pass"))
         {
             endTurn();
             end = true;
             player.setMoved(false);
         }
-        else if(commandWord.equalsIgnoreCase("attack".trim())){
+        else if(commandWord.trim().equalsIgnoreCase("attack")){
             attack(player);
             System.out.println("Select a command:");
         }
-        else if(commandWord.equalsIgnoreCase("quit".trim())){
+        else if(commandWord.trim().equalsIgnoreCase("quit")){
         	
         	System.out.println("GAME OVER.");
         	System.exit(0);
@@ -283,7 +283,7 @@ public class Game {
         Country attackerC = null;
         while(!correctSelect){
             String attacker = parser.getIntroSelect();
-            if(attacker.equalsIgnoreCase("back".trim())){
+            if(attacker.trim().equalsIgnoreCase("back")){
                 return true;
             }
             for(int y = 0; y < playCount.size(); y++){
@@ -323,7 +323,7 @@ public class Game {
         Player attackedPlayer = null;
         while (!correctNeighbor) {
             String attacked = parser.getIntroSelect();
-            if (attacked.equalsIgnoreCase("back".trim())) {
+            if (attacked.trim().equalsIgnoreCase("back")) {
                 return true;
             }
             for (int y = 0; y < neighbors.size(); y++) {
@@ -561,7 +561,6 @@ public class Game {
     }
 
     public static void main(String[] args) {
-    	System.out.println("test");
         Game game = new Game();
         game.play();
     }
