@@ -340,8 +340,8 @@ public class Game {
         System.out.println(attackerC.getName() + " can attack:");
         for(int x = 0; x < neighbors.size(); x++){
             Country temp = neighbors.get(x);
-            if(!temp.getPlayerOnCountry().getName().equals(player.getName())){
-                System.out.println(temp.getPlayerOnCountry().getName() + "'s " + temp.getName() + " which has " + temp.getArmiesOnCountry() + " on it");
+            if(temp.getPlayerOnCountry().getName() != player.getName()){
+                System.out.println(temp.getName() + " which has " + temp.getArmiesOnCountry() + " on it");
             }
             noOwnedNeighbors = false;
         }
@@ -363,7 +363,7 @@ public class Game {
             }
             for (int y = 0; y < neighbors.size(); y++) {
                 Country temp = neighbors.get(y);
-                if(!temp.getPlayerOnCountry().getName().equals(player.getName())){
+                if(temp.getPlayerOnCountry().getName() != player.getName()){
                     if (temp.getName().equalsIgnoreCase(attacked.trim())) {
                         attackedC = temp;
                         attackedPlayer = temp.getPlayerOnCountry();
@@ -587,7 +587,9 @@ public class Game {
             Country temp = countries.get(x);
             System.out.println(temp.getName() + " which has " + temp.getArmiesOnCountry() + " on it");
         }
-	}       		
+	}
+                		
+
 	/**
 	 * This function ends the player turn
 	 */
@@ -600,11 +602,10 @@ public class Game {
      * @return true if the value is numeric or not
      */
     public static boolean isNumeric(String strNum) {
-        try {
+        try{
             Integer.parseInt(strNum);
             return true;
-        }
-        catch (NumberFormatException e){
+        }catch(NumberFormatException e){
             return false;
         }
     }
