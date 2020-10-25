@@ -1,3 +1,8 @@
+/**
+ * The class that deals with the command words that 
+ * user is allowed to enter and the associated data
+ *
+ */
 public class CommandWords {
 
     private static final String[] VALID_COMMANDS = {
