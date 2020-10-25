@@ -548,6 +548,7 @@ public class Game {
     }
 
     public static void main(String[] args) {
+    	System.out.println("test");
         Game game = new Game();
         game.play();
     }
