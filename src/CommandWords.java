@@ -4,6 +4,7 @@ public class CommandWords {
       "help", "attack", "map", "pass", "quit"
       //, "move"
     };
+    
     /**
      * This function checks if the word is a command or not
      * @param userInput the user entered value that needs to be checked if it is
@@ -18,6 +19,7 @@ public class CommandWords {
         }
         return false;
     }
+    
     /**
      * This function gets all the command word
      * @return the list of all the commands
