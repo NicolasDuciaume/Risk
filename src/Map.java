@@ -1,5 +1,8 @@
 import java.util.ArrayList;
-
+/**
+ * The class is responsible for creating the map of the game
+ *
+ */
 public class Map {
 
     private Country Alaska, Alberta, CA, EUS, Greenland, NT, Ontario, Quebec, WUS;
@@ -9,9 +12,10 @@ public class Map {
     private Country Afghanistan, China, India, Irkutsk, Japan, Kamchatka, ME, Mongolia, Siam, Siberia, Ural, Yakutsk;
     private Country EAUS, Indonesia, NG, WAUS;
 
-    private ArrayList<Country> FullMap;
-    private int countriesOccupied = 0;
-
+    private ArrayList<Country> completeGameMap;
+    /**
+     * Default constructor of the Map class
+     */
     public Map(){
         Alaska = new Country("Alaska");
         Alberta = new Country("Alberta");
@@ -56,55 +60,57 @@ public class Map {
         NG = new Country("New Guinea");
         WAUS = new Country("Western Australia");
 
-        FullMap = new ArrayList<Country>();
+        completeGameMap = new ArrayList<Country>();
 
-        FullMap.add(Alaska);
-        FullMap.add(Alberta);
-        FullMap.add(CA);
-        FullMap.add(EUS);
-        FullMap.add(Greenland);
-        FullMap.add(NT);
-        FullMap.add(Ontario);
-        FullMap.add(Quebec);
-        FullMap.add(WUS);
-        FullMap.add(Argentina);
-        FullMap.add(Brazil);
-        FullMap.add(Peru);
-        FullMap.add(Venezuela);
-        FullMap.add(GB);
-        FullMap.add(Iceland);
-        FullMap.add(NE);
-        FullMap.add(Scandinavia);
-        FullMap.add(SE);
-        FullMap.add(Ukraine);
-        FullMap.add(WE);
-        FullMap.add(Congo);
-        FullMap.add(EA);
-        FullMap.add(Egypt);
-        FullMap.add(Madagascar);
-        FullMap.add(NA);
-        FullMap.add(SA);
-        FullMap.add(Afghanistan);
-        FullMap.add(China);
-        FullMap.add(India);
-        FullMap.add(Irkutsk);
-        FullMap.add(Japan);
-        FullMap.add(Kamchatka);
-        FullMap.add(ME);
-        FullMap.add(Mongolia);
-        FullMap.add(Siam);
-        FullMap.add(Siberia);
-        FullMap.add(Ural);
-        FullMap.add(Yakutsk);
-        FullMap.add(EAUS);
-        FullMap.add(Indonesia);
-        FullMap.add(NG);
-        FullMap.add(WAUS);
+        completeGameMap.add(Alaska);
+        completeGameMap.add(Alberta);
+        completeGameMap.add(CA);
+        completeGameMap.add(EUS);
+        completeGameMap.add(Greenland);
+        completeGameMap.add(NT);
+        completeGameMap.add(Ontario);
+        completeGameMap.add(Quebec);
+        completeGameMap.add(WUS);
+        completeGameMap.add(Argentina);
+        completeGameMap.add(Brazil);
+        completeGameMap.add(Peru);
+        completeGameMap.add(Venezuela);
+        completeGameMap.add(GB);
+        completeGameMap.add(Iceland);
+        completeGameMap.add(NE);
+        completeGameMap.add(Scandinavia);
+        completeGameMap.add(SE);
+        completeGameMap.add(Ukraine);
+        completeGameMap.add(WE);
+        completeGameMap.add(Congo);
+        completeGameMap.add(EA);
+        completeGameMap.add(Egypt);
+        completeGameMap.add(Madagascar);
+        completeGameMap.add(NA);
+        completeGameMap.add(SA);
+        completeGameMap.add(Afghanistan);
+        completeGameMap.add(China);
+        completeGameMap.add(India);
+        completeGameMap.add(Irkutsk);
+        completeGameMap.add(Japan);
+        completeGameMap.add(Kamchatka);
+        completeGameMap.add(ME);
+        completeGameMap.add(Mongolia);
+        completeGameMap.add(Siam);
+        completeGameMap.add(Siberia);
+        completeGameMap.add(Ural);
+        completeGameMap.add(Yakutsk);
+        completeGameMap.add(EAUS);
+        completeGameMap.add(Indonesia);
+        completeGameMap.add(NG);
+        completeGameMap.add(WAUS);
 
-        setMap();
+        initializeMap();
     }
-
-    public void setMap(){
+    /**
+     * This function is responsible for initializing the map
+     */
+    public void initializeMap(){
         //North America
         Alaska.addNeighbor(Kamchatka);
         Alaska.addNeighbor(NT);
@@ -318,26 +324,35 @@ public class Map {
 
     }
 
-
+    /**
+     * This function is responsible for returning the current map 
+     * state i.e., the country name and the armies on it
+     */
     public void printMap(){
-        for (int x = 0; x < FullMap.size(); x++){
-            Country temp = FullMap.get(x);
+        for (int x = 0; x < completeGameMap.size(); x++){
+            Country temp = completeGameMap.get(x);
             Player play = temp.getPlayerOnCountry();
             System.out.println(temp.getName() + " has " + temp.getArmiesOnCountry() + " armies owned by " + play.getName() + " on it");
         }
     }
-
-    public ArrayList<Country> getFullMap(){
-        return FullMap;
+    /**
+     * This function gets the entire game map
+     * @return the complete map of the game
+     */
+    public ArrayList<Country> getCompleteGameMap(){
+        return completeGameMap;
     }
 
-    public int getCountriesOccupied() {
+    /**
+     * This function returns the occupied countries
+     * @return the occupied countries
+     */
+    public int getOccupiedCountries() {
         int countriesOcc = 0;
-        for(int x = 0; x < FullMap.size(); x++){
-            Country temp = FullMap.get(x);
+        for(int x = 0; x < completeGameMap.size(); x++){
+            Country temp = completeGameMap.get(x);
             countriesOcc = countriesOcc + temp.getOccupied();
         }
-        countriesOccupied = countriesOcc;
         return countriesOcc;
     }
 }
