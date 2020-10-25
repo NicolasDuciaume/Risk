@@ -39,7 +39,7 @@ public class Game {
         PopulateInit();
         for(int x = 0; x < PlayersInGame.size(); x++){
             Player play = PlayersInGame.get(x);
-            ArrayList<Country> PlayCountry = play.getArmiesOn();
+            ArrayList<Country> PlayCountry = play.getPlacedArmies();
             while(play.getArmiesToPlace() != 0){
                 Country temp = PlayCountry.get(rand.nextInt(PlayCountry.size()));
                 temp.addArmiesOnCountry(1);
@@ -262,7 +262,7 @@ public class Game {
 
     private boolean attack(Player player){
         System.out.println("With which Country would you like to attack:");
-        ArrayList<Country> playCount = player.getArmiesOn();
+        ArrayList<Country> playCount = player.getPlacedArmies();
         for(int x = 0; x < playCount.size(); x++){
             Country temp = playCount.get(x);
             System.out.println(temp.getName() + " which has " + temp.getArmiesOnCountry() + " on it");
@@ -434,7 +434,7 @@ public class Game {
 
     private boolean move(Player player) {
         System.out.println("With which Country would you like to move armies from:");
-        ArrayList<Country> playCount = player.getArmiesOn();
+        ArrayList<Country> playCount = player.getPlacedArmies();
         for (int x = 0; x < playCount.size(); x++) {
             Country temp = playCount.get(x);
             System.out.println(temp.getName() + " which has " + temp.getArmiesOnCountry() + " on it");
