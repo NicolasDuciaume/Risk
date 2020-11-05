@@ -1,3 +1,4 @@
+package model;
 public class CommandWords {
 
     private static final String[] VALID_COMMANDS = {

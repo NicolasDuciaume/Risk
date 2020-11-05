@@ -1,3 +1,4 @@
+package model;
 import java.util.ArrayList;
 /**
  * This class is responsible for dealing with the data

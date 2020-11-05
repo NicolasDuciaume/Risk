@@ -1,3 +1,4 @@
+package model;
 import java.util.ArrayList;
 /**
  * The class is responsible for creating the map of the game
