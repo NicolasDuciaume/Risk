@@ -39,9 +39,13 @@ public class Player {
      * This function sets the armies
      * @param armies the number of armies to set
      */
-    public void setArmies(int armies) {
+    public void setInitArmies(int armies) {
         this.armies = armies;
         numberOfArmiesToMove = armies;
+    }
+
+    public void setArmies(int arm){
+        armies = armies + arm;
     }
     /**
      * This function gets the armies 

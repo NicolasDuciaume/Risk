@@ -13,6 +13,12 @@ public class Map {
     private Country EAUS, Indonesia, NG, WAUS;
 
     private ArrayList<Country> completeGameMap;
+    private ArrayList<Country> NorthAmerica;
+    private ArrayList<Country> SouthAmerica;
+    private ArrayList<Country> Europe;
+    private ArrayList<Country> Africa;
+    private ArrayList<Country> Asia;
+    private ArrayList<Country> Australia;
     /**
      * Default constructor of the Map class
      */
@@ -28,6 +34,12 @@ public class Map {
      */
 	private void initializeMap() {
 		completeGameMap = new ArrayList<Country>();
+		NorthAmerica = new ArrayList<>();
+		SouthAmerica = new ArrayList<>();
+		Europe = new ArrayList<>();
+		Africa = new ArrayList<>();
+		Asia = new ArrayList<>();
+		Australia = new ArrayList<>();
 
         completeGameMap.add(Alaska);
         completeGameMap.add(Alberta);
@@ -160,6 +172,12 @@ public class Map {
         WAUS.addNeighbor(Indonesia);
         WAUS.addNeighbor(NG);
         WAUS.addNeighbor(EAUS);
+
+        Australia.add(EAUS);
+        Australia.add(Indonesia);
+        Australia.add(NG);
+        Australia.add(WAUS);
+
 	}
 	/**
      * This function is responsible for adding neighboring countries for Asian Countries
@@ -226,6 +244,19 @@ public class Map {
         Yakutsk.addNeighbor(Kamchatka);
         Yakutsk.addNeighbor(Irkutsk);
         Yakutsk.addNeighbor(Siberia);
+
+        Asia.add(Afghanistan);
+        Asia.add(China);
+        Asia.add(India);
+        Asia.add(Irkutsk);
+        Asia.add(Japan);
+        Asia.add(Kamchatka);
+        Asia.add(ME);
+        Asia.add(Mongolia);
+        Asia.add(Siam);
+        Asia.add(Siberia);
+        Asia.add(Ural);
+        Asia.add(Yakutsk);
 	}
     /**
      * This function is responsible for adding neighboring countries for African Countries
@@ -260,6 +291,13 @@ public class Map {
         SA.addNeighbor(EA);
         SA.addNeighbor(Madagascar);
         SA.addNeighbor(Congo);
+
+        Africa.add(Congo);
+        Africa.add(EA);
+        Africa.add(Egypt);
+        Africa.add(Madagascar);
+        Africa.add(NA);
+        Africa.add(SA);
 	}
 	/**
      * This function is responsible for adding neighboring countries for European Countries
@@ -303,6 +341,14 @@ public class Map {
         WE.addNeighbor(SE);
         WE.addNeighbor(GB);
         WE.addNeighbor(NA);
+
+        Europe.add(GB);
+        Europe.add(Iceland);
+        Europe.add(NE);
+        Europe.add(Scandinavia);
+        Europe.add(SE);
+        Europe.add(Ukraine);
+        Europe.add(WE);
 	}
     /**
      * This function is responsible for adding neighboring countries for South American Countries
@@ -323,6 +369,11 @@ public class Map {
         Venezuela.addNeighbor(Brazil);
         Venezuela.addNeighbor(Peru);
         Venezuela.addNeighbor(CA);
+
+        SouthAmerica.add(Argentina);
+        SouthAmerica.add(Brazil);
+        SouthAmerica.add(Peru);
+        SouthAmerica.add(Venezuela);
 	}
     /**
      * This function is responsible for adding neighboring countries for North American Countries
@@ -369,6 +420,16 @@ public class Map {
         WUS.addNeighbor(EUS);
         WUS.addNeighbor(Alberta);
         WUS.addNeighbor(Ontario);
+
+        NorthAmerica.add(Alaska);
+        NorthAmerica.add(Alberta);
+        NorthAmerica.add(CA);
+        NorthAmerica.add(EUS);
+        NorthAmerica.add(Greenland);
+        NorthAmerica.add(NT);
+        NorthAmerica.add(Ontario);
+        NorthAmerica.add(Quebec);
+        NorthAmerica.add(WUS);
 	}
 
     /**
@@ -405,5 +466,29 @@ public class Map {
             }
         }
         return countriesOcc;
+    }
+
+    public ArrayList<Country> getAfrica() {
+        return Africa;
+    }
+
+    public ArrayList<Country> getAsia() {
+        return Asia;
+    }
+
+    public ArrayList<Country> getAustralia() {
+        return Australia;
+    }
+
+    public ArrayList<Country> getEurope() {
+        return Europe;
+    }
+
+    public ArrayList<Country> getNorthAmerica() {
+        return NorthAmerica;
+    }
+
+    public ArrayList<Country> getSouthAmerica() {
+        return SouthAmerica;
     }
 }
