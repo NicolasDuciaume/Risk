@@ -6,12 +6,7 @@ import java.util.Random;
  */
 public class Game {
 
-    private Player player1;
-    private Player player2;
-    private Player player3;
-    private Player player4;
-    private Player player5;
-    private Player player6;
+
 
     private ArrayList<Player> PlayersInGame = new ArrayList<Player>();
 
@@ -26,13 +21,6 @@ public class Game {
      */
     public Game(){
         parser = new Parser();
-        player1 = new Player("Player 1");
-        player2 = new Player("Player 2");
-        player3 = new Player("Player 3");
-        player4 = new Player("Player 4");
-        player5 = new Player("Player 5");
-        player6 = new Player("Player 6");
-
         map = new Map();
 
         fullMap = new ArrayList<Country>();
@@ -78,13 +66,12 @@ public class Game {
 		for (int x = 0; x < PlayersInGame.size(); x++){
 		    Player play = PlayersInGame.get(x);
 		    Country temp = fullMap.get(rand.nextInt(fullMap.size()));
-		    while(temp.getOccupied() != 0)
+		    while(temp.getPlayerOnCountry() != null)
 		    {
 		        temp = fullMap.get(rand.nextInt(fullMap.size()));
 		    }
 		    play.AddCountry(temp);
 		    temp.addArmiesOnCountry(1);
-		    temp.setOccupied();
 		    temp.setPlayerOnCountry(play);
 		    play.remArmiesToPlace();
 		}
@@ -93,20 +80,19 @@ public class Game {
      * This function is responsible for setting up the game
      * when we have 4 or 5 players and the total number of 
      * countries i.e., 45 is not divisible by 4 or 5
-     * @param rand
-     */
+     * @param
+     **/
 	private void gameSetUpFornonDevisibleCountriesByPlayersCase() {
 		Random rand = new Random();
 		for (int x = 0; x < 2; x++){
 		    Player play = PlayersInGame.get(x);
 		    Country temp = fullMap.get(rand.nextInt(fullMap.size()));
-		    while(temp.getOccupied() != 0)
+		    while(temp.getPlayerOnCountry() != null)
 		    {
 		        temp = fullMap.get(rand.nextInt(fullMap.size()));
 		    }
 		    play.AddCountry(temp);
 		    temp.addArmiesOnCountry(1);
-		    temp.setOccupied();
 		    temp.setPlayerOnCountry(play);
 		    play.remArmiesToPlace();
 		}
@@ -237,63 +223,45 @@ public class Game {
 	 * playing the game and initializes the game for them
 	 * @param numberOfPlayers the number of players that will be playing the game
 	 */
+
+
     public void playerSelection(String numberOfPlayers){
 		//toUpperCase to make it case insensitive.
         switch (numberOfPlayers.toUpperCase().trim()){
             case "2":
             case "2 PLAYERS":
-                player1.setArmies(50);
-                player2.setArmies(50);
-                PlayersInGame.add(player1);
-                PlayersInGame.add(player2);
+                for(int x = 0; x < 2;x++){
+                    PlayersInGame.add(new Player("Player " + (x+1)));
+                    PlayersInGame.get(x).setArmies(50);
+                }
                 break;
             case "3":
             case "3 PLAYERS":
-                player1.setArmies(35);
-                player2.setArmies(35);
-                player3.setArmies(35);
-                PlayersInGame.add(player1);
-                PlayersInGame.add(player2);
-                PlayersInGame.add(player3);
+                for(int x = 0; x < 3;x++){
+                    PlayersInGame.add(new Player("Player " + (x+1)));
+                    PlayersInGame.get(x).setArmies(35);
+                }
                 break;
             case "4":
             case "4 PLAYERS":
-                player1.setArmies(30);
-                player2.setArmies(30);
-                player3.setArmies(30);
-                player4.setArmies(30);
-                PlayersInGame.add(player1);
-                PlayersInGame.add(player2);
-                PlayersInGame.add(player3);
-                PlayersInGame.add(player4);
+                for(int x = 0; x < 4;x++){
+                    PlayersInGame.add(new Player("Player " + (x+1)));
+                    PlayersInGame.get(x).setArmies(30);
+                }
                 break;
             case "5":
             case "5 PLAYERS":
-                player1.setArmies(25);
-                player2.setArmies(25);
-                player3.setArmies(25);
-                player4.setArmies(25);
-                player5.setArmies(25);
-                PlayersInGame.add(player1);
-                PlayersInGame.add(player2);
-                PlayersInGame.add(player3);
-                PlayersInGame.add(player4);
-                PlayersInGame.add(player5);
+                for(int x = 0; x < 5;x++){
+                    PlayersInGame.add(new Player("Player " + (x+1)));
+                    PlayersInGame.get(x).setArmies(25);
+                }
                 break;
             case "6":
             case "6 PLAYERS":
-                player1.setArmies(20);
-                player2.setArmies(20);
-                player3.setArmies(20);
-                player4.setArmies(20);
-                player5.setArmies(20);
-                player6.setArmies(20);
-                PlayersInGame.add(player1);
-                PlayersInGame.add(player2);
-                PlayersInGame.add(player3);
-                PlayersInGame.add(player4);
-                PlayersInGame.add(player5);
-                PlayersInGame.add(player6);
+                for(int x = 0; x < 6;x++){
+                    PlayersInGame.add(new Player("Player " + (x+1)));
+                    PlayersInGame.get(x).setArmies(20);
+                }
                 break;
         }
 

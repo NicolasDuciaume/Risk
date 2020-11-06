@@ -10,7 +10,7 @@ public class Country {
     private ArrayList<Country> neighbors;
     private Player playerOnCountry;
     private int armiesOnCountry;
-    private int occupied;
+
     /**
      * The constructor with one parameter
      * @param name the name of the country
@@ -19,7 +19,6 @@ public class Country {
         this.name = name;
         neighbors = new ArrayList<Country>();
         armiesOnCountry = 0;
-        occupied = 0;
     }
     /**
      * This function adds the neighbors to the current country
@@ -84,16 +83,5 @@ public class Country {
     public int getArmiesOnCountry(){
         return armiesOnCountry;
     }
-    /**
-     * This function sets a flag the country has been occupied
-     */
-    public void setOccupied() {
-        occupied = 1;
-    }
-    /**
-     * This function checks if the country has been occupied or not
-     */
-    public int getOccupied() {
-        return occupied;
-    }
+
 }

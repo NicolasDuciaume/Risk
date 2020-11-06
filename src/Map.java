@@ -400,7 +400,9 @@ public class Map {
         int countriesOcc = 0;
         for(int x = 0; x < completeGameMap.size(); x++){
             Country temp = completeGameMap.get(x);
-            countriesOcc = countriesOcc + temp.getOccupied();
+            if(temp.getPlayerOnCountry() != null){
+                countriesOcc = countriesOcc + 1;
+            }
         }
         return countriesOcc;
     }
