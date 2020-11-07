@@ -100,13 +100,4 @@ class countryTest {
 		canada.addArmiesOnCountry(2);
 		assertEquals(2, canada.getArmiesOnCountry());
 	}
-
-
-	@Test
-	final void testGetOccupied() {
-		Country canada = new Country("Canda");
-		canada.setOccupied();
-		assertEquals(1, canada.getOccupied());
-	}
-
 }

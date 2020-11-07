@@ -40,7 +40,7 @@ public class Dice {
      * @param dices the number of dices to be rolled
      * @return the dice roll value
      */
-	protected int[] roll(int dices) {
+	public int[] roll(int dices) {
 	    int[] rolledValues = new int[dices];
 	    for(int x = 0; x < dices; x++){
 	        Dice temp = new Dice();
