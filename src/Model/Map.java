@@ -1,3 +1,5 @@
+package Model;
+
 import java.util.ArrayList;
 /**
  * The class is responsible for creating the map of the game
@@ -20,7 +22,7 @@ public class Map {
     private ArrayList<Country> Asia;
     private ArrayList<Country> Australia;
     /**
-     * Default constructor of the Map class
+     * Default constructor of the Model.Map class
      */
     public Map(){
         initializeCountries();

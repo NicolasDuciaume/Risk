@@ -1,3 +1,5 @@
+package Model;
+
 import java.util.ArrayList;
 
 /**
@@ -11,7 +13,7 @@ public class Player {
     private ArrayList<Country> placedArmies;
     private boolean moved = false;
     /**
-     * Player constructor with one parameter.
+     * Model.Player constructor with one parameter.
      * @param name the name of the player
      */
     public Player(String name)
@@ -22,14 +24,14 @@ public class Player {
         placedArmies = new ArrayList<Country>();
     }
     /**
-     * This function gets the name of the Player
+     * This function gets the name of the Model.Player
      * @return
      */
     public String getName() {
         return name;
     }
     /**
-     * This function sets the name of the Player
+     * This function sets the name of the Model.Player
      * @param name the name of the player
      */
     public void setName(String name) {

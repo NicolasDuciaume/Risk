@@ -1,3 +1,5 @@
+package Model;
+
 import java.util.Scanner;
 
 /**
@@ -8,7 +10,7 @@ public class Parser {
     private Scanner reader;
     private CommandWords commands;
     /**
-     * Default constructor for the Parser class
+     * Default constructor for the Model.Parser class
      */
     public Parser()
     {
