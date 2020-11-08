@@ -123,7 +123,7 @@ public class Map {
     /**
      * This function is responsible for initializing the continents
      */
-    public void initializeContinents(){
+    private void initializeContinents(){
         //North America
         initializeNorthAmerica();
 
