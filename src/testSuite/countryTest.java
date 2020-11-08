@@ -14,12 +14,6 @@ import model.Country;
 import model.Player;
 
 class countryTest {
-
-	String name;
-    ArrayList<Country> neighbors;
-    Player playerOnCountry;
-    int armiesOnCountry;
-    int occupied;
 	@BeforeEach
 	void setUp() throws Exception {
 	}
