@@ -1,8 +1,8 @@
 package View;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class SelectPlayerMenu extends JDialog{
@@ -20,11 +20,15 @@ public class SelectPlayerMenu extends JDialog{
     public SelectPlayerMenu(RiskView main){
         super(main);
         setTitle("Player Select Menu");
-        setSize(200,200);
+        setSize(300,300);
         setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
 
+        JPanel border = new JPanel(new BorderLayout());
+        border.setBorder(new EmptyBorder(2,3,2,3));
+        JPanel borderLayout = new JPanel(new GridBagLayout());
+        borderLayout.setBorder(new EmptyBorder(5,5,5,5));
         selectPlayerMenu = new JPanel();
-        selectPlayerMenu.setLayout(new GridLayout(5,1,5,5));
+        selectPlayerMenu.setLayout(new GridLayout(10,1,10,6));
 
         selectPlayerMenuLabel = new JLabel("Select the number of Players:");
 
@@ -42,6 +46,7 @@ public class SelectPlayerMenu extends JDialog{
         sixPlayersBT.setActionCommand("sixPlayersSelected");
         backBT.setActionCommand("backButtonSelected");
 
+        selectPlayerMenu.add(selectPlayerMenuLabel);
         selectPlayerMenu.add(twoPlayersBT);
         selectPlayerMenu.add(threePlayersBT);
         selectPlayerMenu.add(fourPlayersBT);
@@ -49,7 +54,10 @@ public class SelectPlayerMenu extends JDialog{
         selectPlayerMenu.add(sixPlayersBT);
         selectPlayerMenu.add(backBT);
 
-        add(selectPlayerMenu);
+        borderLayout.add(selectPlayerMenu);
+        border.add(borderLayout,BorderLayout.CENTER);
+
+        add(border);
 
         setLocationRelativeTo(null);
 

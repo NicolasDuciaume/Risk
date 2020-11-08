@@ -6,9 +6,7 @@ import java.util.Random;
  * The model class of the Risk Game
  *
  */
-public class Game {
-
-
+public class RiskModel {
 
     private ArrayList<Player> PlayersInGame = new ArrayList<Player>();
 
@@ -28,7 +26,7 @@ public class Game {
     /**
      * The default constructor of the Game class
      */
-    public Game(){
+    public RiskModel(){
         parser = new Parser();
         map = new Map();
         NorthAmerica = map.getNorthAmerica();
@@ -744,7 +742,7 @@ public class Game {
      * The main  function that runs the game
      */
     public static void main(String[] args) {
-        Game game = new Game();
+        RiskModel game = new RiskModel();
         game.play();
     }
 }

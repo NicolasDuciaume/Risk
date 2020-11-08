@@ -1,6 +1,7 @@
 package View;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
@@ -17,11 +18,17 @@ public class RiskView extends JFrame {
         add(mainMenu());
 
         setLocationRelativeTo(null);
-        setSize(300,300);
+        setPreferredSize(new Dimension(300,200));
         setVisible(true);
+
+        pack();
     }
 
     private JPanel mainMenu(){
+        JPanel border = new JPanel(new BorderLayout());
+        border.setBorder(new EmptyBorder(2,3,2,3));
+        JPanel borderLayout = new JPanel(new GridBagLayout());
+        borderLayout.setBorder(new EmptyBorder(5,5,5,5));
         mainMenuPL = new JPanel();
         mainMenuPL.setLayout(new GridLayout(2,1,5,5));
 
@@ -34,7 +41,10 @@ public class RiskView extends JFrame {
         mainMenuPL.add(newGameBT);
         mainMenuPL.add(quitBT);
 
-        return mainMenuPL;
+        borderLayout.add(mainMenuPL);
+        border.add(borderLayout,BorderLayout.CENTER);
+
+        return border;
     }
 
     public void addActionListener(ActionListener listener){
