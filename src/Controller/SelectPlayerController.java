@@ -45,7 +45,7 @@ public class SelectPlayerController implements ActionListener {
         selectPlayerMenu.setVisible(false);
         model.populate();
         view.dispose();
-        GameView game = new GameView();
+        GameView game = new GameView(model);
 
     }
 }

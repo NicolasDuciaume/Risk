@@ -139,9 +139,9 @@ public class RiskModel {
     public void play()
     {
     	
-        introduction();
-        populate();
-        map.printMap();
+        //introduction();
+        //populate();
+        //map.printMap();
 
         while (!checkEnd()){
             for(int x = 0; x < playersInGame.size(); x++){
@@ -162,12 +162,13 @@ public class RiskModel {
 
                     reinforcement(reinforcements, play);
 
-                    System.out.println("\nSelect a command:");
-                    parser.getCommands();
+
+                    //System.out.println("\nSelect a command:");
+                    //parser.getCommands();
                     boolean endTurn = false;
                     while(!endTurn){
-                        Command command = parser.getCommand();
-                        endTurn = processCommand(command, play);
+                        //Command command = parser.getCommand();
+                        //endTurn = processCommand(command, play);
                     }
                 }
                 else{
@@ -178,6 +179,12 @@ public class RiskModel {
         Player play = playersInGame.get(0);
         System.out.println(play.getName() + "has won the game!");
     }
+
+
+    public void reinforce(){
+
+    }
+
     /**
      * This method is responsible for processing the user entered commands and making 
      * calls to appropriate methods based on the entered command
@@ -630,9 +637,12 @@ public class RiskModel {
             System.out.println(temp.getName() + " which has " + temp.getArmiesOnCountry() + " on it");
         }
 	}
-                		
 
-	/**
+    public ArrayList<Country> getFullMap() {
+        return fullMap;
+    }
+
+    /**
 	 * This function ends the player turn
 	 */
     private void endTurn(){

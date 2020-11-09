@@ -1,3 +1,4 @@
+import Controller.GameController;
 import Controller.RiskController;
 import Model.*;
 import View.*;
