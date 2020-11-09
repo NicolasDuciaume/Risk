@@ -1,5 +1,4 @@
 package Model;
-import Model.*;
 import java.util.ArrayList;
 import java.util.Random;
 /**
@@ -8,7 +7,7 @@ import java.util.Random;
  */
 public class RiskModel {
 
-    private ArrayList<Player> PlayersInGame = new ArrayList<Player>();
+    private ArrayList<Player> playersInGame = new ArrayList<Player>();
 
     private Parser parser;
 
@@ -42,11 +41,11 @@ public class RiskModel {
     /**
      * This class is responsible for adding the armies on the map
      */
-    public void Populate(){
+    public void populate(){
         Random rand = new Random();
-        PopulateInit(); 
-        for(int x = 0; x < PlayersInGame.size(); x++){
-            Player play = PlayersInGame.get(x);
+        populateInit();
+        for(int x = 0; x < playersInGame.size(); x++){
+            Player play = playersInGame.get(x);
             ArrayList<Country> PlayCountry = play.getPlacedArmies();
             while(play.getArmiesToPlace() != 0){
                 Country temp = PlayCountry.get(rand.nextInt(PlayCountry.size()));
@@ -59,9 +58,9 @@ public class RiskModel {
      * This method is responsible for initializing the Risk 
      * game with default settings
      */
-    public void PopulateInit(){
+    public void populateInit(){
         while(map.getOccupiedCountries() != 42){
-            if(((PlayersInGame.size() == 4 ) || (PlayersInGame.size() == 5)) && (map.getOccupiedCountries() == 40)){ //because they 42 is not divisible by 4 or 5
+            if(((playersInGame.size() == 4 ) || (playersInGame.size() == 5)) && (map.getOccupiedCountries() == 40)){ //because they 42 is not divisible by 4 or 5
                 gameSetUpFornonDevisibleCountriesByPlayersCase();
             }
             else{
@@ -75,14 +74,14 @@ public class RiskModel {
      */
 	private void standardCaseGameSetup() {
 		Random rand = new Random();
-		for (int x = 0; x < PlayersInGame.size(); x++){
-		    Player play = PlayersInGame.get(x);
+		for (int x = 0; x < playersInGame.size(); x++){
+		    Player play = playersInGame.get(x);
 		    Country temp = fullMap.get(rand.nextInt(fullMap.size()));
 		    while(temp.getPlayerOnCountry() != null)
 		    {
 		        temp = fullMap.get(rand.nextInt(fullMap.size()));
 		    }
-		    play.AddCountry(temp);
+		    play.addCountry(temp);
 		    temp.addArmiesOnCountry(1);
 		    temp.setPlayerOnCountry(play);
 		    play.remArmiesToPlace();
@@ -97,13 +96,13 @@ public class RiskModel {
 	private void gameSetUpFornonDevisibleCountriesByPlayersCase() {
 		Random rand = new Random();
 		for (int x = 0; x < 2; x++){
-		    Player play = PlayersInGame.get(x);
+		    Player play = playersInGame.get(x);
 		    Country temp = fullMap.get(rand.nextInt(fullMap.size()));
 		    while(temp.getPlayerOnCountry() != null)
 		    {
 		        temp = fullMap.get(rand.nextInt(fullMap.size()));
 		    }
-		    play.AddCountry(temp);
+		    play.addCountry(temp);
 		    temp.addArmiesOnCountry(1);
 		    temp.setPlayerOnCountry(play);
 		    play.remArmiesToPlace();
@@ -127,11 +126,11 @@ public class RiskModel {
             System.out.println(x + " Players");
         }
         playerSelection(parser.getUserInput());
-        while(PlayersInGame.size() == 0){
+        while(playersInGame.size() == 0){
             System.out.println("Please select a valid option:");
             playerSelection(parser.getUserInput());
         }
-        System.out.println("You have selected " + PlayersInGame.size());
+        System.out.println("You have selected " + playersInGame.size());
         System.out.println("Starting Game...");
     }
     /**
@@ -141,12 +140,12 @@ public class RiskModel {
     {
     	
         introduction();
-        Populate();
+        populate();
         map.printMap();
 
         while (!checkEnd()){
-            for(int x = 0; x < PlayersInGame.size(); x++){
-                Player play = PlayersInGame.get(x);
+            for(int x = 0; x < playersInGame.size(); x++){
+                Player play = playersInGame.get(x);
                 if(play.getArmies() != 0){
                     int reinforcements;
                     System.out.println(play.getName() + "'s turn:");
@@ -172,11 +171,11 @@ public class RiskModel {
                     }
                 }
                 else{
-                    PlayersInGame.remove(x);
+                    playersInGame.remove(x);
                 }
             }
         }
-        Player play = PlayersInGame.get(0);
+        Player play = playersInGame.get(0);
         System.out.println(play.getName() + "has won the game!");
     }
     /**
@@ -238,7 +237,7 @@ public class RiskModel {
      */
 	public boolean checkEnd(){
 	    boolean Finished = false;
-	    int playersAlive = PlayersInGame.size();
+	    int playersAlive = playersInGame.size();
         if(playersAlive == 1){
             Finished = true;
         }
@@ -257,36 +256,36 @@ public class RiskModel {
             case "2":
             case "2 PLAYERS":
                 for(int x = 0; x < 2;x++){
-                    PlayersInGame.add(new Player("Player " + (x+1)));
-                    PlayersInGame.get(x).setInitArmies(50);
+                    playersInGame.add(new Player("Player " + (x+1)));
+                    playersInGame.get(x).setInitArmies(50);
                 }
                 break;
             case "3":
             case "3 PLAYERS":
                 for(int x = 0; x < 3;x++){
-                    PlayersInGame.add(new Player("Player " + (x+1)));
-                    PlayersInGame.get(x).setInitArmies(35);
+                    playersInGame.add(new Player("Player " + (x+1)));
+                    playersInGame.get(x).setInitArmies(35);
                 }
                 break;
             case "4":
             case "4 PLAYERS":
                 for(int x = 0; x < 4;x++){
-                    PlayersInGame.add(new Player("Player " + (x+1)));
-                    PlayersInGame.get(x).setInitArmies(30);
+                    playersInGame.add(new Player("Player " + (x+1)));
+                    playersInGame.get(x).setInitArmies(30);
                 }
                 break;
             case "5":
             case "5 PLAYERS":
                 for(int x = 0; x < 5;x++){
-                    PlayersInGame.add(new Player("Player " + (x+1)));
-                    PlayersInGame.get(x).setInitArmies(25);
+                    playersInGame.add(new Player("Player " + (x+1)));
+                    playersInGame.get(x).setInitArmies(25);
                 }
                 break;
             case "6":
             case "6 PLAYERS":
                 for(int x = 0; x < 6;x++){
-                    PlayersInGame.add(new Player("Player " + (x+1)));
-                    PlayersInGame.get(x).setInitArmies(20);
+                    playersInGame.add(new Player("Player " + (x+1)));
+                    playersInGame.get(x).setInitArmies(20);
                 }
                 break;
         }
@@ -377,9 +376,9 @@ public class RiskModel {
         System.out.println(player.getName() + " how many dices would you like to have?");
         System.out.println("Between 1 and 3, must have one more army on Country than amount of dice");
 
-        boolean CorrectNumber = false;
+        boolean correctNumber = false;
         int[] attackerDice = {0};
-        while (!CorrectNumber) {
+        while (!correctNumber) {
             String ans = parser.getUserInput();
             if (ans.equals("back")){
                 return true;
@@ -391,7 +390,7 @@ public class RiskModel {
                 int numDice = Integer.valueOf(ans);
                 if ((numDice < attackerC.getArmiesOnCountry()) && (numDice >= 1) && (numDice <= 3)) {
                     attackerDice = dice.roll(numDice);
-                    CorrectNumber = true;
+                    correctNumber = true;
                 } else {
                     System.out.println("Please select a valid number of armies to move");
                 }
@@ -401,9 +400,9 @@ public class RiskModel {
         System.out.println(attackedPlayer.getName() + " how many dices would you like to have?");
         System.out.println("Between 1 and 2. If 2, you must have at least 2 armies on the Country");
 
-        CorrectNumber = false;
+        correctNumber = false;
         int[] DefenderDice = {0};
-        while (!CorrectNumber) {
+        while (!correctNumber) {
             String ans = parser.getUserInput();
             if(!isNumeric(ans)){
                 System.out.println("Please input a number");
@@ -416,7 +415,7 @@ public class RiskModel {
                     }
                     else{
                         DefenderDice = dice.roll(numDice);
-                        CorrectNumber = true;
+                        correctNumber = true;
                     }
                 }
                 else {
@@ -454,7 +453,7 @@ public class RiskModel {
         if(attackedC.getArmiesOnCountry() == 0){
             attackedPlayer.removeCountry(attackedC);
             attackedC.setPlayerOnCountry(player);
-            player.AddCountry(attackedC);
+            player.addCountry(attackedC);
             attackedC.addArmiesOnCountry(attackerDice.length);
             attackerC.removeArmiesOnCountry(attackerDice.length);
             System.out.println(attackedPlayer.getName() + " has lost control of " + attackedC.getName());

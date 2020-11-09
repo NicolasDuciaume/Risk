@@ -68,7 +68,7 @@ public class Player {
      * This function is responsible for adding the country to the players controlled countries
      * @param countryName the country to add armies to in order to claim it
      */
-    public void AddCountry(Country countryName){
+    public void addCountry(Country countryName){
         placedArmies.add(countryName);
     }
     /**
