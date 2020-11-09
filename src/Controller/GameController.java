@@ -12,6 +12,7 @@ public class GameController implements ActionListener {
 
     private RiskModel model;
     private GameView view;
+    private Reinforcements reinforcements;
 
     private SelectPlayerMenu selectPlayerMenu;
 
@@ -19,24 +20,37 @@ public class GameController implements ActionListener {
         this.model = model;
         this.view = view;
 
+        reinforcements = new Reinforcements(this.view);
+        reinforcements.addActionListeners(new ReinforcementsController(reinforcements,model,view));
+        reinforcements.setVisible(true);
+
+
         view.addActionListener(this);
     }
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        Player play = model.getCurrentPlayer();
+
         if(e.getActionCommand().equals("EndTurn")){
 
             model.endTurn();
             view.UpdateTurn(model.getCurrentPlayerName());
 
 
-        }else if(e.getActionCommand().equals("quit")){
-            System.out.println("Quitting game");
-            System.exit(0);
+        }else if(e.getActionCommand().equals("NT")){
+            if(model.DoesHeOwn("Northwest Territory")){
+                JOptionPane.showMessageDialog(view,"Test");
+            }
+            else{
+                JOptionPane.showMessageDialog(view,"You do not own this country!");
+            }
         }
 
 
 
     }
+
+
 }

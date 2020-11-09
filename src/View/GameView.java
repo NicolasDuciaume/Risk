@@ -1,6 +1,7 @@
 package View;
 import Controller.GameController;
 import Model.Country;
+import Model.Player;
 import Model.RiskModel;
 import View.*;
 
@@ -106,6 +107,7 @@ public class GameView extends JFrame {
         Play = new JLabel("Player 1", JLabel.CENTER);
         Play.setFont(new Font("Serif",Font.BOLD,20));
         Play.setBounds(556,68,241,39);
+        Play.setForeground(Color.RED);
         endTurn = new JButton("End Turn");
         endTurn.setActionCommand("EndTurn");
 
@@ -368,6 +370,24 @@ public class GameView extends JFrame {
 
     public void UpdateTurn(String label){
         Play.setText(label);
+        if(Play.getText().equals("Player 1")){
+            Play.setForeground(Color.RED);
+        }
+        else if(Play.getText().equals("Player 2")){
+            Play.setForeground(Color.BLUE);
+        }
+        else if(Play.getText().equals("Player 3")){
+            Play.setForeground(Color.ORANGE);
+        }
+        else if(Play.getText().equals("Player 4")){
+            Play.setForeground(Color.PINK);
+        }
+        else if(Play.getText().equals("Player 5")){
+            Play.setForeground(Color.GREEN);
+        }
+        else if(Play.getText().equals("Player 6")){
+            Play.setForeground(Color.BLACK);
+        }
     }
 
 

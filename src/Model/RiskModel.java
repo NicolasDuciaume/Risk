@@ -187,8 +187,29 @@ public class RiskModel {
     }
 
 
-    public void reinforce(){
+    public int reinforce(){
+        int reinforcements;
+        if(CurrentPlayer.getPlacedArmies().size() < 9){
+            reinforcements = 3;
+        }
+        else{
+            reinforcements = CurrentPlayer.getPlacedArmies().size() / 3;
+        }
 
+        reinforcements = checkHasContinent(CurrentPlayer) + reinforcements;
+
+        System.out.println("You can place " + reinforcements + " troops");
+
+        return reinforcements;
+    }
+
+    public Boolean DoesHeOwn(String s){
+        for(Country c: CurrentPlayer.getPlacedArmies()){
+            if(c.getName().equals(s)){
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
