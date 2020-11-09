@@ -1,8 +1,8 @@
 package Controller;
 
-import Model.RiskModel;
-import View.RiskView;
-import View.SelectPlayerMenu;
+import Model.*;
+import View.*;
+import Controller.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

@@ -1,6 +1,6 @@
 import Controller.RiskController;
-import Model.RiskModel;
-import View.RiskView;
+import Model.*;
+import View.*;
 
 public class Risk {
 
@@ -8,6 +8,7 @@ public class Risk {
         RiskModel model = new RiskModel();
         RiskView view = new RiskView();
         RiskController controller = new RiskController(model,view);
+
     }
 
 

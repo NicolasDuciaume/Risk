@@ -1,6 +1,7 @@
 package Controller;
 
-import View.SelectPlayerMenu;
+import View.*;
+import Controller.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -31,5 +32,6 @@ public class SelectPlayerController implements ActionListener {
             selectPlayerMenu.dispose();
         }
 
+        selectPlayerMenu.setVisible(false);
     }
 }
