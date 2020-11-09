@@ -9,13 +9,13 @@ import java.awt.event.ActionListener;
 public class RiskView extends JFrame {
 
     private JPanel mainMenuPL;
+    private JPanel GameView;
     private JButton newGameBT;
     private JButton quitBT;
 
     public RiskView(){
         super("Risk");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         add(mainMenu());
 
         setLocationRelativeTo(null);
@@ -58,9 +58,6 @@ public class RiskView extends JFrame {
         return border;
     }
 
-    /*private JPanel GameView(){
-
-    }*/
 
     public void addActionListener(ActionListener listener){
         newGameBT.addActionListener(listener);

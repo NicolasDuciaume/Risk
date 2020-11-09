@@ -27,8 +27,9 @@ public class RiskController implements ActionListener {
             System.out.println("Start new game");
 
             selectPlayerMenu = new SelectPlayerMenu(view);
-            selectPlayerMenu.addActionListeners(new SelectPlayerController(selectPlayerMenu));
+            selectPlayerMenu.addActionListeners(new SelectPlayerController(selectPlayerMenu,model,view));
             selectPlayerMenu.setVisible(true);
+
 
 
         }else if(e.getActionCommand().equals("quit")){

@@ -11,7 +11,7 @@ public class RiskModel {
 
     private Parser parser;
 
-    private Map map; 
+    public Map map;
     
     private ArrayList<Country> fullMap;
     private ArrayList<Country> NorthAmerica;
