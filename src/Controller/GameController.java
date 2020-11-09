@@ -4,6 +4,7 @@ import Model.*;
 import View.*;
 import Controller.*;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -24,13 +25,10 @@ public class GameController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getActionCommand().equals("newGame")){
-            System.out.println("Start new game");
+        if(e.getActionCommand().equals("EndTurn")){
 
-            //selectPlayerMenu = new SelectPlayerMenu(view);
-            //selectPlayerMenu.addActionListeners(new SelectPlayerController(selectPlayerMenu,model,view));
-            //selectPlayerMenu.setVisible(true);
-
+            model.endTurn();
+            view.UpdateTurn(model.getCurrentPlayerName());
 
 
         }else if(e.getActionCommand().equals("quit")){

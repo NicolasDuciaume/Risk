@@ -9,7 +9,11 @@ public class RiskModel {
 
     private ArrayList<Player> playersInGame = new ArrayList<Player>();
 
+    private Player CurrentPlayer;
+
     private Parser parser;
+
+    private int cur = 0;
 
     public Map map;
     
@@ -138,7 +142,9 @@ public class RiskModel {
      */
     public void play()
     {
-    	
+        CurrentPlayer = playersInGame.get(0);
+
+    	/*
         //introduction();
         //populate();
         //map.printMap();
@@ -177,7 +183,7 @@ public class RiskModel {
             }
         }
         Player play = playersInGame.get(0);
-        System.out.println(play.getName() + "has won the game!");
+        System.out.println(play.getName() + "has won the game!");*/
     }
 
 
@@ -645,8 +651,24 @@ public class RiskModel {
     /**
 	 * This function ends the player turn
 	 */
-    private void endTurn(){
-	    System.out.println("Ending turn...");
+    public void endTurn(){
+        if(cur == playersInGame.size() - 1){
+            cur = 0;
+            CurrentPlayer = playersInGame.get(cur);
+        }
+        else{
+            cur = cur + 1;
+            CurrentPlayer = playersInGame.get(cur);
+        }
+
+    }
+
+    public Player getCurrentPlayer(){
+        return CurrentPlayer;
+    }
+
+    public String getCurrentPlayerName(){
+        return CurrentPlayer.getName();
     }
     /**
      * This function checks if the value is numeric or not

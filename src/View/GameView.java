@@ -17,6 +17,7 @@ public class GameView extends JFrame {
     private JLabel mapLabel;
     private JScrollPane mapScrollPane;
     private JLabel command;
+    private JLabel Play;
 
     //North America
     private JButton NT;
@@ -80,7 +81,7 @@ public class GameView extends JFrame {
     public GameView(RiskModel model){
         super("Risk");
         this.model = model;
-        GameController controller2 = new GameController(model, this);
+
         completeGameMap = new ArrayList<>();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         add(game());
@@ -88,6 +89,8 @@ public class GameView extends JFrame {
         setLocationRelativeTo(null);
         //setPreferredSize(new Dimension(500,600));
         setVisible(true);
+
+        GameController controller2 = new GameController(model, this);
 
         pack();
     }
@@ -100,7 +103,11 @@ public class GameView extends JFrame {
         mapLabel.setLayout(null);
         command = new JLabel("Press your owned country to select command", JLabel.CENTER);
         command.setFont(new Font("Serif",Font.BOLD,20));
+        Play = new JLabel("Player 1", JLabel.CENTER);
+        Play.setFont(new Font("Serif",Font.BOLD,20));
+        Play.setBounds(556,68,241,39);
         endTurn = new JButton("End Turn");
+        endTurn.setActionCommand("EndTurn");
 
         //North America
         NT = new JButton("");
@@ -124,16 +131,6 @@ public class GameView extends JFrame {
         setButtons(CA,111,464,249,134);
 
 
-        NT.setActionCommand("NT");
-        Alberta.setActionCommand("Alberta");
-        Alaska.setActionCommand("Alaska");
-        Ontario.setActionCommand("Ontario");
-        Quebec.setActionCommand("Quebec");
-        Greenland.setActionCommand("Greenland");
-        WUS.setActionCommand("WUS");
-        EUS.setActionCommand("EUS");
-        CA.setActionCommand("CA");
-
         //South America
         Venezuela = new JButton("");
         Brazil = new JButton("");
@@ -145,10 +142,6 @@ public class GameView extends JFrame {
         setButtons(Peru,338,696,144,58);
         setButtons(Argentina,419,757,89,168);
 
-        Venezuela.setActionCommand("Venezuela");
-        Brazil.setActionCommand("Brazil");
-        Argentina.setActionCommand("Argentina");
-        Peru.setActionCommand("Peru");
 
         //Europe
         Iceland = new JButton("");
@@ -167,13 +160,6 @@ public class GameView extends JFrame {
         setButtons(Scandinavia,773,128,124,100);
         setButtons(Ukraine,888,204,86,168);
 
-        Iceland.setActionCommand("Iceland");
-        Iceland.setActionCommand("GB");
-        Iceland.setActionCommand("Scandinavia");
-        Iceland.setActionCommand("Ukraine");
-        Iceland.setActionCommand("NE");
-        Iceland.setActionCommand("WE");
-        Iceland.setActionCommand("SE");
 
         //Africa
         NA = new JButton("");
@@ -190,12 +176,6 @@ public class GameView extends JFrame {
         setButtons(EA,926,596,57,91);
         setButtons(Madagascar,996,655,54,99);
 
-        NA.setActionCommand("NA");
-        SA.setActionCommand("SA");
-        Egypt.setActionCommand("Egypt");
-        Congo.setActionCommand("Congo");
-        EA.setActionCommand("EA");
-        Madagascar.setActionCommand("Madagascar");
 
         //Asia
         Ural = new JButton("");
@@ -224,19 +204,6 @@ public class GameView extends JFrame {
         setButtons(Kamchatka,1375,10,127,266);
         setButtons(Japan,1396,276,41,104);
 
-        Ural.setActionCommand("Ural");
-        Afghanistan.setActionCommand("Afghanistan");
-        ME.setActionCommand("ME");
-        India.setActionCommand("India");
-        China.setActionCommand("China");
-        Siam.setActionCommand("Siam");
-        Siberia.setActionCommand("Siberia");
-        Yakutsk.setActionCommand("Yakutsk");
-        Irkutsk.setActionCommand("Irkutsk");
-        Kamchatka.setActionCommand("Kamchatka");
-        Mongolia.setActionCommand("Mongolia");
-        Japan.setActionCommand("Japan");
-
 
         //Australia
         Indonesia = new JButton("");
@@ -249,17 +216,57 @@ public class GameView extends JFrame {
         setButtons(WAUS,1312,638,115,140);
         setButtons(EAUS,1438,631,76,165);
 
+
+        endTurn.setBounds(1077,855,131,58);
+        mapLabel.add(endTurn);
+        mapLabel.add(Play);
+
+        initialMap();
+        UpdateMap();
+
+
+        NT.setActionCommand("NT");
+        Alberta.setActionCommand("Alberta");
+        Alaska.setActionCommand("Alaska");
+        Ontario.setActionCommand("Ontario");
+        Quebec.setActionCommand("Quebec");
+        Greenland.setActionCommand("Greenland");
+        WUS.setActionCommand("WUS");
+        EUS.setActionCommand("EUS");
+        CA.setActionCommand("CA");
+        Venezuela.setActionCommand("Venezuela");
+        Brazil.setActionCommand("Brazil");
+        Argentina.setActionCommand("Argentina");
+        Peru.setActionCommand("Peru");
+        Iceland.setActionCommand("Iceland");
+        GB.setActionCommand("GB");
+        Scandinavia.setActionCommand("Scandinavia");
+        Ukraine.setActionCommand("Ukraine");
+        NE.setActionCommand("NE");
+        WE.setActionCommand("WE");
+        SE.setActionCommand("SE");
+        NA.setActionCommand("NA");
+        SA.setActionCommand("SA");
+        Egypt.setActionCommand("Egypt");
+        Congo.setActionCommand("Congo");
+        EA.setActionCommand("EA");
+        Madagascar.setActionCommand("Madagascar");
+        Ural.setActionCommand("Ural");
+        Afghanistan.setActionCommand("Afghanistan");
+        ME.setActionCommand("ME");
+        India.setActionCommand("India");
+        China.setActionCommand("China");
+        Siam.setActionCommand("Siam");
+        Siberia.setActionCommand("Siberia");
+        Yakutsk.setActionCommand("Yakutsk");
+        Irkutsk.setActionCommand("Irkutsk");
+        Kamchatka.setActionCommand("Kamchatka");
+        Mongolia.setActionCommand("Mongolia");
+        Japan.setActionCommand("Japan");
         Indonesia.setActionCommand("Indonesia");
         NG.setActionCommand("NG");
         WAUS.setActionCommand("WAUS");
         EAUS.setActionCommand("EAUS");
-
-
-        endTurn.setBounds(1077,855,131,58);
-        mapLabel.add(endTurn);
-
-        initialMap();
-        UpdateMap();
 
         command.setBounds(520,19,419,59);
         mapLabel.add(command);
@@ -269,6 +276,7 @@ public class GameView extends JFrame {
 
         Game.add(mapScrollPane);
 
+        model.play();
 
         return Game;
     }
@@ -326,7 +334,7 @@ public class GameView extends JFrame {
         completeGameMap.add(WAUS);
     }
 
-    private void UpdateMap(){
+    public void UpdateMap(){
         ArrayList<Country> full = model.getFullMap();
         for(int x = 0; x < full.size(); x++){
             Country temp = full.get(x);
@@ -342,12 +350,70 @@ public class GameView extends JFrame {
             else if(temp.getPlayerOnCountry().getName().equals("Player 2")){
                 tempC.setForeground(Color.BLUE);
             }
+            else if(temp.getPlayerOnCountry().getName().equals("Player 3")){
+                tempC.setForeground(Color.ORANGE);
+            }
+            else if(temp.getPlayerOnCountry().getName().equals("Player 4")){
+                tempC.setForeground(Color.PINK);
+            }
+            else if(temp.getPlayerOnCountry().getName().equals("Player 5")){
+                tempC.setForeground(Color.GREEN);
+            }
+            else if(temp.getPlayerOnCountry().getName().equals("Player 6")){
+                tempC.setForeground(Color.BLACK);
+            }
         }
 
     }
 
+    public void UpdateTurn(String label){
+        Play.setText(label);
+    }
 
-    public void addActionListener(GameController gameController) {
 
+    public void addActionListener(ActionListener listener) {
+        NT.addActionListener(listener);
+        Alberta.addActionListener(listener);
+        Alaska.addActionListener(listener);
+        Ontario.addActionListener(listener);
+        Quebec.addActionListener(listener);
+        Greenland.addActionListener(listener);
+        WUS.addActionListener(listener);
+        EUS.addActionListener(listener);
+        CA.addActionListener(listener);
+        Venezuela.addActionListener(listener);
+        Brazil.addActionListener(listener);
+        Argentina.addActionListener(listener);
+        Peru.addActionListener(listener);
+        Iceland.addActionListener(listener);
+        GB.addActionListener(listener);
+        Scandinavia.addActionListener(listener);
+        Ukraine.addActionListener(listener);
+        NE.addActionListener(listener);
+        WE.addActionListener(listener);
+        SE.addActionListener(listener);
+        NA.addActionListener(listener);
+        SA.addActionListener(listener);
+        Egypt.addActionListener(listener);
+        Congo.addActionListener(listener);
+        EA.addActionListener(listener);
+        Madagascar.addActionListener(listener);
+        Ural.addActionListener(listener);
+        Afghanistan.addActionListener(listener);
+        ME.addActionListener(listener);
+        India.addActionListener(listener);
+        China.addActionListener(listener);
+        Siam.addActionListener(listener);
+        Siberia.addActionListener(listener);
+        Yakutsk.addActionListener(listener);
+        Irkutsk.addActionListener(listener);
+        Kamchatka.addActionListener(listener);
+        Mongolia.addActionListener(listener);
+        Japan.addActionListener(listener);
+        Indonesia.addActionListener(listener);
+        NG.addActionListener(listener);
+        WAUS.addActionListener(listener);
+        EAUS.addActionListener(listener);
+        endTurn.addActionListener(listener);
     }
 }
