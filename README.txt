@@ -45,7 +45,9 @@ The rest of the deliverables for this iteration are as follows:
 
 # Known Issues: 
 
-There are no known issues that effect the funcitonality of the Risk game. The Risk game is designed as per the rules specified by the document; "SYSC 3110 Project – RISK!". 
+There is 1 known issues that effect the funcitonality of the Risk game. The Risk game is designed as per the rules specified by the document; "SYSC 3110 Project – RISK!".
+
+The image path of the Game map will need to be manual entered in the source code in order for the image map to show up on the GUI. 
 
 Enhancements can definately be made to the project such as:
 - Adding bonus for army placement.
