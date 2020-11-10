@@ -2,10 +2,8 @@ package View;
 import Controller.GameController;
 import Model.Country;
 import Model.RiskModel;
-import View.*;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -94,7 +92,10 @@ public class GameView extends JFrame {
 
         pack();
     }
-
+    /**
+     * The method responsible for setting up the GUI for the game
+     * @return JPanel for the the GUI
+     */
     private JPanel game(){
         Game = new JPanel();
         Game.setLayout(new GridLayout(1, 1, 5, 5));
@@ -280,7 +281,9 @@ public class GameView extends JFrame {
 
         return Game;
     }
-
+    /**
+     * The method responsible for setting up the game buttons
+     */
     private void setButtons(JButton b,int x, int y, int w, int h){
         b.setBounds(x,y,w,h);
         b.setOpaque(false);
@@ -288,7 +291,9 @@ public class GameView extends JFrame {
         b.setBorderPainted(false);
         mapLabel.add(b);
     }
-
+    /**
+     * The method responsible for initializing the map on GUI
+     */
     private void initialMap(){
         completeGameMap.add(Alaska);
         completeGameMap.add(Alberta);
@@ -333,7 +338,9 @@ public class GameView extends JFrame {
         completeGameMap.add(NG);
         completeGameMap.add(WAUS);
     }
-
+    /**
+     * The method responsible for updating the map
+     */
     public void UpdateMap(){
         ArrayList<Country> full = model.getFullMap();
         for(int x = 0; x < full.size(); x++){
@@ -365,12 +372,19 @@ public class GameView extends JFrame {
         }
 
     }
-
+    
+    /**
+     * The method responsible for updating the turn
+     * @param label the lable
+     */
     public void UpdateTurn(String label){
         Play.setText(label);
     }
 
-
+    /**
+     * The method responsible for adding the action listener
+     * @param listener the action listener
+     */
     public void addActionListener(ActionListener listener) {
         NT.addActionListener(listener);
         Alberta.addActionListener(listener);
