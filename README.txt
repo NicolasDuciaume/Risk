@@ -1,3 +1,4 @@
+  
 # SYSC3110 Group project
 
 
@@ -6,7 +7,7 @@ To play the game, follow the following steps:
 -> In the current directory, open a terminal. 
 -> Enter the following command:
 	"java -jar game.jar"
--> Play the game.
+-> Play the game through the GUI interface.
 
 
 To view the code; follow the following steps:
@@ -23,14 +24,22 @@ To view the code; follow the following steps:
 
 # Changes since previous Deliverable
 
-- Since this is the first itteration of the project, there are no changes that have been made and every thing has been added for the first time to the project.
+- Added the move command.
+- Added reinforcement troops at the beginning of each round proportional to the number of countries held
+- Added a JFrame Graphical user interface 
+- Added a background world map and placed the countries on it.
+- Added Junit tests for all the model classes
+- Made the code more decoupled and increasing the cohision
+- Fixed the Class Diagram and sequence diagram related to a specific scenario (attacking)
 
-# Rest of the deliverables for Itteration 1:
 
-The rest of the deliverables for this itteration are as follows:
-- Source Code 
+# Rest of the deliverables for Iteration 2:
+
+The rest of the deliverables for this iteration are as follows:
+
+- Source Code
 - Executeable Jar file called, "game.jar"
-- UML diagram
+- UML Diagram
 - Sequence Diagram
 - Documentation
 
@@ -39,14 +48,15 @@ The rest of the deliverables for this itteration are as follows:
 There are no known issues that effect the funcitonality of the Risk game. The Risk game is designed as per the rules specified by the document; "SYSC 3110 Project – RISK!". 
 
 Enhancements can definately be made to the project such as:
-- Adding the graphical user interface.
-- Making the code more decoupled and increasing the cohision. 
-- Adding the functionalily of player elimination.
-- Adding the move command.
+- Adding bonus for army placement.
+- Addition of phase for troupe movement phase.
+- Addition of “AI” player.
 
 # Roadmap:
-For the next itteration of Sysc 3110 project, the team is planning on doing the following:
-- GUI-based version of the Risk game that utilizes the MVC pattern with display in a JFrame, and user input via the mouse.
+For the itteration 3 of Sysc 3110 project, the team is planning on doing the following:
+- Addition of AI player to the game.
+- Addition of bonuses for the placement og armies on countries.
+- Implementation of troop movement.
 - Unit tests for the Model.
 - Readme file 
 - Source Code 
@@ -54,5 +64,3 @@ For the next itteration of Sysc 3110 project, the team is planning on doing the 
 - UML diagram
 - Sequence Diagram
 - Documentation including the changes that will be made to the UML and data structures from Milestone 1 and the reasoning behind it.
-
-
