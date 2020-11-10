@@ -36,8 +36,8 @@ public class Parser {
      * This function returns all the user entered commands
      * @return all the user entered commands
      */
-    public void getCommands(){
-    	commands.getCommandList();
+    public String[] getCommands(){
+    	return commands.getCommandList();
     }
     /**
      * This function is responsible for getting the user entered input

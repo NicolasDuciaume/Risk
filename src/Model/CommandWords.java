@@ -26,10 +26,11 @@ public class CommandWords {
      * This function gets all the command word
      * @return the list of all the commands
      */
-    public void getCommandList() {
+    public String[] getCommandList() {
         for(String command: VALID_COMMANDS) {
             System.out.print(command + " ");
         }
         System.out.println();
+        return VALID_COMMANDS;
     }
 }

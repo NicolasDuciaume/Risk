@@ -9,7 +9,8 @@ public class RiskModel {
 
     private ArrayList<Player> playersInGame = new ArrayList<Player>();
 
-    private Player CurrentPlayer;
+
+	private Player CurrentPlayer;
 
     private Parser parser;
 
@@ -768,6 +769,13 @@ public class RiskModel {
 
         return bonus;
     }
+    /**
+     * This function returns the players in the game
+     * @return number of players playing the game
+     */
+    public ArrayList<Player> getPlayersInGame() {
+		return playersInGame;
+	}
 
     /**
      * The main  function that runs the game
