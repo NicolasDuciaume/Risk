@@ -13,14 +13,20 @@ public class RiskController implements ActionListener {
     private RiskView view;
 
     private SelectPlayerMenu selectPlayerMenu;
-
+	/**
+	 * The constructor with two parameters
+	 * @param model the game model
+	 * @param view the game view
+	 */
     public RiskController(RiskModel model,RiskView view){
         this.model = model;
         this.view = view;
 
         view.addActionListener(this);
     }
-
+    /**
+     * The action listener for the class
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("newGame")){
@@ -30,14 +36,9 @@ public class RiskController implements ActionListener {
             selectPlayerMenu.addActionListeners(new SelectPlayerController(selectPlayerMenu,model,view));
             selectPlayerMenu.setVisible(true);
 
-
-
         }else if(e.getActionCommand().equals("quit")){
             System.out.println("Quitting game");
             System.exit(0);
         }
-
-
-
     }
 }
