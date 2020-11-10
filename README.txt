@@ -53,7 +53,7 @@ Enhancements can definately be made to the project such as:
 - Addition of “AI” player.
 
 # Roadmap:
-For the itteration 3 of Sysc 3110 project, the team is planning on doing the following:
+For the iteration 3 of Sysc 3110 project, the team is planning on doing the following:
 - Addition of AI player to the game.
 - Addition of bonuses for the placement og armies on countries.
 - Implementation of troop movement.
