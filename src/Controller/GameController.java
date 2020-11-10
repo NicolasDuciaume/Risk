@@ -65,7 +65,9 @@ public class GameController implements ActionListener {
         }
         else if(e.getActionCommand().equals("CA")){
             if(model.DoesHeOwn("Central America")){
-                JOptionPane.showMessageDialog(view,"Test");
+                attack = new AttackView(this.view);
+                attack.addActionListeners(new AttackController(attack,model,view, "Central America"));
+                attack.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(view,"You do not own this country!");
@@ -73,7 +75,9 @@ public class GameController implements ActionListener {
         }
         else if(e.getActionCommand().equals("EUS")){
             if(model.DoesHeOwn("Eastern United States")){
-                JOptionPane.showMessageDialog(view,"Test");
+                attack = new AttackView(this.view);
+                attack.addActionListeners(new AttackController(attack,model,view, "Eastern United States"));
+                attack.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(view,"You do not own this country!");
@@ -81,7 +85,9 @@ public class GameController implements ActionListener {
         }
         else if(e.getActionCommand().equals("Greenland")){
             if(model.DoesHeOwn("Greenland")){
-                JOptionPane.showMessageDialog(view,"Test");
+                attack = new AttackView(this.view);
+                attack.addActionListeners(new AttackController(attack,model,view, "Greenland"));
+                attack.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(view,"You do not own this country!");
@@ -89,7 +95,9 @@ public class GameController implements ActionListener {
         }
         else if(e.getActionCommand().equals("NT")){
             if(model.DoesHeOwn("Northwest Territory")){
-                JOptionPane.showMessageDialog(view,"Test");
+                attack = new AttackView(this.view);
+                attack.addActionListeners(new AttackController(attack,model,view, "Northwest Territory"));
+                attack.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(view,"You do not own this country!");
@@ -97,7 +105,9 @@ public class GameController implements ActionListener {
         }
         else if(e.getActionCommand().equals("Ontario")){
             if(model.DoesHeOwn("Ontario")){
-                JOptionPane.showMessageDialog(view,"Test");
+                attack = new AttackView(this.view);
+                attack.addActionListeners(new AttackController(attack,model,view, "Ontario"));
+                attack.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(view,"You do not own this country!");
@@ -105,7 +115,9 @@ public class GameController implements ActionListener {
         }
         else if(e.getActionCommand().equals("Quebec")){
             if(model.DoesHeOwn("Quebec")){
-                JOptionPane.showMessageDialog(view,"Test");
+                attack = new AttackView(this.view);
+                attack.addActionListeners(new AttackController(attack,model,view, "Quebec"));
+                attack.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(view,"You do not own this country!");
@@ -113,7 +125,9 @@ public class GameController implements ActionListener {
         }
         else if(e.getActionCommand().equals("WUS")){
             if(model.DoesHeOwn("Western United States")){
-                JOptionPane.showMessageDialog(view,"Test");
+                attack = new AttackView(this.view);
+                attack.addActionListeners(new AttackController(attack,model,view, "Western United States"));
+                attack.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(view,"You do not own this country!");
@@ -121,7 +135,9 @@ public class GameController implements ActionListener {
         }
         else if(e.getActionCommand().equals("Argentina")){
             if(model.DoesHeOwn("Argentina")){
-                JOptionPane.showMessageDialog(view,"Test");
+                attack = new AttackView(this.view);
+                attack.addActionListeners(new AttackController(attack,model,view, "Argentina"));
+                attack.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(view,"You do not own this country!");
@@ -129,7 +145,9 @@ public class GameController implements ActionListener {
         }
         else if(e.getActionCommand().equals("Brazil")){
             if(model.DoesHeOwn("Brazil")){
-                JOptionPane.showMessageDialog(view,"Test");
+                attack = new AttackView(this.view);
+                attack.addActionListeners(new AttackController(attack,model,view, "Brazil"));
+                attack.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(view,"You do not own this country!");
@@ -137,7 +155,9 @@ public class GameController implements ActionListener {
         }
         else if(e.getActionCommand().equals("Venezuela")){
             if(model.DoesHeOwn("Venezuela")){
-                JOptionPane.showMessageDialog(view,"Test");
+                attack = new AttackView(this.view);
+                attack.addActionListeners(new AttackController(attack,model,view, "Venezuela"));
+                attack.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(view,"You do not own this country!");
@@ -145,7 +165,9 @@ public class GameController implements ActionListener {
         }
         else if(e.getActionCommand().equals("Peru")){
             if(model.DoesHeOwn("Peru")){
-                JOptionPane.showMessageDialog(view,"Test");
+                attack = new AttackView(this.view);
+                attack.addActionListeners(new AttackController(attack,model,view, "Peru"));
+                attack.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(view,"You do not own this country!");
@@ -153,7 +175,9 @@ public class GameController implements ActionListener {
         }
         else if(e.getActionCommand().equals("GB")){
             if(model.DoesHeOwn("Great Britain")){
-                JOptionPane.showMessageDialog(view,"Test");
+                attack = new AttackView(this.view);
+                attack.addActionListeners(new AttackController(attack,model,view, "Great Britain"));
+                attack.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(view,"You do not own this country!");
@@ -161,7 +185,9 @@ public class GameController implements ActionListener {
         }
         else if(e.getActionCommand().equals("Iceland")){
             if(model.DoesHeOwn("Iceland")){
-                JOptionPane.showMessageDialog(view,"Test");
+                attack = new AttackView(this.view);
+                attack.addActionListeners(new AttackController(attack,model,view, "Iceland"));
+                attack.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(view,"You do not own this country!");
@@ -169,7 +195,9 @@ public class GameController implements ActionListener {
         }
         else if(e.getActionCommand().equals("NE")){
             if(model.DoesHeOwn("Northern Europe")){
-                JOptionPane.showMessageDialog(view,"Test");
+                attack = new AttackView(this.view);
+                attack.addActionListeners(new AttackController(attack,model,view, "Northern Europe"));
+                attack.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(view,"You do not own this country!");
@@ -177,7 +205,9 @@ public class GameController implements ActionListener {
         }
         else if(e.getActionCommand().equals("Scandinavia")){
             if(model.DoesHeOwn("Scandinavia")){
-                JOptionPane.showMessageDialog(view,"Test");
+                attack = new AttackView(this.view);
+                attack.addActionListeners(new AttackController(attack,model,view, "Scandinavia"));
+                attack.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(view,"You do not own this country!");
@@ -185,7 +215,9 @@ public class GameController implements ActionListener {
         }
         else if(e.getActionCommand().equals("Congo")){
             if(model.DoesHeOwn("Congo")){
-                JOptionPane.showMessageDialog(view,"Test");
+                attack = new AttackView(this.view);
+                attack.addActionListeners(new AttackController(attack,model,view, "Congo"));
+                attack.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(view,"You do not own this country!");
@@ -193,7 +225,9 @@ public class GameController implements ActionListener {
         }
         else if(e.getActionCommand().equals("SE")){
             if(model.DoesHeOwn("Southern Europe")){
-                JOptionPane.showMessageDialog(view,"Test");
+                attack = new AttackView(this.view);
+                attack.addActionListeners(new AttackController(attack,model,view, "Southern Europe"));
+                attack.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(view,"You do not own this country!");
@@ -201,7 +235,9 @@ public class GameController implements ActionListener {
         }
         else if(e.getActionCommand().equals("Ukraine")){
             if(model.DoesHeOwn("Ukraine")){
-                JOptionPane.showMessageDialog(view,"Test");
+                attack = new AttackView(this.view);
+                attack.addActionListeners(new AttackController(attack,model,view, "Ukraine"));
+                attack.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(view,"You do not own this country!");
@@ -209,7 +245,9 @@ public class GameController implements ActionListener {
         }
         else if(e.getActionCommand().equals("WE")){
             if(model.DoesHeOwn("Western Europe")){
-                JOptionPane.showMessageDialog(view,"Test");
+                attack = new AttackView(this.view);
+                attack.addActionListeners(new AttackController(attack,model,view, "Western Europe"));
+                attack.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(view,"You do not own this country!");
@@ -217,7 +255,9 @@ public class GameController implements ActionListener {
         }
         else if(e.getActionCommand().equals("Ukraine")){
             if(model.DoesHeOwn("Ukraine")){
-                JOptionPane.showMessageDialog(view,"Test");
+                attack = new AttackView(this.view);
+                attack.addActionListeners(new AttackController(attack,model,view, "Ukraine"));
+                attack.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(view,"You do not own this country!");
@@ -225,7 +265,9 @@ public class GameController implements ActionListener {
         }
         else if(e.getActionCommand().equals("EA")){
             if(model.DoesHeOwn("East Africa")){
-                JOptionPane.showMessageDialog(view,"Test");
+                attack = new AttackView(this.view);
+                attack.addActionListeners(new AttackController(attack,model,view, "East Africa"));
+                attack.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(view,"You do not own this country!");
@@ -233,7 +275,9 @@ public class GameController implements ActionListener {
         }
         else if(e.getActionCommand().equals("Egypt")){
             if(model.DoesHeOwn("Egypt")){
-                JOptionPane.showMessageDialog(view,"Test");
+                attack = new AttackView(this.view);
+                attack.addActionListeners(new AttackController(attack,model,view, "Egypt"));
+                attack.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(view,"You do not own this country!");
@@ -241,7 +285,9 @@ public class GameController implements ActionListener {
         }
         else if(e.getActionCommand().equals("Madagascar")){
             if(model.DoesHeOwn("Madagascar")){
-                JOptionPane.showMessageDialog(view,"Test");
+                attack = new AttackView(this.view);
+                attack.addActionListeners(new AttackController(attack,model,view, "Madagascar"));
+                attack.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(view,"You do not own this country!");
@@ -249,7 +295,9 @@ public class GameController implements ActionListener {
         }
         else if(e.getActionCommand().equals("NA")){
             if(model.DoesHeOwn("North Africa")){
-                JOptionPane.showMessageDialog(view,"Test");
+                attack = new AttackView(this.view);
+                attack.addActionListeners(new AttackController(attack,model,view, "North Africa"));
+                attack.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(view,"You do not own this country!");
@@ -257,7 +305,9 @@ public class GameController implements ActionListener {
         }
         else if(e.getActionCommand().equals("SA")){
             if(model.DoesHeOwn("South Africa")){
-                JOptionPane.showMessageDialog(view,"Test");
+                attack = new AttackView(this.view);
+                attack.addActionListeners(new AttackController(attack,model,view, "South Africa"));
+                attack.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(view,"You do not own this country!");
@@ -265,7 +315,9 @@ public class GameController implements ActionListener {
         }
         else if(e.getActionCommand().equals("Afghanistan")){
             if(model.DoesHeOwn("Afghanistan")){
-                JOptionPane.showMessageDialog(view,"Test");
+                attack = new AttackView(this.view);
+                attack.addActionListeners(new AttackController(attack,model,view, "Afghanistan"));
+                attack.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(view,"You do not own this country!");
@@ -273,7 +325,9 @@ public class GameController implements ActionListener {
         }
         else if(e.getActionCommand().equals("China")){
             if(model.DoesHeOwn("China")){
-                JOptionPane.showMessageDialog(view,"Test");
+                attack = new AttackView(this.view);
+                attack.addActionListeners(new AttackController(attack,model,view, "China"));
+                attack.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(view,"You do not own this country!");
@@ -281,7 +335,9 @@ public class GameController implements ActionListener {
         }
         else if(e.getActionCommand().equals("India")){
             if(model.DoesHeOwn("India")){
-                JOptionPane.showMessageDialog(view,"Test");
+                attack = new AttackView(this.view);
+                attack.addActionListeners(new AttackController(attack,model,view, "India"));
+                attack.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(view,"You do not own this country!");
@@ -289,7 +345,9 @@ public class GameController implements ActionListener {
         }
         else if(e.getActionCommand().equals("Irkutsk")){
             if(model.DoesHeOwn("Irkutsk")){
-                JOptionPane.showMessageDialog(view,"Test");
+                attack = new AttackView(this.view);
+                attack.addActionListeners(new AttackController(attack,model,view, "Irkutsk"));
+                attack.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(view,"You do not own this country!");
@@ -297,7 +355,9 @@ public class GameController implements ActionListener {
         }
         else if(e.getActionCommand().equals("Japan")){
             if(model.DoesHeOwn("Japan")){
-                JOptionPane.showMessageDialog(view,"Test");
+                attack = new AttackView(this.view);
+                attack.addActionListeners(new AttackController(attack,model,view, "Japan"));
+                attack.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(view,"You do not own this country!");
@@ -305,7 +365,9 @@ public class GameController implements ActionListener {
         }
         else if(e.getActionCommand().equals("Kamchatka")){
             if(model.DoesHeOwn("Kamchatka")){
-                JOptionPane.showMessageDialog(view,"Test");
+                attack = new AttackView(this.view);
+                attack.addActionListeners(new AttackController(attack,model,view, "Kamchatka"));
+                attack.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(view,"You do not own this country!");
@@ -313,7 +375,9 @@ public class GameController implements ActionListener {
         }
         else if(e.getActionCommand().equals("ME")){
             if(model.DoesHeOwn("Middle East")){
-                JOptionPane.showMessageDialog(view,"Test");
+                attack = new AttackView(this.view);
+                attack.addActionListeners(new AttackController(attack,model,view, "Middle East"));
+                attack.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(view,"You do not own this country!");
@@ -321,7 +385,9 @@ public class GameController implements ActionListener {
         }
         else if(e.getActionCommand().equals("Mongolia")){
             if(model.DoesHeOwn("Mongolia")){
-                JOptionPane.showMessageDialog(view,"Test");
+                attack = new AttackView(this.view);
+                attack.addActionListeners(new AttackController(attack,model,view, "Mongolia"));
+                attack.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(view,"You do not own this country!");
@@ -329,7 +395,9 @@ public class GameController implements ActionListener {
         }
         else if(e.getActionCommand().equals("Siam")){
             if(model.DoesHeOwn("Siam")){
-                JOptionPane.showMessageDialog(view,"Test");
+                attack = new AttackView(this.view);
+                attack.addActionListeners(new AttackController(attack,model,view, "Siam"));
+                attack.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(view,"You do not own this country!");
@@ -337,7 +405,9 @@ public class GameController implements ActionListener {
         }
         else if(e.getActionCommand().equals("Siberia")){
             if(model.DoesHeOwn("Siberia")){
-                JOptionPane.showMessageDialog(view,"Test");
+                attack = new AttackView(this.view);
+                attack.addActionListeners(new AttackController(attack,model,view, "Siberia"));
+                attack.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(view,"You do not own this country!");
@@ -345,7 +415,9 @@ public class GameController implements ActionListener {
         }
         else if(e.getActionCommand().equals("Ural")){
             if(model.DoesHeOwn("Ural")){
-                JOptionPane.showMessageDialog(view,"Test");
+                attack = new AttackView(this.view);
+                attack.addActionListeners(new AttackController(attack,model,view, "Ural"));
+                attack.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(view,"You do not own this country!");
@@ -353,7 +425,9 @@ public class GameController implements ActionListener {
         }
         else if(e.getActionCommand().equals("Yakutsk")){
             if(model.DoesHeOwn("Yakutsk")){
-                JOptionPane.showMessageDialog(view,"Test");
+                attack = new AttackView(this.view);
+                attack.addActionListeners(new AttackController(attack,model,view, "Yakutsk"));
+                attack.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(view,"You do not own this country!");
@@ -361,7 +435,9 @@ public class GameController implements ActionListener {
         }
         else if(e.getActionCommand().equals("EAUS")){
             if(model.DoesHeOwn("Eastern Australia")){
-                JOptionPane.showMessageDialog(view,"Test");
+                attack = new AttackView(this.view);
+                attack.addActionListeners(new AttackController(attack,model,view, "Eastern Australia"));
+                attack.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(view,"You do not own this country!");
@@ -369,7 +445,9 @@ public class GameController implements ActionListener {
         }
         else if(e.getActionCommand().equals("Indonesia")){
             if(model.DoesHeOwn("Indonesia")){
-                JOptionPane.showMessageDialog(view,"Test");
+                attack = new AttackView(this.view);
+                attack.addActionListeners(new AttackController(attack,model,view, "Indonesia"));
+                attack.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(view,"You do not own this country!");
@@ -377,7 +455,9 @@ public class GameController implements ActionListener {
         }
         else if(e.getActionCommand().equals("NG")){
             if(model.DoesHeOwn("New Guinea")){
-                JOptionPane.showMessageDialog(view,"Test");
+                attack = new AttackView(this.view);
+                attack.addActionListeners(new AttackController(attack,model,view, "New Guinea"));
+                attack.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(view,"You do not own this country!");
@@ -385,7 +465,9 @@ public class GameController implements ActionListener {
         }
         else if(e.getActionCommand().equals("WAUS")){
             if(model.DoesHeOwn("Western Australia")){
-                JOptionPane.showMessageDialog(view,"Test");
+                attack = new AttackView(this.view);
+                attack.addActionListeners(new AttackController(attack,model,view, "Western Australia"));
+                attack.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(view,"You do not own this country!");

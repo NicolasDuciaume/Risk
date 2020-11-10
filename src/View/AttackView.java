@@ -16,6 +16,7 @@ public class AttackView extends JDialog{
     private JComboBox comboBox;
     private JComboBox attackBox;
     private JComboBox defendBox;
+    private JButton at;
 
     private JButton test;
 
@@ -29,20 +30,21 @@ public class AttackView extends JDialog{
         border.setBorder(new EmptyBorder(2,3,2,3));
         JPanel borderLayout = new JPanel(new GridBagLayout());
         borderLayout.setBorder(new EmptyBorder(5,5,5,5));
+        at = new JButton("ATTACK!");
+        at.setActionCommand("ATTACK");
         Attack = new JPanel();
         Attack.setLayout(new GridLayout(10,1,10,6));
 
         AttackLabel1 = new JLabel("Who do you Wish to attack", JLabel.CENTER);
-        AttackLabel2 = new JLabel("", JLabel.CENTER);
-        AttackLabel3 = new JLabel("", JLabel.CENTER);
-        AttackLabel4 = new JLabel("", JLabel.CENTER);
-        AttackLabel5 = new JLabel("", JLabel.CENTER);
+        AttackLabel2 = new JLabel("Attacker how many dices would you like", JLabel.CENTER);
+        AttackLabel3 = new JLabel("Between 1 and 3, must have one more army on Country than amount of dice", JLabel.CENTER);
+        AttackLabel4 = new JLabel("Defender how many dices would you like", JLabel.CENTER);
+        AttackLabel5 = new JLabel("Between 1 and 2. If 2, you must have at least 2 armies on the Country", JLabel.CENTER);
+
         comboBox = new JComboBox();
         attackBox = new JComboBox();
         defendBox = new JComboBox();
 
-        attackBox.setVisible(false);
-        defendBox.setVisible(false);
 
         Attack.add(AttackLabel1);
         Attack.add(comboBox);
@@ -52,6 +54,7 @@ public class AttackView extends JDialog{
         Attack.add(AttackLabel4);
         Attack.add(AttackLabel5);
         Attack.add(defendBox);
+        Attack.add(at);
 
         borderLayout.add(Attack);
         border.add(borderLayout,BorderLayout.CENTER);
@@ -90,7 +93,7 @@ public class AttackView extends JDialog{
 
     public void addActionListeners(ActionListener listener){
         comboBox.addActionListener(listener);
-        attackBox.addActionListener(listener);
+        at.addActionListener(listener);
     }
 
 
