@@ -31,14 +31,6 @@ class riskModelTest {
 		assertFalse(value);
 	}
 
-	@Test
-	final void testPlayerSelection() {
-		game.playerSelection("2");
-		int expectedSize = 2;
-		ArrayList<Player> players  = game.getPlayersInGame();
-		int size  = players.size();
-		assertEquals(expectedSize, size);
-	}
 
 	@Test
 	final void testIsNumeric() {
