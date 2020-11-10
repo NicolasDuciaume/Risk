@@ -1,18 +1,21 @@
+package Model;
 import java.util.ArrayList;
 import java.util.Random;
 /**
- * The main class of the Risk Game
+ * The model class of the Risk Game
  *
  */
-public class Game {
+public class RiskModel {
 
+    private ArrayList<Player> playersInGame = new ArrayList<Player>();
 
-
-    private ArrayList<Player> PlayersInGame = new ArrayList<Player>();
+    private Player CurrentPlayer;
 
     private Parser parser;
 
-    private Map map; 
+    private int cur = 0;
+
+    public Map map;
     
     private ArrayList<Country> fullMap;
     private ArrayList<Country> NorthAmerica;
@@ -26,7 +29,7 @@ public class Game {
     /**
      * The default constructor of the Game class
      */
-    public Game(){
+    public RiskModel(){
         parser = new Parser();
         map = new Map();
         NorthAmerica = map.getNorthAmerica();
@@ -42,11 +45,11 @@ public class Game {
     /**
      * This class is responsible for adding the armies on the map
      */
-    public void Populate(){
+    public void populate(){
         Random rand = new Random();
-        PopulateInit(); 
-        for(int x = 0; x < PlayersInGame.size(); x++){
-            Player play = PlayersInGame.get(x);
+        populateInit();
+        for(int x = 0; x < playersInGame.size(); x++){
+            Player play = playersInGame.get(x);
             ArrayList<Country> PlayCountry = play.getPlacedArmies();
             while(play.getArmiesToPlace() != 0){
                 Country temp = PlayCountry.get(rand.nextInt(PlayCountry.size()));
@@ -59,9 +62,9 @@ public class Game {
      * This method is responsible for initializing the Risk 
      * game with default settings
      */
-    public void PopulateInit(){
+    public void populateInit(){
         while(map.getOccupiedCountries() != 42){
-            if(((PlayersInGame.size() == 4 ) || (PlayersInGame.size() == 5)) && (map.getOccupiedCountries() == 40)){ //because they 42 is not divisible by 4 or 5
+            if(((playersInGame.size() == 4 ) || (playersInGame.size() == 5)) && (map.getOccupiedCountries() == 40)){ //because they 42 is not divisible by 4 or 5
                 gameSetUpFornonDevisibleCountriesByPlayersCase();
             }
             else{
@@ -75,14 +78,14 @@ public class Game {
      */
 	private void standardCaseGameSetup() {
 		Random rand = new Random();
-		for (int x = 0; x < PlayersInGame.size(); x++){
-		    Player play = PlayersInGame.get(x);
+		for (int x = 0; x < playersInGame.size(); x++){
+		    Player play = playersInGame.get(x);
 		    Country temp = fullMap.get(rand.nextInt(fullMap.size()));
 		    while(temp.getPlayerOnCountry() != null)
 		    {
 		        temp = fullMap.get(rand.nextInt(fullMap.size()));
 		    }
-		    play.AddCountry(temp);
+		    play.addCountry(temp);
 		    temp.addArmiesOnCountry(1);
 		    temp.setPlayerOnCountry(play);
 		    play.remArmiesToPlace();
@@ -97,13 +100,13 @@ public class Game {
 	private void gameSetUpFornonDevisibleCountriesByPlayersCase() {
 		Random rand = new Random();
 		for (int x = 0; x < 2; x++){
-		    Player play = PlayersInGame.get(x);
+		    Player play = playersInGame.get(x);
 		    Country temp = fullMap.get(rand.nextInt(fullMap.size()));
 		    while(temp.getPlayerOnCountry() != null)
 		    {
 		        temp = fullMap.get(rand.nextInt(fullMap.size()));
 		    }
-		    play.AddCountry(temp);
+		    play.addCountry(temp);
 		    temp.addArmiesOnCountry(1);
 		    temp.setPlayerOnCountry(play);
 		    play.remArmiesToPlace();
@@ -127,11 +130,11 @@ public class Game {
             System.out.println(x + " Players");
         }
         playerSelection(parser.getUserInput());
-        while(PlayersInGame.size() == 0){
+        while(playersInGame.size() == 0){
             System.out.println("Please select a valid option:");
             playerSelection(parser.getUserInput());
         }
-        System.out.println("You have selected " + PlayersInGame.size());
+        System.out.println("You have selected " + playersInGame.size());
         System.out.println("Starting Game...");
     }
     /**
@@ -139,14 +142,16 @@ public class Game {
      */
     public void play()
     {
-    	
-        introduction();
-        Populate();
-        map.printMap();
+        CurrentPlayer = playersInGame.get(0);
+
+    	/*
+        //introduction();
+        //populate();
+        //map.printMap();
 
         while (!checkEnd()){
-            for(int x = 0; x < PlayersInGame.size(); x++){
-                Player play = PlayersInGame.get(x);
+            for(int x = 0; x < playersInGame.size(); x++){
+                Player play = playersInGame.get(x);
                 if(play.getArmies() != 0){
                     int reinforcements;
                     System.out.println(play.getName() + "'s turn:");
@@ -163,22 +168,29 @@ public class Game {
 
                     reinforcement(reinforcements, play);
 
-                    System.out.println("\nSelect a command:");
-                    parser.getCommands();
+
+                    //System.out.println("\nSelect a command:");
+                    //parser.getCommands();
                     boolean endTurn = false;
                     while(!endTurn){
-                        Command command = parser.getCommand();
-                        endTurn = processCommand(command, play);
+                        //Command command = parser.getCommand();
+                        //endTurn = processCommand(command, play);
                     }
                 }
                 else{
-                    PlayersInGame.remove(x);
+                    playersInGame.remove(x);
                 }
             }
         }
-        Player play = PlayersInGame.get(0);
-        System.out.println(play.getName() + "has won the game!");
+        Player play = playersInGame.get(0);
+        System.out.println(play.getName() + "has won the game!");*/
     }
+
+
+    public void reinforce(){
+
+    }
+
     /**
      * This method is responsible for processing the user entered commands and making 
      * calls to appropriate methods based on the entered command
@@ -238,7 +250,7 @@ public class Game {
      */
 	public boolean checkEnd(){
 	    boolean Finished = false;
-	    int playersAlive = PlayersInGame.size();
+	    int playersAlive = playersInGame.size();
         if(playersAlive == 1){
             Finished = true;
         }
@@ -257,36 +269,36 @@ public class Game {
             case "2":
             case "2 PLAYERS":
                 for(int x = 0; x < 2;x++){
-                    PlayersInGame.add(new Player("Player " + (x+1)));
-                    PlayersInGame.get(x).setInitArmies(50);
+                    playersInGame.add(new Player("Player " + (x+1)));
+                    playersInGame.get(x).setInitArmies(50);
                 }
                 break;
             case "3":
             case "3 PLAYERS":
                 for(int x = 0; x < 3;x++){
-                    PlayersInGame.add(new Player("Player " + (x+1)));
-                    PlayersInGame.get(x).setInitArmies(35);
+                    playersInGame.add(new Player("Player " + (x+1)));
+                    playersInGame.get(x).setInitArmies(35);
                 }
                 break;
             case "4":
             case "4 PLAYERS":
                 for(int x = 0; x < 4;x++){
-                    PlayersInGame.add(new Player("Player " + (x+1)));
-                    PlayersInGame.get(x).setInitArmies(30);
+                    playersInGame.add(new Player("Player " + (x+1)));
+                    playersInGame.get(x).setInitArmies(30);
                 }
                 break;
             case "5":
             case "5 PLAYERS":
                 for(int x = 0; x < 5;x++){
-                    PlayersInGame.add(new Player("Player " + (x+1)));
-                    PlayersInGame.get(x).setInitArmies(25);
+                    playersInGame.add(new Player("Player " + (x+1)));
+                    playersInGame.get(x).setInitArmies(25);
                 }
                 break;
             case "6":
             case "6 PLAYERS":
                 for(int x = 0; x < 6;x++){
-                    PlayersInGame.add(new Player("Player " + (x+1)));
-                    PlayersInGame.get(x).setInitArmies(20);
+                    playersInGame.add(new Player("Player " + (x+1)));
+                    playersInGame.get(x).setInitArmies(20);
                 }
                 break;
         }
@@ -377,9 +389,9 @@ public class Game {
         System.out.println(player.getName() + " how many dices would you like to have?");
         System.out.println("Between 1 and 3, must have one more army on Country than amount of dice");
 
-        boolean CorrectNumber = false;
+        boolean correctNumber = false;
         int[] attackerDice = {0};
-        while (!CorrectNumber) {
+        while (!correctNumber) {
             String ans = parser.getUserInput();
             if (ans.equals("back")){
                 return true;
@@ -391,7 +403,7 @@ public class Game {
                 int numDice = Integer.valueOf(ans);
                 if ((numDice < attackerC.getArmiesOnCountry()) && (numDice >= 1) && (numDice <= 3)) {
                     attackerDice = dice.roll(numDice);
-                    CorrectNumber = true;
+                    correctNumber = true;
                 } else {
                     System.out.println("Please select a valid number of armies to move");
                 }
@@ -401,9 +413,9 @@ public class Game {
         System.out.println(attackedPlayer.getName() + " how many dices would you like to have?");
         System.out.println("Between 1 and 2. If 2, you must have at least 2 armies on the Country");
 
-        CorrectNumber = false;
+        correctNumber = false;
         int[] DefenderDice = {0};
-        while (!CorrectNumber) {
+        while (!correctNumber) {
             String ans = parser.getUserInput();
             if(!isNumeric(ans)){
                 System.out.println("Please input a number");
@@ -416,7 +428,7 @@ public class Game {
                     }
                     else{
                         DefenderDice = dice.roll(numDice);
-                        CorrectNumber = true;
+                        correctNumber = true;
                     }
                 }
                 else {
@@ -454,7 +466,7 @@ public class Game {
         if(attackedC.getArmiesOnCountry() == 0){
             attackedPlayer.removeCountry(attackedC);
             attackedC.setPlayerOnCountry(player);
-            player.AddCountry(attackedC);
+            player.addCountry(attackedC);
             attackedC.addArmiesOnCountry(attackerDice.length);
             attackerC.removeArmiesOnCountry(attackerDice.length);
             System.out.println(attackedPlayer.getName() + " has lost control of " + attackedC.getName());
@@ -631,13 +643,32 @@ public class Game {
             System.out.println(temp.getName() + " which has " + temp.getArmiesOnCountry() + " on it");
         }
 	}
-                		
 
-	/**
+    public ArrayList<Country> getFullMap() {
+        return fullMap;
+    }
+
+    /**
 	 * This function ends the player turn
 	 */
-    private void endTurn(){
-	    System.out.println("Ending turn...");
+    public void endTurn(){
+        if(cur == playersInGame.size() - 1){
+            cur = 0;
+            CurrentPlayer = playersInGame.get(cur);
+        }
+        else{
+            cur = cur + 1;
+            CurrentPlayer = playersInGame.get(cur);
+        }
+
+    }
+
+    public Player getCurrentPlayer(){
+        return CurrentPlayer;
+    }
+
+    public String getCurrentPlayerName(){
+        return CurrentPlayer.getName();
     }
     /**
      * This function checks if the value is numeric or not
@@ -742,7 +773,7 @@ public class Game {
      * The main  function that runs the game
      */
     public static void main(String[] args) {
-        Game game = new Game();
+        RiskModel game = new RiskModel();
         game.play();
     }
 }

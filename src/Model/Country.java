@@ -1,4 +1,7 @@
+package Model;
+
 import java.util.ArrayList;
+import Model.*;
 /**
  * This class is responsible for dealing with the data
  * belonging to the class, country.
