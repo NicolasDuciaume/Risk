@@ -435,5 +435,6 @@ public class GameView extends JFrame {
         WAUS.addActionListener(listener);
         EAUS.addActionListener(listener);
         endTurn.addActionListener(listener);
+
     }
 }

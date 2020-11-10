@@ -10,6 +10,8 @@ public class Reinforcements extends JDialog{
     private JPanel Reinforcements;
     private JLabel ReinforcementsLabel1;
     private JLabel ReinforcementsLabel2;
+    private JComboBox comboBox;
+    private JComboBox comboBox2;
 
     private JButton test;
 
@@ -28,12 +30,14 @@ public class Reinforcements extends JDialog{
 
         ReinforcementsLabel1 = new JLabel("Time for some reinforcements", JLabel.CENTER);
         ReinforcementsLabel2 = new JLabel("", JLabel.CENTER);
-
+        comboBox = new JComboBox();
+        comboBox2 = new JComboBox();
 
 
         Reinforcements.add(ReinforcementsLabel1);
         Reinforcements.add(ReinforcementsLabel2);
-
+        Reinforcements.add(comboBox);
+        Reinforcements.add(comboBox2);
 
         borderLayout.add(Reinforcements);
         border.add(borderLayout,BorderLayout.CENTER);
@@ -45,7 +49,7 @@ public class Reinforcements extends JDialog{
     }
 
     public void addActionListeners(ActionListener listener){
-
+        comboBox2.addActionListener(listener);
     }
 
     public JLabel getLabel(){
@@ -54,6 +58,14 @@ public class Reinforcements extends JDialog{
 
     public JPanel getReinforcements() {
         return Reinforcements;
+    }
+
+    public JComboBox getComboBox() {
+        return comboBox;
+    }
+
+    public JComboBox getComboBox2() {
+        return comboBox2;
     }
 }
 

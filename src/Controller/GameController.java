@@ -37,7 +37,9 @@ public class GameController implements ActionListener {
 
             model.endTurn();
             view.UpdateTurn(model.getCurrentPlayerName());
-
+            reinforcements = new Reinforcements(this.view);
+            reinforcements.addActionListeners(new ReinforcementsController(reinforcements,model,view));
+            reinforcements.setVisible(true);
 
         }else if(e.getActionCommand().equals("NT")){
             if(model.DoesHeOwn("Northwest Territory")){

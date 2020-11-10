@@ -508,7 +508,7 @@ public class RiskModel {
     /**
      * To be provided later
      * This function provides the move functionality to the game.
-     * @param player the player that wants to move
+     * @param //player the player that wants to move
      * @return true if move has been made
      */
     /*
@@ -606,52 +606,13 @@ public class RiskModel {
         return false;
     } */
 
-    private void reinforcement(int rein , Player player){
-        player.setArmies(rein);
-        while(rein != 0) {
-            System.out.println("On which country would you like to place some reinforcements:");
-            System.out.println("You have " + rein + " armies to place");
-            ArrayList<Country> playCount = player.getPlacedArmies();
-            for (int x = 0; x < playCount.size(); x++) {
-                Country temp = playCount.get(x);
-                System.out.println(temp.getName() + " which has " + temp.getArmiesOnCountry() + " on it");
-            }
-
-            boolean correctSelect = false;
-            Country select = null;
-            while (!correctSelect) {
-                String attackerInput = parser.getUserInput();
-                for (int y = 0; y < playCount.size(); y++) {
-                    Country temp = playCount.get(y);
-                    if (temp.getName().equals(attackerInput)) {
-                        select = temp;
-                        correctSelect = true;
-                    }
-                }
-                if (correctSelect == false) {
-                    System.out.println("Please select a valid country");
-                }
-            }
-
-            System.out.println("How many armies would you like to place on this country");
-            boolean CorrectNumber = false;
-            while (!CorrectNumber) {
-                String ans = parser.getUserInput();
-                if (!isNumeric(ans)) {
-                    System.out.println("Please input a number");
-                } else {
-                    int numToMove = Integer.valueOf(ans);
-                    if (numToMove <= rein) {
-                        select.addArmiesOnCountry(numToMove);
-                        System.out.println(select.getName() + " now has " + select.getArmiesOnCountry() + " armies on it");
-                        rein = rein - numToMove;
-                        CorrectNumber = true;
-                    } else {
-                        System.out.println("Please select a valid number of armies to move");
-                    }
-                }
-            }
-        }
+    public void reinforcement(int rein, String C){
+       for(Country c: CurrentPlayer.getPlacedArmies()){
+           if(C.equals(c.getName())){
+               c.addArmiesOnCountry(rein);
+               CurrentPlayer.setArmies(rein);
+           }
+       }
     }
 
     /**
