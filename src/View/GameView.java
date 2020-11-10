@@ -1,8 +1,6 @@
 package View;
-import Controller.GameController;
-import Model.Country;
-import Model.Player;
-import Model.RiskModel;
+import Controller.*;
+import Model.*;
 import View.*;
 
 import javax.swing.*;
