@@ -2,7 +2,6 @@ package Controller;
 
 import Model.*;
 import View.*;
-import Controller.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,13 +11,22 @@ public class SelectPlayerController implements ActionListener {
     private SelectPlayerMenu selectPlayerMenu;
     private RiskModel model;
     private RiskView view;
-
+    
+    /**
+     * The constructor with three parameters
+     * @param selectPlayerMenu the player menu
+     * @param model the game model
+     * @param view the game view
+     */
     public SelectPlayerController(SelectPlayerMenu selectPlayerMenu, RiskModel model, RiskView view){
         this.selectPlayerMenu = selectPlayerMenu;
         this.model = model;
         this.view = view;
     }
 
+    /**
+     * The action listener for the class
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         String actionEvent = e.getActionCommand();
@@ -45,7 +53,7 @@ public class SelectPlayerController implements ActionListener {
         selectPlayerMenu.setVisible(false);
         model.populate();
         view.dispose();
-        GameView game = new GameView(model);
+        new GameView(model);
 
     }
 }
