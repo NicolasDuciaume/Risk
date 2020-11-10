@@ -29,10 +29,5 @@ class parserTest {
 		assertEquals("help attack map pass quit ", command);
 	}
 
-	@Test
-	final void testGetUserInput() {
-		String input = parser.getUserInput();
-		assertEquals("help attack map pass quit", input);
-	}
 
 }

@@ -25,10 +25,15 @@ class diceTest {
 	@Test
 	final void testRollDice() {
 		dice.rollDice();
-		int size = dice.getRoll();
-		
-		assertEquals(1, size);
+		int value = dice.getRoll();
+		boolean result = false;
+		if(value == 1 || value ==2 || value == 3 || value == 4 || value == 5 || value == 6) {
+			result = true;
+			
+		}
+		assertTrue(result);
 	}
+	
 	@Test
 	final void testGetRoll() {
 		ArrayList<Integer> numbers = new ArrayList<Integer>();
