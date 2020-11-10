@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+@SuppressWarnings("serial")
 public class GameView extends JFrame {
 
     private JPanel Game;
@@ -88,7 +89,7 @@ public class GameView extends JFrame {
         //setPreferredSize(new Dimension(500,600));
         setVisible(true);
 
-        GameController controller2 = new GameController(model, this);
+        new GameController(model, this);
 
         pack();
     }
