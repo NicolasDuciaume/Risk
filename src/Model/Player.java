@@ -1,7 +1,6 @@
 package Model;
 
 import java.util.ArrayList;
-import Model.*;
 
 /**
  * This class is responsible for creating an instance of player for the Risk game.

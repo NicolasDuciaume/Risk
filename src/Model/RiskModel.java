@@ -199,7 +199,8 @@ public class RiskModel {
      * @param player the player which entered the command
      * @return true if the command was processed successfully
      */
-    private boolean processCommand(Command command, Player player){
+    @SuppressWarnings("unused")
+	private boolean processCommand(Command command, Player player){
         boolean end = false;
         
         if(command.isUnknown()){
@@ -586,7 +587,8 @@ public class RiskModel {
         return false;
     } */
 
-    private void reinforcement(int rein , Player player){
+    @SuppressWarnings("unused")
+	private void reinforcement(int rein , Player player){
         player.setArmies(rein);
         while(rein != 0) {
             System.out.println("On which country would you like to place some reinforcements:");
@@ -692,7 +694,8 @@ public class RiskModel {
         map.printMap();
     }
 
-    private int checkHasContinent(Player player){
+    @SuppressWarnings("unused")
+	private int checkHasContinent(Player player){
         int hasNA = 0;
         int hasSA = 0;
         int hasE = 0;
