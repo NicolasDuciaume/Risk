@@ -219,6 +219,7 @@ public class RiskModel {
      * @param player the player which entered the command
      * @return true if the command was processed successfully
      */
+    /*
     private boolean processCommand(Command command, Player player){
         boolean end = false;
         
@@ -260,10 +261,10 @@ public class RiskModel {
 	                System.out.println("You have already moved armies this turn");
 	            }
 	            System.out.println("Select a command:");
-	        }*/ 
+	        }
         }
         return end;
-    }
+    }*/
 
     /**
      * This function checks if the end of the game is reached or not
@@ -334,129 +335,15 @@ public class RiskModel {
     }
     /**
      * This function is responsible for making an attack
-     * @param player the player that is about to attack
+     * @param //player the player that is about to attack
      * @return true if the attach was made
      */
-    private boolean attack(Player player){
-        System.out.println("With which Country would you like to attack:");
-        ArrayList<Country> playCount = player.getPlacedArmies();
-        printCountriesAlongWithArmies(playCount);
-        boolean correctSelect = false;
-        Country attackerC = null;
-        while(!correctSelect){
-            String attacker = parser.getUserInput();
-            if(attacker.trim().equalsIgnoreCase("back")){
-                return true;
-            }
-            for(int y = 0; y < playCount.size(); y++){
-                Country temp = playCount.get(y);
-                if(temp.getArmiesOnCountry() > 1){
-                    if(temp.getName().equalsIgnoreCase(attacker.trim())){
-                        attackerC = temp;
-                        correctSelect = true;
-                    }
-                }
-            }
-            if(correctSelect == false){
-                System.out.println("Please select a valid country that you own with more than 1 army on it");
-            }
-        }
-
-        boolean noOwnedNeighbors = true;
-        ArrayList<Country> neighbors = attackerC.getNeighbors();
-        System.out.println(attackerC.getName() + " can attack:");
-        for(int x = 0; x < neighbors.size(); x++){
-            Country temp = neighbors.get(x);
-            if(!temp.getPlayerOnCountry().getName().equals(player.getName())){
-                System.out.println(temp.getName() + " which has " + temp.getArmiesOnCountry() + " on it");
-            }
-            noOwnedNeighbors = false;
-        }
-
-        if (noOwnedNeighbors == true) {
-            System.out.println("You have no neighbors to this country that you can attack.");
-            return false;
-        }
-
-        System.out.println("Which Country do you wish to attack? (input \"back\" if you wish to cancel)");
-
-        boolean correctNeighbor = false;
-        Country attackedC = null;
-        Player attackedPlayer = null;
-        while (!correctNeighbor) {
-            String attacked = parser.getUserInput();
-            if (attacked.trim().equalsIgnoreCase("back")) {
-                return true;
-            }
-            for (int y = 0; y < neighbors.size(); y++) {
-                Country temp = neighbors.get(y);
-                if(!temp.getPlayerOnCountry().getName().equals(player.getName())){
-                    if (temp.getName().equalsIgnoreCase(attacked.trim())) {
-                        attackedC = temp;
-                        attackedPlayer = temp.getPlayerOnCountry();
-                        correctNeighbor = true;
-                    }
-                }
-            }
-            if (correctNeighbor == false) {
-                System.out.println("Please select a valid country");
-            }
-        }
-
-        System.out.println(player.getName() + "'s " + attackerC.getName() + " is attacking " + attackedPlayer.getName() + "'s " + attackedC.getName());
-        System.out.println(attackerC.getName() + " has " + attackerC.getArmiesOnCountry() + " armies on it");
-        System.out.println(attackedC.getName() + " has " + attackedC.getArmiesOnCountry() + " armies on it");
-
-        System.out.println(player.getName() + " how many dices would you like to have?");
-        System.out.println("Between 1 and 3, must have one more army on Country than amount of dice");
-
-        boolean correctNumber = false;
-        int[] attackerDice = {0};
-        while (!correctNumber) {
-            String ans = parser.getUserInput();
-            if (ans.equals("back")){
-                return true;
-            }
-            else if(!isNumeric(ans)){
-                System.out.println("Please input a number: ");
-            }
-            else {
-                int numDice = Integer.valueOf(ans);
-                if ((numDice < attackerC.getArmiesOnCountry()) && (numDice >= 1) && (numDice <= 3)) {
-                    attackerDice = dice.roll(numDice);
-                    correctNumber = true;
-                } else {
-                    System.out.println("Please select a valid number of armies to move");
-                }
-            }
-        }
-
-        System.out.println(attackedPlayer.getName() + " how many dices would you like to have?");
-        System.out.println("Between 1 and 2. If 2, you must have at least 2 armies on the Country");
-
-        correctNumber = false;
+    public int[] attack(Player attackPlayer, Player defendPlayer, Country Defend, Country Attack, int att, int def){
         int[] DefenderDice = {0};
-        while (!correctNumber) {
-            String ans = parser.getUserInput();
-            if(!isNumeric(ans)){
-                System.out.println("Please input a number");
-            }
-            else {
-                int numDice = Integer.valueOf(ans);
-                if ((numDice >= 1) && (numDice <= 2)) {
-                    if((numDice == 2) && (attackedC.getArmiesOnCountry() < 2)){
-                        System.out.println("You do not have enough armies for 2 dices");
-                    }
-                    else{
-                        DefenderDice = dice.roll(numDice);
-                        correctNumber = true;
-                    }
-                }
-                else {
-                    System.out.println("Please select a valid number of dice");
-                }
-            }
-        }
+        int[] attackerDice = {0};
+        attackerDice = dice.roll(att);
+        DefenderDice = dice.roll(def);
+
 
         int s = attackerDice.length - 1;
         int armiesKilledDef = 0;
@@ -464,13 +351,13 @@ public class RiskModel {
 
         for(int x = (DefenderDice.length - 1); x >= 0; x--){
             if(DefenderDice[x] >= attackerDice[s]){
-                attackerC.removeArmiesOnCountry(1);
-                player.removeArmies(1);
+                Attack.removeArmiesOnCountry(1);
+                attackPlayer.removeArmies(1);
                 armiesKilledAtt++;
             }
             else{
-                attackedC.removeArmiesOnCountry(1);
-                attackedPlayer.removeArmies(1);
+                Defend.removeArmiesOnCountry(1);
+                defendPlayer.removeArmies(1);
                 armiesKilledDef++;
             }
 
@@ -484,26 +371,24 @@ public class RiskModel {
         System.out.println(armiesKilledDef + " of the defending player's armies were killed");
         System.out.println(armiesKilledAtt + " of the attacking player's armies were killed");
 
-        if(attackedC.getArmiesOnCountry() == 0){
-            attackedPlayer.removeCountry(attackedC);
-            attackedC.setPlayerOnCountry(player);
-            player.addCountry(attackedC);
-            attackedC.addArmiesOnCountry(attackerDice.length);
-            attackerC.removeArmiesOnCountry(attackerDice.length);
-            System.out.println(attackedPlayer.getName() + " has lost control of " + attackedC.getName());
-            System.out.println(player.getName() + " now controls " + attackedC.getName() + " placing " + attackedC.getArmiesOnCountry() + " armies on it");
-            System.out.println("while " + attackerC.getName() + " now only has " + attackerC.getArmiesOnCountry() + " armies on it");
-        }
-        else{
-            System.out.println(attackedPlayer.getName() + "'s " + attackedC.getName() + " now has " + attackedC.getArmiesOnCountry() + " on it");
-            System.out.println(player.getName() + "'s " + attackerC.getName() + " now has " + attackerC.getArmiesOnCountry() + " on it");
+        int[] finalRes = {armiesKilledAtt,armiesKilledDef,0, 0};
+
+
+
+        if(Defend.getArmiesOnCountry() == 0){
+            defendPlayer.removeCountry(Defend);
+            Defend.setPlayerOnCountry(attackPlayer);
+            attackPlayer.addCountry(Defend);
+            Defend.addArmiesOnCountry(attackerDice.length);
+            Attack.removeArmiesOnCountry(attackerDice.length);
+            finalRes[2] = 1;
         }
 
-        if(attackedPlayer.getArmies() == 0){
-            System.out.println(attackedPlayer.getName() + " has been eliminated");
+        if(defendPlayer.getArmies() == 0){
+            finalRes[3] = 1;
         }
 
-        return false;
+        return finalRes;
     }
     /**
      * To be provided later

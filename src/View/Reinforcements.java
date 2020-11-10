@@ -17,7 +17,7 @@ public class Reinforcements extends JDialog{
 
     public Reinforcements(GameView main){
         super(main);
-        setTitle("Player Select Menu");
+        setTitle("Reinforcements Menu");
         setSize(300,300);
         setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
 
