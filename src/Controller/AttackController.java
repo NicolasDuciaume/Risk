@@ -89,7 +89,7 @@ public class AttackController implements ActionListener {
         else if(tempNum == 2){
             numDefenderOptions = 2;
         }
-        else if(tempNum > 3){
+        else if(tempNum >= 3){
             numDefenderOptions = 2;
         }
         for(int x = 1; x <= numDefenderOptions; x++){
@@ -98,24 +98,28 @@ public class AttackController implements ActionListener {
         }
     }
 
+
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        String C = (String) comboBox.getSelectedItem();
-        for(Country c: Attacker.getNeighbors()){
-            if(c.getName().equals(C)){
-                Defender = c;
+
+        if(e.getSource() == comboBox){
+            String C = (String) comboBox.getSelectedItem();
+            for(Country c: Attacker.getNeighbors()){
+                if(C.equals(c.getName())){
+                    Defender = c;
+                }
             }
+            doAttackStepThree();
         }
-        doAttackStepThree();
-
-        String A = (String) attackBox.getSelectedItem();
-        numDAtt = Integer.parseInt(A);
-        playDefend = Defender.getPlayerOnCountry();
-
-        String D = (String) defendBox.getSelectedItem();
-        numDDef = Integer.parseInt(D);
 
         if(e.getActionCommand().equals("ATTACK")){
+            String A = (String) attackBox.getSelectedItem();
+            numDAtt = Integer.parseInt(A);
+            playDefend = Defender.getPlayerOnCountry();
+
+            String D = (String) defendBox.getSelectedItem();
+            numDDef = Integer.parseInt(D);
             int [] zz = model.attack(player,playDefend,Defender,Attacker,numDAtt,numDDef);
             JOptionPane.showMessageDialog(view,Attacker.getName() + " Lost " +zz[0] + "Troops \r\n" + Defender.getName() + " Lost " + zz[1] + " Troops \r\n");
             if(zz[2] == 1){

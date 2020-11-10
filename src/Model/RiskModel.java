@@ -385,8 +385,11 @@ public class RiskModel {
             finalRes[2] = 1;
         }
 
+
+
         if(defendPlayer.getArmies() == 0){
             finalRes[3] = 1;
+            playersInGame.remove(defendPlayer);
         }
 
         return finalRes;
