@@ -53,6 +53,15 @@ public class AttackController implements ActionListener {
             doAttackStepOne(Country);
         }
 
+        comboBox.setSelectedIndex(0);
+        String C = (String) comboBox.getSelectedItem();
+        for(Country c: Attacker.getNeighbors()){
+            if(C.equals(c.getName())){
+                Defender = c;
+            }
+        }
+
+        doAttackStepThree();
 
     }
 
@@ -66,6 +75,9 @@ public class AttackController implements ActionListener {
     }
 
     private void doAttackStepThree(){
+
+        attackBox.removeAllItems();
+        defendBox.removeAllItems();
 
         int tempNum1 = Attacker.getArmiesOnCountry();
         if(tempNum1 == 2){

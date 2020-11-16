@@ -13,7 +13,7 @@ public class Reinforcements extends JDialog{
     private JComboBox comboBox;
     private JComboBox comboBox2;
 
-    private JButton test;
+    private JButton reinf;
 
     public Reinforcements(GameView main){
         super(main);
@@ -32,12 +32,16 @@ public class Reinforcements extends JDialog{
         ReinforcementsLabel2 = new JLabel("", JLabel.CENTER);
         comboBox = new JComboBox();
         comboBox2 = new JComboBox();
+        reinf = new JButton("Reinforce!");
+
+        reinf.setActionCommand("Reinforce!");
 
 
         Reinforcements.add(ReinforcementsLabel1);
         Reinforcements.add(ReinforcementsLabel2);
         Reinforcements.add(comboBox);
         Reinforcements.add(comboBox2);
+        Reinforcements.add(reinf);
 
         borderLayout.add(Reinforcements);
         border.add(borderLayout,BorderLayout.CENTER);
@@ -50,6 +54,7 @@ public class Reinforcements extends JDialog{
 
     public void addActionListeners(ActionListener listener){
         comboBox2.addActionListener(listener);
+        reinf.addActionListener(listener);
     }
 
     public JLabel getLabel(){

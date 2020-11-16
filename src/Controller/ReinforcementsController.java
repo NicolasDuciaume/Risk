@@ -21,6 +21,7 @@ public class ReinforcementsController implements ActionListener {
     private ArrayList<String> names;
     private JComboBox comboBox;
     private JComboBox comboBox2;
+    private int s = 1;
 
     public ReinforcementsController(Reinforcements reinforcements, RiskModel model, GameView view){
         this.reinforcements = reinforcements;
@@ -44,23 +45,27 @@ public class ReinforcementsController implements ActionListener {
 
 
 
+
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String S = (String) comboBox.getSelectedItem();
-        int s = (int) comboBox2.getSelectedItem();
-        model.reinforcement(s,S);
-        numberR = numberR - s;
-        num.setText("You can place " + numberR + " troops");
-        comboBox2.removeAllItems();
-        for(int x = 1; x <= numberR; x++){
-            comboBox2.addItem(x);
+        if(e.getActionCommand().equals("Reinforce!")){
+            String S = (String) comboBox.getSelectedItem();
+            s = (int) comboBox2.getSelectedItem();
+            model.reinforcement(s,S);
+            numberR = numberR - s;
+            num.setText("You can place " + numberR + " troops");
+            comboBox2.removeAllItems();
+            for(int x = 1; x <= numberR; x++){
+                comboBox2.addItem(x);
+            }
+            if(numberR == 0){
+                reinforcements.dispose();
+            }
+            view.UpdateMap();
         }
-        if(numberR == 0){
-            reinforcements.dispose();
-        }
-        view.UpdateMap();
+
     }
 
 
