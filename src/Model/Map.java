@@ -409,6 +409,7 @@ public class Map {
         NT.addNeighbor(Ontario);
 
         Ontario.addNeighbor(NT);
+        Ontario.addNeighbor(Greenland);
         Ontario.addNeighbor(Quebec);
         Ontario.addNeighbor(EUS);
         Ontario.addNeighbor(Alberta);

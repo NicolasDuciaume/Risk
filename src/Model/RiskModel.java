@@ -495,6 +495,14 @@ public class RiskModel {
         return false;
     } */
 
+    public void movement(Country moveFrom, Country moveTo, int troopMoved){
+        System.out.println("Moving armies...");
+        moveFrom.removeArmiesOnCountry(troopMoved);
+        moveTo.addArmiesOnCountry(troopMoved);
+        System.out.println(moveFrom.getName() + " now has " + moveFrom.getArmiesOnCountry());
+        System.out.println(moveTo.getName() + " now has " + moveTo.getArmiesOnCountry());
+    }
+
     public void reinforcement(int rein, String C){
        for(Country c: CurrentPlayer.getPlacedArmies()){
            if(C.equals(c.getName())){

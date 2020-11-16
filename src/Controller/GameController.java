@@ -18,6 +18,7 @@ public class GameController implements ActionListener {
      * @param view the view class
      */
     private Reinforcements reinforcements;
+    private MovementView movementView;
     private AttackView attack;
 
     public GameController(RiskModel model,GameView view){
@@ -32,6 +33,7 @@ public class GameController implements ActionListener {
         view.addActionListener(this);
     }
 
+
     /**
      * The action listener for the class
      */
@@ -39,12 +41,9 @@ public class GameController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if(e.getActionCommand().equals("EndTurn")){
-
-            model.endTurn();
-            view.UpdateTurn(model.getCurrentPlayerName());
-            reinforcements = new Reinforcements(this.view);
-            reinforcements.addActionListeners(new ReinforcementsController(reinforcements,model,view));
-            reinforcements.setVisible(true);
+            movementView = new MovementView(this.view);
+            movementView.addActionListeners(new MovementController(movementView,model,view));
+            movementView.setVisible(true);
 
         }else if(e.getActionCommand().equals("Alaska")){
             if(model.DoesHeOwn("Alaska")){
