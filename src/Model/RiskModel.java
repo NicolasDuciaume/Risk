@@ -8,14 +8,11 @@ import java.util.Random;
 public class RiskModel {
 
     private ArrayList<Player> playersInGame = new ArrayList<Player>();
-
-    private Player CurrentPlayer;
-
+    private Player currentPlayer;
     private Parser parser;
-
     private int cur = 0;
-
     public Map map;
+    private boolean isAI;
     
     private ArrayList<Country> fullMap;
     private ArrayList<Country> NorthAmerica;
@@ -79,18 +76,28 @@ public class RiskModel {
 	private void standardCaseGameSetup() {
 		Random rand = new Random();
 		for (int x = 0; x < playersInGame.size(); x++){
-		    Player play = playersInGame.get(x);
-		    Country temp = fullMap.get(rand.nextInt(fullMap.size()));
-		    while(temp.getPlayerOnCountry() != null)
-		    {
-		        temp = fullMap.get(rand.nextInt(fullMap.size()));
-		    }
-		    play.addCountry(temp);
-		    temp.addArmiesOnCountry(1);
-		    temp.setPlayerOnCountry(play);
-		    play.remArmiesToPlace();
-		}
+            setupGame(rand, x);
+        }
 	}
+
+    /**
+     * Sets up the map depending on the number of Players
+     * @param rand
+     * @param numOfPlayers
+     */
+    private void setupGame(Random rand, int numOfPlayers) {
+        Player play = playersInGame.get(numOfPlayers);
+        Country temp = fullMap.get(rand.nextInt(fullMap.size()));
+        while(temp.getPlayerOnCountry() != null)
+        {
+            temp = fullMap.get(rand.nextInt(fullMap.size()));
+        }
+        play.addCountry(temp);
+        temp.addArmiesOnCountry(1);
+        temp.setPlayerOnCountry(play);
+        play.remArmiesToPlace();
+    }
+
     /**
      * This function is responsible for setting up the game
      * when we have 4 or 5 players and the total number of 
@@ -100,19 +107,9 @@ public class RiskModel {
 	private void gameSetUpFornonDevisibleCountriesByPlayersCase() {
 		Random rand = new Random();
 		for (int x = 0; x < 2; x++){
-		    Player play = playersInGame.get(x);
-		    Country temp = fullMap.get(rand.nextInt(fullMap.size()));
-		    while(temp.getPlayerOnCountry() != null)
-		    {
-		        temp = fullMap.get(rand.nextInt(fullMap.size()));
-		    }
-		    play.addCountry(temp);
-		    temp.addArmiesOnCountry(1);
-		    temp.setPlayerOnCountry(play);
-		    play.remArmiesToPlace();
-		}
+            setupGame(rand, x);
+        }
 	}
-
 
     /**
      * This method is responsible for instantiating the introduction 
@@ -142,7 +139,7 @@ public class RiskModel {
      */
     public void play()
     {
-        CurrentPlayer = playersInGame.get(0);
+        currentPlayer = playersInGame.get(0);
 
     	/*
         //introduction();
@@ -189,14 +186,14 @@ public class RiskModel {
 
     public int reinforce(){
         int reinforcements;
-        if(CurrentPlayer.getPlacedArmies().size() < 9){
+        if(currentPlayer.getPlacedArmies().size() < 9){
             reinforcements = 3;
         }
         else{
-            reinforcements = CurrentPlayer.getPlacedArmies().size() / 3;
+            reinforcements = currentPlayer.getPlacedArmies().size() / 3;
         }
 
-        reinforcements = checkHasContinent(CurrentPlayer) + reinforcements;
+        reinforcements = checkHasContinent(currentPlayer) + reinforcements;
 
         System.out.println("You can place " + reinforcements + " troops");
 
@@ -204,7 +201,7 @@ public class RiskModel {
     }
 
     public Boolean DoesHeOwn(String s){
-        for(Country c: CurrentPlayer.getPlacedArmies()){
+        for(Country c: currentPlayer.getPlacedArmies()){
             if(c.getName().equals(s)){
                 return true;
             }
@@ -337,7 +334,7 @@ public class RiskModel {
     /**
      * This function is responsible for making an attack
      * @param //player the player that is about to attack
-     * @return true if the attach was made
+     * @return true if the attack was made
      */
     public int[] attack(Player attackPlayer, Player defendPlayer, Country Defend, Country Attack, int att, int def){
         int[] DefenderDice = {0};
@@ -504,10 +501,10 @@ public class RiskModel {
     }
 
     public void reinforcement(int rein, String C){
-       for(Country c: CurrentPlayer.getPlacedArmies()){
+       for(Country c: currentPlayer.getPlacedArmies()){
            if(C.equals(c.getName())){
                c.addArmiesOnCountry(rein);
-               CurrentPlayer.setArmies(rein);
+               currentPlayer.setArmies(rein);
            }
        }
     }
@@ -534,21 +531,21 @@ public class RiskModel {
     public void endTurn(){
         if(cur == playersInGame.size() - 1){
             cur = 0;
-            CurrentPlayer = playersInGame.get(cur);
+            currentPlayer = playersInGame.get(cur);
         }
         else{
             cur = cur + 1;
-            CurrentPlayer = playersInGame.get(cur);
+            currentPlayer = playersInGame.get(cur);
         }
 
     }
 
     public Player getCurrentPlayer(){
-        return CurrentPlayer;
+        return currentPlayer;
     }
 
     public String getCurrentPlayerName(){
-        return CurrentPlayer.getName();
+        return currentPlayer.getName();
     }
     /**
      * This function checks if the value is numeric or not

@@ -12,8 +12,10 @@ public class Player {
     private int numberOfArmiesToMove;
     private ArrayList<Country> placedArmies;
     private boolean moved = false;
+    private boolean isAI;
+
     /**
-     * Model.Player constructor with one parameter.
+     * Risk Model constructor with one parameter.
      * @param name the name of the player
      */
     public Player(String name)
@@ -22,6 +24,19 @@ public class Player {
         armies = 0;
         numberOfArmiesToMove = 0;
         placedArmies = new ArrayList<Country>();
+    }
+
+    /**
+     * Risk Model constructor with two parameter
+     * @param name the name given to the player
+     * @param isAI determines if this player is an AI
+     */
+    public Player(String name,boolean isAI){
+        this.name = name;
+        armies = 0;
+        numberOfArmiesToMove = 0;
+        placedArmies = new ArrayList<Country>();
+        this.isAI = isAI;
     }
     /**
      * This function gets the name of the Model.Player
@@ -123,5 +138,9 @@ public class Player {
      */
     public void setMoved(boolean moved) {
         this.moved = moved;
+    }
+
+    public boolean getAI() {
+        return isAI;
     }
 }
