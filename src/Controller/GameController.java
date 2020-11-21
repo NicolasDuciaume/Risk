@@ -39,11 +39,11 @@ public class GameController implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-
         if(e.getActionCommand().equals("EndTurn")){
             movementView = new MovementView(this.view);
             movementView.addActionListeners(new MovementController(movementView,model,view));
             movementView.setVisible(true);
+
 
         }else if(e.getActionCommand().equals("Alaska")){
             if(model.DoesHeOwn("Alaska")){

@@ -13,6 +13,8 @@ public class RiskModel {
 
     private Parser parser;
 
+    private boolean ready = false;
+
     private int cur = 0;
 
     public Map map;
@@ -58,6 +60,15 @@ public class RiskModel {
             }
         }
     }
+
+    public boolean isReady() {
+        return ready;
+    }
+
+    public void setReady(boolean b){
+        ready = b;
+    }
+
     /**
      * This method is responsible for initializing the Risk 
      * game with default settings
@@ -118,7 +129,7 @@ public class RiskModel {
      * This method is responsible for instantiating the introduction 
      * of the game upon game start up
      */
-    public void introduction()
+    /*public void introduction()
     {
         System.out.println("Welcome to the game of RISK!\n"
         		+ "The goal is simple: players aim to conquer their enemies' territories\n"
@@ -136,7 +147,7 @@ public class RiskModel {
         }
         System.out.println("You have selected " + playersInGame.size());
         System.out.println("Starting Game...");
-    }
+    }*/
     /**
      * This method is responsible for interfacing with the user as the game proceeds
      */
@@ -281,50 +292,153 @@ public class RiskModel {
 	/**
 	 * This function takes a number representing the number of players that will be
 	 * playing the game and initializes the game for them
-	 * @param numberOfPlayers the number of players that will be playing the game
+	 * @param //numberOfPlayers the number of players that will be playing the game
 	 */
 
+	public void playerAddition(int num , int arms){
+        for(int x = 0; x < num ;x++){
+            playersInGame.add(new Player("Player " + (x+1)));
+            playersInGame.get(x).setInitArmies(arms);
+        }
+    }
 
-    public void playerSelection(String numberOfPlayers){
+    public void AiPlayerAddition(int num, int arms){
+        for(int x = 0; x < num ;x++){
+            playersInGame.add(new AiPlayer("Ai " + (x+1)));
+        }
+        int temp = playersInGame.size() - 1;
+        for(int y = temp; y >= (temp - num); y--){
+            playersInGame.get(y).setInitArmies(arms);
+        }
+    }
+
+
+
+    public void playerSelection(String numberOfPlayers , int Ai){
 		//toUpperCase to make it case insensitive.
         switch (numberOfPlayers.toUpperCase().trim()){
             case "2":
             case "2 PLAYERS":
-                for(int x = 0; x < 2;x++){
-                    playersInGame.add(new Player("Player " + (x+1)));
-                    playersInGame.get(x).setInitArmies(50);
+                switch (Ai){
+                    case 0:
+                        playerAddition(2, 50);
+                        break;
+                    case 1:
+                        playerAddition(1, 50);
+                        AiPlayerAddition(1, 50);
+                        break;
                 }
                 break;
             case "3":
             case "3 PLAYERS":
-                for(int x = 0; x < 3;x++){
-                    playersInGame.add(new Player("Player " + (x+1)));
-                    playersInGame.get(x).setInitArmies(35);
+                switch (Ai){
+                    case 0:
+                        playerAddition(3, 35);
+                        break;
+                    case 1:
+                        playerAddition(2, 35);
+                        AiPlayerAddition(1, 35);
+                        break;
+                    case 2:
+                        playerAddition(1, 35);
+                        AiPlayerAddition(2, 35);
+                        break;
                 }
                 break;
             case "4":
             case "4 PLAYERS":
-                for(int x = 0; x < 4;x++){
-                    playersInGame.add(new Player("Player " + (x+1)));
-                    playersInGame.get(x).setInitArmies(30);
+                switch (Ai){
+                    case 0:
+                        playerAddition(4, 30);
+                        break;
+                    case 1:
+                        playerAddition(3, 30);
+                        AiPlayerAddition(1, 30);
+                        break;
+                    case 2:
+                        playerAddition(2, 30);
+                        AiPlayerAddition(2, 30);
+                        break;
+                    case 3:
+                        playerAddition(1, 30);
+                        AiPlayerAddition(3, 30);
+                        break;
                 }
                 break;
             case "5":
             case "5 PLAYERS":
-                for(int x = 0; x < 5;x++){
-                    playersInGame.add(new Player("Player " + (x+1)));
-                    playersInGame.get(x).setInitArmies(25);
+                switch (Ai){
+                    case 0:
+                        playerAddition(5, 25);
+                        break;
+                    case 1:
+                        playerAddition(4, 25);
+                        AiPlayerAddition(1, 25);
+                        break;
+                    case 2:
+                        playerAddition(3, 25);
+                        AiPlayerAddition(2, 25);
+                        break;
+                    case 3:
+                        playerAddition(2, 25);
+                        AiPlayerAddition(3, 25);
+                        break;
+                    case 4:
+                        playerAddition(1, 25);
+                        AiPlayerAddition(4, 25);
+                        break;
                 }
                 break;
             case "6":
             case "6 PLAYERS":
-                for(int x = 0; x < 6;x++){
-                    playersInGame.add(new Player("Player " + (x+1)));
-                    playersInGame.get(x).setInitArmies(20);
+                switch (Ai){
+                    case 0:
+                        playerAddition(6, 20);
+                        break;
+                    case 1:
+                        playerAddition(5, 20);
+                        AiPlayerAddition(1, 20);
+                        break;
+                    case 2:
+                        playerAddition(4, 20);
+                        AiPlayerAddition(2, 20);
+                        break;
+                    case 3:
+                        playerAddition(3, 20);
+                        AiPlayerAddition(3, 20);
+                        break;
+                    case 4:
+                        playerAddition(2, 20);
+                        AiPlayerAddition(4, 20);
+                        break;
+                    case 5:
+                        playerAddition(1, 20);
+                        AiPlayerAddition(5, 20);
+                        break;
                 }
                 break;
         }
 
+    }
+
+    public boolean isNextPlayAi(){
+	    for(int x = 0; x < playersInGame.size(); x++){
+	        if(playersInGame.get(x).getName().equals(getCurrentPlayerName())){
+	            if(playersInGame.get(x) != playersInGame.get(playersInGame.size() -1 )){
+                    String sub = playersInGame.get(x + 1).getName().substring(0,2);
+                    if(sub.equals("Ai")){
+                        return true;
+                    }
+                }
+	            else{
+                    String sub = playersInGame.get(0).getName().substring(0,2);
+                    if(sub.equals("Ai")){
+                        return true;
+                    }
+                }
+            }
+        }
+	    return false;
     }
     /**
      * This function is responsible for printing out the help 

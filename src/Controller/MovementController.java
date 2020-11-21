@@ -120,11 +120,17 @@ public class MovementController implements ActionListener {
     }
 
     public void switchToReinforcement(){
+        while(model.isNextPlayAi()){
+            model.endTurn();
+            JOptionPane.showMessageDialog(view,"Ai has played!");
+            view.UpdateMap();
+        }
         model.endTurn();
         view.UpdateTurn(model.getCurrentPlayerName());
         reinforcements = new Reinforcements(this.view);
         reinforcements.addActionListeners(new ReinforcementsController(reinforcements,model,view));
         reinforcements.setVisible(true);
+
     }
 
     @Override

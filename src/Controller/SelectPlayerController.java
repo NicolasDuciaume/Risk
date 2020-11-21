@@ -3,6 +3,7 @@ package Controller;
 import Model.*;
 import View.*;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -24,6 +25,17 @@ public class SelectPlayerController implements ActionListener {
         this.view = view;
     }
 
+    public int setAis(int num){
+        JComboBox temp = new JComboBox();
+        for(int x = 0; x < num; x++){
+            temp.addItem(x);
+        }
+        temp.setEditable(true);
+        JOptionPane.showMessageDialog( null, temp, "AI Selection", JOptionPane.QUESTION_MESSAGE);
+        int t = (int) temp.getSelectedItem();
+        return t;
+    }
+
     /**
      * The action listener for the class
      */
@@ -33,19 +45,19 @@ public class SelectPlayerController implements ActionListener {
 
         if(actionEvent.equals("twoPlayersSelected")){
             System.out.println("2 Players Selected");
-            model.playerSelection("2");
+            model.playerSelection("2" , setAis(2));
         }else if(actionEvent.equals("threePlayersSelected")){
             System.out.println("3 Players Selected");
-            model.playerSelection("3");
+            model.playerSelection("3", setAis(3));
         }else if(actionEvent.equals("fourPlayersSelected")){
             System.out.println("4 Players Selected");
-            model.playerSelection("4");
+            model.playerSelection("4",setAis(4));
         }else if(actionEvent.equals("fivePlayersSelected")){
             System.out.println("5 Players Selected");
-            model.playerSelection("5");
+            model.playerSelection("5",setAis(5));
         }else if (actionEvent.equals("sixPlayersSelected")){
             System.out.println("6 Players Selected");
-            model.playerSelection("6");
+            model.playerSelection("6",setAis(6));
         }else if(actionEvent.equals("backButtonSelected")){
             selectPlayerMenu.dispose();
         }
