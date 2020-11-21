@@ -122,6 +122,7 @@ public class MovementController implements ActionListener {
     public void switchToReinforcement(){
         while(model.isNextPlayAi()){
             model.endTurn();
+            //ai do something
             JOptionPane.showMessageDialog(view,"Ai has played!");
             view.UpdateMap();
         }

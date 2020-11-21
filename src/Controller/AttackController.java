@@ -25,6 +25,8 @@ public class AttackController implements ActionListener {
     private Country Defender;
     int numAttackerOptions;
     int numDefenderOptions;
+    private JLabel label1;
+    private JLabel label2;
 
     int numDAtt;
     int numDDef;
@@ -39,6 +41,8 @@ public class AttackController implements ActionListener {
         comboBox = attack.getComboBox();
         attackBox = attack.getAttackBox();
         defendBox = attack.getDefendBox();
+        label1 = attack.getAttackLabel4();
+        label2 = attack.getAttackLabel5();
 
 
         for(Country c: player.getPlacedArmies()){
@@ -95,18 +99,34 @@ public class AttackController implements ActionListener {
         }
 
         int tempNum = Defender.getArmiesOnCountry();
-        if(tempNum == 1){
-            numDefenderOptions = 1;
+        String subName = Defender.getPlayerOnCountry().getName().substring(0,2);
+        if(subName.equals("Ai")){
+            label1.setVisible(false);
+            label2.setText("Ai player has selected his amount of dice");
+            if(tempNum == 1){
+                defendBox.addItem("1");
+            }else{
+                defendBox.addItem("2");
+            }
+            defendBox.setSelectedIndex(0);
+            defendBox.setEnabled(false);
         }
-        else if(tempNum == 2){
-            numDefenderOptions = 2;
-        }
-        else if(tempNum >= 3){
-            numDefenderOptions = 2;
-        }
-        for(int x = 1; x <= numDefenderOptions; x++){
-            String s = "" + x;
-            defendBox.addItem(s);
+        else{
+            label1.setVisible(true);
+            label2.setText("Between 1 and 2. If 2, you must have at least 2 armies on the Country");
+            if(tempNum == 1){
+                numDefenderOptions = 1;
+            }
+            else if(tempNum == 2){
+                numDefenderOptions = 2;
+            }
+            else if(tempNum >= 3){
+                numDefenderOptions = 2;
+            }
+            for(int x = 1; x <= numDefenderOptions; x++){
+                String s = "" + x;
+                defendBox.addItem(s);
+            }
         }
     }
 

@@ -355,16 +355,26 @@ public class GameView extends JFrame {
 
 			if (temp.getPlayerOnCountry().getName().equals("Player 1")) {
 				tempC.setForeground(Color.RED);
-			} else if ((temp.getPlayerOnCountry().getName().equals("Player 2")) || (temp.getPlayerOnCountry().getName().equals("Ai 1"))) {
+			} else if (temp.getPlayerOnCountry().getName().equals("Player 2")) {
 				tempC.setForeground(Color.BLUE);
-			} else if ((temp.getPlayerOnCountry().getName().equals("Player 3")) || (temp.getPlayerOnCountry().getName().equals("Ai 2"))){
+			} else if (temp.getPlayerOnCountry().getName().equals("Player 3")){
 				tempC.setForeground(Color.ORANGE);
-			} else if ((temp.getPlayerOnCountry().getName().equals("Player 4")) || (temp.getPlayerOnCountry().getName().equals("Ai 3"))) {
+			} else if (temp.getPlayerOnCountry().getName().equals("Player 4"))  {
 				tempC.setForeground(Color.PINK);
-			} else if ((temp.getPlayerOnCountry().getName().equals("Player 5")) || (temp.getPlayerOnCountry().getName().equals("Ai 4"))) {
+			} else if (temp.getPlayerOnCountry().getName().equals("Player 5"))  {
 				tempC.setForeground(Color.GREEN);
-			} else if ((temp.getPlayerOnCountry().getName().equals("Player 6")) || (temp.getPlayerOnCountry().getName().equals("Ai 5"))) {
+			} else if (temp.getPlayerOnCountry().getName().equals("Player 6"))  {
 				tempC.setForeground(Color.BLACK);
+			} else if (temp.getPlayerOnCountry().getName().equals("Ai 1")) {
+				tempC.setForeground(Color.MAGENTA);
+			} else if (temp.getPlayerOnCountry().getName().equals("Ai 2")) {
+				tempC.setForeground(Color.CYAN);
+			} else if (temp.getPlayerOnCountry().getName().equals("Ai 3")) {
+				tempC.setForeground(Color.YELLOW);
+			} else if (temp.getPlayerOnCountry().getName().equals("Ai 4")) {
+				tempC.setForeground(Color.GRAY);
+			} else if (temp.getPlayerOnCountry().getName().equals("Ai 5")) {
+				tempC.setForeground(Color.black);
 			}
 		}
 
