@@ -304,7 +304,7 @@ public class RiskModel {
 
     public void AiPlayerAddition(int num, int arms){
         for(int x = 0; x < num ;x++){
-            playersInGame.add(new AiPlayer("Ai " + (x+1)));
+            playersInGame.add(new AiPlayer("Ai " + (x+1) , this));
         }
         int temp = playersInGame.size() - 1;
         for(int y = temp; y >= (temp - num); y--){

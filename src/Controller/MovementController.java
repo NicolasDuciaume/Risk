@@ -123,6 +123,8 @@ public class MovementController implements ActionListener {
         while(model.isNextPlayAi()){
             model.endTurn();
             //ai do something
+            AiPlayer p = (AiPlayer) model.getCurrentPlayer();
+            p.AiMove();
             JOptionPane.showMessageDialog(view,"Ai has played!");
             view.UpdateMap();
         }

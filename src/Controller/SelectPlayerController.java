@@ -27,11 +27,14 @@ public class SelectPlayerController implements ActionListener {
 
     public int setAis(int num){
         JComboBox temp = new JComboBox();
+        JPanel p = new JPanel();
+        JLabel label = new JLabel("Select the amount of Ai players you want:");
+        p.add(label);
         for(int x = 0; x < num; x++){
             temp.addItem(x);
         }
-        temp.setEditable(true);
-        JOptionPane.showMessageDialog( null, temp, "AI Selection", JOptionPane.QUESTION_MESSAGE);
+        p.add(temp);
+        JOptionPane.showMessageDialog( null, p, "AI Selection", JOptionPane.QUESTION_MESSAGE);
         int t = (int) temp.getSelectedItem();
         return t;
     }
