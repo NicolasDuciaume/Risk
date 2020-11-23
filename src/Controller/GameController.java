@@ -12,15 +12,15 @@ public class GameController implements ActionListener {
 
     private RiskModel model;
     private GameView view;
+    private Reinforcements reinforcements;
+    private MovementView movementView;
+    private AttackView attack;
+
     /**
      * The constructor with two parameters for the GameController class
      * @param model the moddel class
      * @param view the view class
      */
-    private Reinforcements reinforcements;
-    private MovementView movementView;
-    private AttackView attack;
-
     public GameController(RiskModel model,GameView view){
         this.model = model;
         this.view = view;
@@ -28,7 +28,6 @@ public class GameController implements ActionListener {
         reinforcements = new Reinforcements(this.view);
         reinforcements.addActionListeners(new ReinforcementsController(reinforcements,model,view));
         reinforcements.setVisible(true);
-
 
         view.addActionListener(this);
     }
@@ -46,7 +45,7 @@ public class GameController implements ActionListener {
 
 
         }else if(e.getActionCommand().equals("Alaska")){
-            if(model.DoesHeOwn("Alaska")){
+            if(model.isOwned("Alaska")){
                 attack = new AttackView(this.view);
                 attack.addActionListeners(new AttackController(attack,model,view,"Alaska"));
                 attack.setVisible(true);
@@ -56,7 +55,7 @@ public class GameController implements ActionListener {
             }
         }
         else if(e.getActionCommand().equals("Alberta")){
-            if(model.DoesHeOwn("Alberta")){
+            if(model.isOwned("Alberta")){
                 attack = new AttackView(this.view);
                 attack.addActionListeners(new AttackController(attack,model,view, "Alberta"));
                 attack.setVisible(true);
@@ -66,7 +65,7 @@ public class GameController implements ActionListener {
             }
         }
         else if(e.getActionCommand().equals("CA")){
-            if(model.DoesHeOwn("Central America")){
+            if(model.isOwned("Central America")){
                 attack = new AttackView(this.view);
                 attack.addActionListeners(new AttackController(attack,model,view, "Central America"));
                 attack.setVisible(true);
@@ -76,7 +75,7 @@ public class GameController implements ActionListener {
             }
         }
         else if(e.getActionCommand().equals("EUS")){
-            if(model.DoesHeOwn("Eastern United States")){
+            if(model.isOwned("Eastern United States")){
                 attack = new AttackView(this.view);
                 attack.addActionListeners(new AttackController(attack,model,view, "Eastern United States"));
                 attack.setVisible(true);
@@ -86,7 +85,7 @@ public class GameController implements ActionListener {
             }
         }
         else if(e.getActionCommand().equals("Greenland")){
-            if(model.DoesHeOwn("Greenland")){
+            if(model.isOwned("Greenland")){
                 attack = new AttackView(this.view);
                 attack.addActionListeners(new AttackController(attack,model,view, "Greenland"));
                 attack.setVisible(true);
@@ -96,7 +95,7 @@ public class GameController implements ActionListener {
             }
         }
         else if(e.getActionCommand().equals("NT")){
-            if(model.DoesHeOwn("Northwest Territory")){
+            if(model.isOwned("Northwest Territory")){
                 attack = new AttackView(this.view);
                 attack.addActionListeners(new AttackController(attack,model,view, "Northwest Territory"));
                 attack.setVisible(true);
@@ -106,7 +105,7 @@ public class GameController implements ActionListener {
             }
         }
         else if(e.getActionCommand().equals("Ontario")){
-            if(model.DoesHeOwn("Ontario")){
+            if(model.isOwned("Ontario")){
                 attack = new AttackView(this.view);
                 attack.addActionListeners(new AttackController(attack,model,view, "Ontario"));
                 attack.setVisible(true);
@@ -116,7 +115,7 @@ public class GameController implements ActionListener {
             }
         }
         else if(e.getActionCommand().equals("Quebec")){
-            if(model.DoesHeOwn("Quebec")){
+            if(model.isOwned("Quebec")){
                 attack = new AttackView(this.view);
                 attack.addActionListeners(new AttackController(attack,model,view, "Quebec"));
                 attack.setVisible(true);
@@ -126,7 +125,7 @@ public class GameController implements ActionListener {
             }
         }
         else if(e.getActionCommand().equals("WUS")){
-            if(model.DoesHeOwn("Western United States")){
+            if(model.isOwned("Western United States")){
                 attack = new AttackView(this.view);
                 attack.addActionListeners(new AttackController(attack,model,view, "Western United States"));
                 attack.setVisible(true);
@@ -136,7 +135,7 @@ public class GameController implements ActionListener {
             }
         }
         else if(e.getActionCommand().equals("Argentina")){
-            if(model.DoesHeOwn("Argentina")){
+            if(model.isOwned("Argentina")){
                 attack = new AttackView(this.view);
                 attack.addActionListeners(new AttackController(attack,model,view, "Argentina"));
                 attack.setVisible(true);
@@ -146,7 +145,7 @@ public class GameController implements ActionListener {
             }
         }
         else if(e.getActionCommand().equals("Brazil")){
-            if(model.DoesHeOwn("Brazil")){
+            if(model.isOwned("Brazil")){
                 attack = new AttackView(this.view);
                 attack.addActionListeners(new AttackController(attack,model,view, "Brazil"));
                 attack.setVisible(true);
@@ -156,7 +155,7 @@ public class GameController implements ActionListener {
             }
         }
         else if(e.getActionCommand().equals("Venezuela")){
-            if(model.DoesHeOwn("Venezuela")){
+            if(model.isOwned("Venezuela")){
                 attack = new AttackView(this.view);
                 attack.addActionListeners(new AttackController(attack,model,view, "Venezuela"));
                 attack.setVisible(true);
@@ -166,7 +165,7 @@ public class GameController implements ActionListener {
             }
         }
         else if(e.getActionCommand().equals("Peru")){
-            if(model.DoesHeOwn("Peru")){
+            if(model.isOwned("Peru")){
                 attack = new AttackView(this.view);
                 attack.addActionListeners(new AttackController(attack,model,view, "Peru"));
                 attack.setVisible(true);
@@ -176,7 +175,7 @@ public class GameController implements ActionListener {
             }
         }
         else if(e.getActionCommand().equals("GB")){
-            if(model.DoesHeOwn("Great Britain")){
+            if(model.isOwned("Great Britain")){
                 attack = new AttackView(this.view);
                 attack.addActionListeners(new AttackController(attack,model,view, "Great Britain"));
                 attack.setVisible(true);
@@ -186,7 +185,7 @@ public class GameController implements ActionListener {
             }
         }
         else if(e.getActionCommand().equals("Iceland")){
-            if(model.DoesHeOwn("Iceland")){
+            if(model.isOwned("Iceland")){
                 attack = new AttackView(this.view);
                 attack.addActionListeners(new AttackController(attack,model,view, "Iceland"));
                 attack.setVisible(true);
@@ -196,7 +195,7 @@ public class GameController implements ActionListener {
             }
         }
         else if(e.getActionCommand().equals("NE")){
-            if(model.DoesHeOwn("Northern Europe")){
+            if(model.isOwned("Northern Europe")){
                 attack = new AttackView(this.view);
                 attack.addActionListeners(new AttackController(attack,model,view, "Northern Europe"));
                 attack.setVisible(true);
@@ -206,7 +205,7 @@ public class GameController implements ActionListener {
             }
         }
         else if(e.getActionCommand().equals("Scandinavia")){
-            if(model.DoesHeOwn("Scandinavia")){
+            if(model.isOwned("Scandinavia")){
                 attack = new AttackView(this.view);
                 attack.addActionListeners(new AttackController(attack,model,view, "Scandinavia"));
                 attack.setVisible(true);
@@ -216,7 +215,7 @@ public class GameController implements ActionListener {
             }
         }
         else if(e.getActionCommand().equals("Congo")){
-            if(model.DoesHeOwn("Congo")){
+            if(model.isOwned("Congo")){
                 attack = new AttackView(this.view);
                 attack.addActionListeners(new AttackController(attack,model,view, "Congo"));
                 attack.setVisible(true);
@@ -226,7 +225,7 @@ public class GameController implements ActionListener {
             }
         }
         else if(e.getActionCommand().equals("SE")){
-            if(model.DoesHeOwn("Southern Europe")){
+            if(model.isOwned("Southern Europe")){
                 attack = new AttackView(this.view);
                 attack.addActionListeners(new AttackController(attack,model,view, "Southern Europe"));
                 attack.setVisible(true);
@@ -236,7 +235,7 @@ public class GameController implements ActionListener {
             }
         }
         else if(e.getActionCommand().equals("Ukraine")){
-            if(model.DoesHeOwn("Ukraine")){
+            if(model.isOwned("Ukraine")){
                 attack = new AttackView(this.view);
                 attack.addActionListeners(new AttackController(attack,model,view, "Ukraine"));
                 attack.setVisible(true);
@@ -246,7 +245,7 @@ public class GameController implements ActionListener {
             }
         }
         else if(e.getActionCommand().equals("WE")){
-            if(model.DoesHeOwn("Western Europe")){
+            if(model.isOwned("Western Europe")){
                 attack = new AttackView(this.view);
                 attack.addActionListeners(new AttackController(attack,model,view, "Western Europe"));
                 attack.setVisible(true);
@@ -256,7 +255,7 @@ public class GameController implements ActionListener {
             }
         }
         else if(e.getActionCommand().equals("Ukraine")){
-            if(model.DoesHeOwn("Ukraine")){
+            if(model.isOwned("Ukraine")){
                 attack = new AttackView(this.view);
                 attack.addActionListeners(new AttackController(attack,model,view, "Ukraine"));
                 attack.setVisible(true);
@@ -266,7 +265,7 @@ public class GameController implements ActionListener {
             }
         }
         else if(e.getActionCommand().equals("EA")){
-            if(model.DoesHeOwn("East Africa")){
+            if(model.isOwned("East Africa")){
                 attack = new AttackView(this.view);
                 attack.addActionListeners(new AttackController(attack,model,view, "East Africa"));
                 attack.setVisible(true);
@@ -276,7 +275,7 @@ public class GameController implements ActionListener {
             }
         }
         else if(e.getActionCommand().equals("Egypt")){
-            if(model.DoesHeOwn("Egypt")){
+            if(model.isOwned("Egypt")){
                 attack = new AttackView(this.view);
                 attack.addActionListeners(new AttackController(attack,model,view, "Egypt"));
                 attack.setVisible(true);
@@ -286,7 +285,7 @@ public class GameController implements ActionListener {
             }
         }
         else if(e.getActionCommand().equals("Madagascar")){
-            if(model.DoesHeOwn("Madagascar")){
+            if(model.isOwned("Madagascar")){
                 attack = new AttackView(this.view);
                 attack.addActionListeners(new AttackController(attack,model,view, "Madagascar"));
                 attack.setVisible(true);
@@ -296,7 +295,7 @@ public class GameController implements ActionListener {
             }
         }
         else if(e.getActionCommand().equals("NA")){
-            if(model.DoesHeOwn("North Africa")){
+            if(model.isOwned("North Africa")){
                 attack = new AttackView(this.view);
                 attack.addActionListeners(new AttackController(attack,model,view, "North Africa"));
                 attack.setVisible(true);
@@ -306,7 +305,7 @@ public class GameController implements ActionListener {
             }
         }
         else if(e.getActionCommand().equals("SA")){
-            if(model.DoesHeOwn("South Africa")){
+            if(model.isOwned("South Africa")){
                 attack = new AttackView(this.view);
                 attack.addActionListeners(new AttackController(attack,model,view, "South Africa"));
                 attack.setVisible(true);
@@ -316,7 +315,7 @@ public class GameController implements ActionListener {
             }
         }
         else if(e.getActionCommand().equals("Afghanistan")){
-            if(model.DoesHeOwn("Afghanistan")){
+            if(model.isOwned("Afghanistan")){
                 attack = new AttackView(this.view);
                 attack.addActionListeners(new AttackController(attack,model,view, "Afghanistan"));
                 attack.setVisible(true);
@@ -326,7 +325,7 @@ public class GameController implements ActionListener {
             }
         }
         else if(e.getActionCommand().equals("China")){
-            if(model.DoesHeOwn("China")){
+            if(model.isOwned("China")){
                 attack = new AttackView(this.view);
                 attack.addActionListeners(new AttackController(attack,model,view, "China"));
                 attack.setVisible(true);
@@ -336,7 +335,7 @@ public class GameController implements ActionListener {
             }
         }
         else if(e.getActionCommand().equals("India")){
-            if(model.DoesHeOwn("India")){
+            if(model.isOwned("India")){
                 attack = new AttackView(this.view);
                 attack.addActionListeners(new AttackController(attack,model,view, "India"));
                 attack.setVisible(true);
@@ -346,7 +345,7 @@ public class GameController implements ActionListener {
             }
         }
         else if(e.getActionCommand().equals("Irkutsk")){
-            if(model.DoesHeOwn("Irkutsk")){
+            if(model.isOwned("Irkutsk")){
                 attack = new AttackView(this.view);
                 attack.addActionListeners(new AttackController(attack,model,view, "Irkutsk"));
                 attack.setVisible(true);
@@ -356,7 +355,7 @@ public class GameController implements ActionListener {
             }
         }
         else if(e.getActionCommand().equals("Japan")){
-            if(model.DoesHeOwn("Japan")){
+            if(model.isOwned("Japan")){
                 attack = new AttackView(this.view);
                 attack.addActionListeners(new AttackController(attack,model,view, "Japan"));
                 attack.setVisible(true);
@@ -366,7 +365,7 @@ public class GameController implements ActionListener {
             }
         }
         else if(e.getActionCommand().equals("Kamchatka")){
-            if(model.DoesHeOwn("Kamchatka")){
+            if(model.isOwned("Kamchatka")){
                 attack = new AttackView(this.view);
                 attack.addActionListeners(new AttackController(attack,model,view, "Kamchatka"));
                 attack.setVisible(true);
@@ -376,7 +375,7 @@ public class GameController implements ActionListener {
             }
         }
         else if(e.getActionCommand().equals("ME")){
-            if(model.DoesHeOwn("Middle East")){
+            if(model.isOwned("Middle East")){
                 attack = new AttackView(this.view);
                 attack.addActionListeners(new AttackController(attack,model,view, "Middle East"));
                 attack.setVisible(true);
@@ -386,7 +385,7 @@ public class GameController implements ActionListener {
             }
         }
         else if(e.getActionCommand().equals("Mongolia")){
-            if(model.DoesHeOwn("Mongolia")){
+            if(model.isOwned("Mongolia")){
                 attack = new AttackView(this.view);
                 attack.addActionListeners(new AttackController(attack,model,view, "Mongolia"));
                 attack.setVisible(true);
@@ -396,7 +395,7 @@ public class GameController implements ActionListener {
             }
         }
         else if(e.getActionCommand().equals("Siam")){
-            if(model.DoesHeOwn("Siam")){
+            if(model.isOwned("Siam")){
                 attack = new AttackView(this.view);
                 attack.addActionListeners(new AttackController(attack,model,view, "Siam"));
                 attack.setVisible(true);
@@ -406,7 +405,7 @@ public class GameController implements ActionListener {
             }
         }
         else if(e.getActionCommand().equals("Siberia")){
-            if(model.DoesHeOwn("Siberia")){
+            if(model.isOwned("Siberia")){
                 attack = new AttackView(this.view);
                 attack.addActionListeners(new AttackController(attack,model,view, "Siberia"));
                 attack.setVisible(true);
@@ -416,7 +415,7 @@ public class GameController implements ActionListener {
             }
         }
         else if(e.getActionCommand().equals("Ural")){
-            if(model.DoesHeOwn("Ural")){
+            if(model.isOwned("Ural")){
                 attack = new AttackView(this.view);
                 attack.addActionListeners(new AttackController(attack,model,view, "Ural"));
                 attack.setVisible(true);
@@ -426,7 +425,7 @@ public class GameController implements ActionListener {
             }
         }
         else if(e.getActionCommand().equals("Yakutsk")){
-            if(model.DoesHeOwn("Yakutsk")){
+            if(model.isOwned("Yakutsk")){
                 attack = new AttackView(this.view);
                 attack.addActionListeners(new AttackController(attack,model,view, "Yakutsk"));
                 attack.setVisible(true);
@@ -436,7 +435,7 @@ public class GameController implements ActionListener {
             }
         }
         else if(e.getActionCommand().equals("EAUS")){
-            if(model.DoesHeOwn("Eastern Australia")){
+            if(model.isOwned("Eastern Australia")){
                 attack = new AttackView(this.view);
                 attack.addActionListeners(new AttackController(attack,model,view, "Eastern Australia"));
                 attack.setVisible(true);
@@ -446,7 +445,7 @@ public class GameController implements ActionListener {
             }
         }
         else if(e.getActionCommand().equals("Indonesia")){
-            if(model.DoesHeOwn("Indonesia")){
+            if(model.isOwned("Indonesia")){
                 attack = new AttackView(this.view);
                 attack.addActionListeners(new AttackController(attack,model,view, "Indonesia"));
                 attack.setVisible(true);
@@ -456,7 +455,7 @@ public class GameController implements ActionListener {
             }
         }
         else if(e.getActionCommand().equals("NG")){
-            if(model.DoesHeOwn("New Guinea")){
+            if(model.isOwned("New Guinea")){
                 attack = new AttackView(this.view);
                 attack.addActionListeners(new AttackController(attack,model,view, "New Guinea"));
                 attack.setVisible(true);
@@ -466,7 +465,7 @@ public class GameController implements ActionListener {
             }
         }
         else if(e.getActionCommand().equals("WAUS")){
-            if(model.DoesHeOwn("Western Australia")){
+            if(model.isOwned("Western Australia")){
                 attack = new AttackView(this.view);
                 attack.addActionListeners(new AttackController(attack,model,view, "Western Australia"));
                 attack.setVisible(true);

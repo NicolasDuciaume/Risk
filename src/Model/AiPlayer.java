@@ -48,41 +48,41 @@ public class AiPlayer extends Player {
     }
 
     public int getAttackerDie(Country attacker){
-        int z = 0;
+        int attackerDie = 0;
         if(attacker.getArmiesOnCountry() == 2){
-            z = 1;
+            attackerDie = 1;
         }
         else if (attacker.getArmiesOnCountry() == 3){
-            z = 2;
+            attackerDie = 2;
         }
         else if (attacker.getArmiesOnCountry() > 3){
-            z = 3;
+            attackerDie = 3;
         }
-        return z;
+        return attackerDie;
     }
 
     public void aiReinforce(GameView view){
         numOfReinforcements = model.reinforce();
         int difference = 0;
-        Country CountryToReinforce = null;
+        Country countryToReinforce = null;
         for(Country owned : this.getPlacedArmies()){
             ArrayList<Country> temp = owned.getNeighbors();
-            for(Country neighb : temp){
-                if(!neighb.getPlayerOnCountry().getName().equals(this.getName())){
-                    if(neighb.getArmiesOnCountry() >= owned.getArmiesOnCountry()){
-                        if(difference < (neighb.getArmiesOnCountry() - owned.getArmiesOnCountry())){
-                            difference = neighb.getArmiesOnCountry() - owned.getArmiesOnCountry();
-                            CountryToReinforce = owned;
+            for(Country neighbour : temp){
+                if(!neighbour.getPlayerOnCountry().getName().equals(this.getName())){
+                    if(neighbour.getArmiesOnCountry() >= owned.getArmiesOnCountry()){
+                        if(difference < (neighbour.getArmiesOnCountry() - owned.getArmiesOnCountry())){
+                            difference = neighbour.getArmiesOnCountry() - owned.getArmiesOnCountry();
+                            countryToReinforce = owned;
                         }
                     }
                 }
             }
         }
-        if(CountryToReinforce == null){
-            CountryToReinforce = this.getPlacedArmies().get(0);
+        if(countryToReinforce == null){
+            countryToReinforce = this.getPlacedArmies().get(0);
         }
-        model.reinforcement(numOfReinforcements,CountryToReinforce.getName());
-        JOptionPane.showMessageDialog(view,this.getName() + " placed " + numOfReinforcements + " reinforcement troops on " + CountryToReinforce.getName());
+        model.reinforcement(numOfReinforcements,countryToReinforce.getName());
+        JOptionPane.showMessageDialog(view,this.getName() + " placed " + numOfReinforcements + " reinforcement troops on " + countryToReinforce.getName());
         view.updateMap();
     }
 
@@ -94,11 +94,11 @@ public class AiPlayer extends Player {
         Country CountryToMove = null;
         Country CountryToGet = null;
         for(Country owned : this.getPlacedArmies()){
-            for(Country neigh: owned.getNeighbors()){
-                if(!neigh.getPlayerOnCountry().getName().equals(this.getName())){
-                    if(neigh.getArmiesOnCountry() > difference){
-                        difference = neigh.getArmiesOnCountry();
-                        threat = neigh;
+            for(Country neighbouring: owned.getNeighbors()){
+                if(!neighbouring.getPlayerOnCountry().getName().equals(this.getName())){
+                    if(neighbouring.getArmiesOnCountry() > difference){
+                        difference = neighbouring.getArmiesOnCountry();
+                        threat = neighbouring;
                     }
                 }
             }
@@ -134,21 +134,21 @@ public class AiPlayer extends Player {
     }
 
     public void aiAttack(GameView view){
-        ArrayList<Country> temp = this.getPlacedArmies();
-        for(int x = 0; x < temp.size(); x++){
-            Country testing = temp.get(x);
-            int troops = testing.getArmiesOnCountry();
+        ArrayList<Country> placedArmies = this.getPlacedArmies();
+        for(int x = 0; x < placedArmies.size(); x++){
+            Country country = placedArmies.get(x);
+            int troops = country.getArmiesOnCountry();
             if(troops >= 2){
-                for(Country neighb : testing.getNeighbors()){
-                    if(!neighb.getPlayerOnCountry().getName().equals(this.getName())){
-                        if(neighb.getArmiesOnCountry() < testing.getArmiesOnCountry()){
-                            int [] zz = model.attack(this, neighb.getPlayerOnCountry(), neighb,testing,getAttackerDie(testing),messageToDefender(neighb, testing));
-                            JOptionPane.showMessageDialog(view,testing.getName() + " Lost " +zz[0] + "Troops \r\n" + neighb.getName() + " Lost " + zz[1] + " Troops \r\n");
+                for(Country neighbour : country.getNeighbors()){
+                    if(!neighbour.getPlayerOnCountry().getName().equals(this.getName())){
+                        if(neighbour.getArmiesOnCountry() < country.getArmiesOnCountry()){
+                            int [] zz = model.attack(this, neighbour.getPlayerOnCountry(), neighbour,country,getAttackerDie(country),messageToDefender(neighbour, country));
+                            JOptionPane.showMessageDialog(view,country.getName() + " Lost " +zz[0] + "Troops \r\n" + neighbour.getName() + " Lost " + zz[1] + " Troops \r\n");
                             if(zz[2] == 1){
-                                JOptionPane.showMessageDialog(view,this.getName() + " took control of " + neighb.getName());
+                                JOptionPane.showMessageDialog(view,this.getName() + " took control of " + neighbour.getName());
                             }
                             if(zz[3] == 1){
-                                JOptionPane.showMessageDialog(view,neighb.getPlayerOnCountry().getName() + " has been eliminated");
+                                JOptionPane.showMessageDialog(view,neighbour.getPlayerOnCountry().getName() + " has been eliminated");
                             }
                             view.updateMap();
                             if(model.checkEnd()){

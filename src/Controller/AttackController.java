@@ -20,13 +20,13 @@ public class AttackController implements ActionListener {
     private Player playDefend;
     private Country attacker;
     private Country defender;
-    int numAttackerOptions;
-    int numDefenderOptions;
+    private int numAttackerOptions;
+    private int numDefenderOptions;
     private JLabel label1;
     private JLabel label2;
 
-    int numDAtt;
-    int numDDef;
+    private int numDAtt;
+    private int numDDef;
 
 
     public AttackController(AttackView attack, RiskModel model, GameView view, String Country){

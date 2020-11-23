@@ -40,10 +40,6 @@ public class ReinforcementsController implements ActionListener {
         for(int x = 1; x <= numOfReinforcements; x++){
             comboBox2.addItem(x);
         }
-
-
-
-
     }
 
     @Override

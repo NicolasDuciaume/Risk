@@ -17,7 +17,7 @@ public class GameView extends JFrame {
 	private JLabel mapLabel;
 	private JScrollPane mapScrollPane;
 	private JLabel command;
-	private JLabel Play;
+	private JLabel play;
 
 	// North America
 	private JButton NT;
@@ -108,10 +108,10 @@ public class GameView extends JFrame {
 		mapLabel.setLayout(null);
 		command = new JLabel("Press your owned country to select command", JLabel.CENTER);
 		command.setFont(new Font("Serif", Font.BOLD, 20));
-		Play = new JLabel("Player 1", JLabel.CENTER);
-		Play.setFont(new Font("Serif", Font.BOLD, 20));
-		Play.setBounds(556, 68, 241, 39);
-		Play.setForeground(Color.RED);
+		play = new JLabel("Player 1", JLabel.CENTER);
+		play.setFont(new Font("Serif", Font.BOLD, 20));
+		play.setBounds(556, 68, 241, 39);
+		play.setForeground(Color.RED);
 		endTurn = new JButton("End Turn");
 		endTurn.setActionCommand("EndTurn");
 
@@ -219,7 +219,7 @@ public class GameView extends JFrame {
 
 		endTurn.setBounds(1077, 855, 131, 58);
 		mapLabel.add(endTurn);
-		mapLabel.add(Play);
+		mapLabel.add(play);
 
 		initialMap();
 		updateMap();
@@ -385,19 +385,19 @@ public class GameView extends JFrame {
 	 * @param label the lable
 	 */
 	public void updateTurn(String label) {
-		Play.setText(label);
-		if (Play.getText().equals("Player 1")) {
-			Play.setForeground(Color.RED);
-		} else if (Play.getText().equals("Player 2")) {
-			Play.setForeground(Color.BLUE);
-		} else if (Play.getText().equals("Player 3")) {
-			Play.setForeground(Color.ORANGE);
-		} else if (Play.getText().equals("Player 4")) {
-			Play.setForeground(Color.PINK);
-		} else if (Play.getText().equals("Player 5")) {
-			Play.setForeground(Color.GREEN);
-		} else if (Play.getText().equals("Player 6")) {
-			Play.setForeground(Color.BLACK);
+		play.setText(label);
+		if (play.getText().equals("Player 1")) {
+			play.setForeground(Color.RED);
+		} else if (play.getText().equals("Player 2")) {
+			play.setForeground(Color.BLUE);
+		} else if (play.getText().equals("Player 3")) {
+			play.setForeground(Color.ORANGE);
+		} else if (play.getText().equals("Player 4")) {
+			play.setForeground(Color.PINK);
+		} else if (play.getText().equals("Player 5")) {
+			play.setForeground(Color.GREEN);
+		} else if (play.getText().equals("Player 6")) {
+			play.setForeground(Color.BLACK);
 		}
 	}
 

@@ -9,7 +9,7 @@ public class RiskModel {
 
     private ArrayList<Player> playersInGame = new ArrayList<Player>();
 
-    private Player CurrentPlayer;
+    private Player currentPlayer;
 
     private Parser parser;
 
@@ -54,8 +54,8 @@ public class RiskModel {
             Player play = playersInGame.get(x);
             ArrayList<Country> PlayCountry = play.getPlacedArmies();
             while(play.getArmiesToPlace() != 0){
-                Country temp = PlayCountry.get(rand.nextInt(PlayCountry.size()));
-                temp.addArmiesOnCountry(1);
+                Country country = PlayCountry.get(rand.nextInt(PlayCountry.size()));
+                country.addArmiesOnCountry(1);
                 play.remArmiesToPlace();
             }
         }
@@ -149,7 +149,7 @@ public class RiskModel {
      */
     public void play()
     {
-        CurrentPlayer = playersInGame.get(0);
+        currentPlayer = playersInGame.get(0);
 
     	/*
         //introduction();
@@ -196,23 +196,23 @@ public class RiskModel {
 
     public int reinforce(){
         int reinforcements;
-        if(CurrentPlayer.getPlacedArmies().size() < 9){
+        if(currentPlayer.getPlacedArmies().size() < 9){
             reinforcements = 3;
         }
         else{
-            reinforcements = CurrentPlayer.getPlacedArmies().size() / 3;
+            reinforcements = currentPlayer.getPlacedArmies().size() / 3;
         }
 
-        reinforcements = checkHasContinent(CurrentPlayer) + reinforcements;
+        reinforcements = checkHasContinent(currentPlayer) + reinforcements;
 
         System.out.println("You can place " + reinforcements + " troops");
 
         return reinforcements;
     }
 
-    public Boolean DoesHeOwn(String s){
-        for(Country c: CurrentPlayer.getPlacedArmies()){
-            if(c.getName().equals(s)){
+    public Boolean isOwned(String s){
+        for(Country country: currentPlayer.getPlacedArmies()){
+            if(country.getName().equals(s)){
                 return true;
             }
         }
@@ -614,10 +614,10 @@ public class RiskModel {
     }
 
     public void reinforcement(int rein, String C){
-       for(Country c: CurrentPlayer.getPlacedArmies()){
+       for(Country c: currentPlayer.getPlacedArmies()){
            if(C.equals(c.getName())){
                c.addArmiesOnCountry(rein);
-               CurrentPlayer.setArmies(rein);
+               currentPlayer.setArmies(rein);
            }
        }
     }
@@ -644,21 +644,21 @@ public class RiskModel {
     public void endTurn(){
         if(cur == playersInGame.size() - 1){
             cur = 0;
-            CurrentPlayer = playersInGame.get(cur);
+            currentPlayer = playersInGame.get(cur);
         }
         else{
             cur = cur + 1;
-            CurrentPlayer = playersInGame.get(cur);
+            currentPlayer = playersInGame.get(cur);
         }
 
     }
 
     public Player getCurrentPlayer(){
-        return CurrentPlayer;
+        return currentPlayer;
     }
 
     public String getCurrentPlayerName(){
-        return CurrentPlayer.getName();
+        return currentPlayer.getName();
     }
     /**
      * This function checks if the value is numeric or not

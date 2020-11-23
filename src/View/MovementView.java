@@ -19,8 +19,6 @@ public class MovementView extends JDialog{
     private JButton moveBT;
     private JButton cancelBT;
 
-    private JButton test;
-
     public MovementView(GameView main){
         super(main);
         setTitle("Movement Menu");
