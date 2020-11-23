@@ -1,7 +1,7 @@
 /*
 Author: Nicolas Duciaume & Christopher D'silva
 Refactoring: Kamran Sagheir & Hussain Al-Baidhani
-Comments: Hussain Al-Baidhani:
+Comments: Hussain Al-Baidhani & Christopher D'silva
  */
 package Model;
 import java.util.ArrayList;
@@ -13,17 +13,12 @@ import java.util.Random;
 public class RiskModel {
 
     private ArrayList<Player> playersInGame = new ArrayList<Player>();
-
     private Player currentPlayer;
-
     private Parser parser;
-
-    private boolean ready = false;
-
     private int cur = 0;
-
     public Map map;
-    
+    private Dice dice;
+
     private ArrayList<Country> fullMap;
     private ArrayList<Country> NorthAmerica;
     private ArrayList<Country> SouthAmerica;
@@ -32,7 +27,6 @@ public class RiskModel {
     private ArrayList<Country> Asia;
     private ArrayList<Country> Australia;
 
-    private Dice dice;
     /**
      * The default constructor of the Game class
      */
@@ -66,16 +60,8 @@ public class RiskModel {
         }
     }
 
-    public boolean isReady() {
-        return ready;
-    }
-
-    public void setReady(boolean b){
-        ready = b;
-    }
-
     /**
-     * This method is responsible for initializing the Risk 
+     * This method is responsible for initializing the Risk
      * game with default settings
      */
     public void populateInit(){
@@ -90,7 +76,7 @@ public class RiskModel {
     }
     /**
      * This function is responsible for the case when we have have to set up the game
-     * such that the number of countries are divisible by the number of players i.e., 2 and 42 
+     * such that the number of countries are divisible by the number of players i.e., 2 and 42
      */
 	private void standardCaseGameSetup() {
 		Random rand = new Random();
@@ -99,6 +85,11 @@ public class RiskModel {
         }
 	}
 
+    /**
+     * Inner method within gameSetUps
+     * @param rand
+     * @param x
+     */
     private void setUpGame(Random rand, int x) {
         Player play = playersInGame.get(x);
         Country temp = fullMap.get(rand.nextInt(fullMap.size()));
@@ -114,7 +105,7 @@ public class RiskModel {
 
     /**
      * This function is responsible for setting up the game
-     * when we have 4 or 5 players and the total number of 
+     * when we have 4 or 5 players and the total number of
      * countries i.e., 45 is not divisible by 4 or 5
      * @param
      **/
@@ -127,7 +118,7 @@ public class RiskModel {
 
 
     /**
-     * This method is responsible for instantiating the introduction 
+     * This method is responsible for instantiating the introduction
      * of the game upon game start up
      */
     /*public void introduction()
@@ -137,7 +128,7 @@ public class RiskModel {
         		+ "by building an army, moving their troops in, and engaging in battle.\n"
         		+ "Depending on the roll of the dice, a player will either defeat the enemy or be defeated.\n\n"
         		+ "select the number of players:");
-        
+
         for(int x = 2; x <= 6; x++){
             System.out.println(x + " Players");
         }
@@ -198,7 +189,10 @@ public class RiskModel {
         System.out.println(play.getName() + "has won the game!");*/
     }
 
-
+    /**
+     * Determines the number of reinforcements to be placed
+     * @return
+     */
     public int reinforce(){
         int reinforcements;
         if(currentPlayer.getPlacedArmies().size() < 9){
@@ -215,6 +209,11 @@ public class RiskModel {
         return reinforcements;
     }
 
+    /**
+     * Checks if the current player owns the country
+     * @param s
+     * @return
+     */
     public Boolean isOwned(String s){
         for(Country country: currentPlayer.getPlacedArmies()){
             if(country.getName().equals(s)){
@@ -225,7 +224,7 @@ public class RiskModel {
     }
 
     /**
-     * This method is responsible for processing the user entered commands and making 
+     * This method is responsible for processing the user entered commands and making
      * calls to appropriate methods based on the entered command
      * @param command the user entered command
      * @param player the player which entered the command
@@ -234,37 +233,37 @@ public class RiskModel {
     /*
     private boolean processCommand(Command command, Player player){
         boolean end = false;
-        
+
         if(command.isUnknown()){
             System.out.println("Please select a valid command");
             return false;
         }
-        else {        
+        else {
         	String commandWord = command.getCommandWord().trim().toLowerCase();
         	switch(commandWord) {
         	case "help":
         		printHelp();
         		break;
-        	case "map": 
+        	case "map":
         		mapPrint();
 	            System.out.println("Select a command:");
 	            break;
-        	case "pass" : 
+        	case "pass" :
         		endTurn();
  	            end = true;
  	            player.setMoved(false);
  	            break;
-        	case "attack": 
+        	case "attack":
         		attack(player);
  	            System.out.println("Select a command:");
  	            break;
-        	case "quit": 
+        	case "quit":
 	        	System.out.println("GAME OVER.");
 	        	System.exit(0);
-	        	break;  		
+	        	break;
         	}
 	        //Troop movement phase is to be implemented in Milestone 3
-	        
+
 	        /*else if(commandWord.equals("move")){
 	            if (!player.isMoved()){
 	                move(player);
@@ -303,6 +302,11 @@ public class RiskModel {
         }
     }
 
+    /**
+     * Adds an AI player to the game
+     * @param num
+     * @param arms
+     */
     public void aiPlayerAddition(int num, int arms){
         for(int x = 0; x < num ;x++){
             playersInGame.add(new AiPlayer("Ai " + (x+1) , this));
@@ -313,8 +317,12 @@ public class RiskModel {
         }
     }
 
-
-
+    /**
+     * Chooses how many players & AI players are going to be
+     * playing
+     * @param numberOfPlayers
+     * @param Ai
+     */
     public void playerSelection(String numberOfPlayers , int Ai){
 		//toUpperCase to make it case insensitive.
         switch (numberOfPlayers.toUpperCase().trim()){
@@ -422,6 +430,10 @@ public class RiskModel {
 
     }
 
+    /**
+     * Determines if the next turn if an AI's turn
+     * @return
+     */
     public boolean isNextPlayAi(){
 	    for(int x = 0; x < playersInGame.size(); x++){
 	        if(playersInGame.get(x).getName().equals(getCurrentPlayerName())){
@@ -442,12 +454,12 @@ public class RiskModel {
 	    return false;
     }
     /**
-     * This function is responsible for printing out the help 
+     * This function is responsible for printing out the help
      */
     @SuppressWarnings("unused")
 	private void printHelp(){
 	    System.out.println("The possible commands are:");
-	    parser.getCommands(); //prints out the available commands 
+	    parser.getCommands(); //prints out the available commands
     }
     /**
      * This function is responsible for making an attack
@@ -610,6 +622,12 @@ public class RiskModel {
         return false;
     } */
 
+    /**
+     * Troop movement method that moves armies from one country to another
+     * @param moveFrom
+     * @param moveTo
+     * @param troopMoved
+     */
     public void movement(Country moveFrom, Country moveTo, int troopMoved){
         System.out.println("Moving armies...");
         moveFrom.removeArmiesOnCountry(troopMoved);
@@ -618,6 +636,11 @@ public class RiskModel {
         System.out.println(moveTo.getName() + " now has " + moveTo.getArmiesOnCountry());
     }
 
+    /**
+     * Adds the reinforcements to the appropriate country
+     * @param rein
+     * @param C
+     */
     public void reinforcement(int rein, String C){
        for(Country c: currentPlayer.getPlacedArmies()){
            if(C.equals(c.getName())){
@@ -629,7 +652,7 @@ public class RiskModel {
 
     /**
      * This function prints out the countries along with the armies on on it.
-     * @param countries 
+     * @param countries
      */
 	@SuppressWarnings("unused")
 	private void printCountriesAlongWithArmies(ArrayList<Country> countries) {
@@ -639,6 +662,10 @@ public class RiskModel {
         }
 	}
 
+    /**
+     * Gets the current full map
+     * @return
+     */
     public ArrayList<Country> getFullMap() {
         return fullMap;
     }
@@ -687,6 +714,12 @@ public class RiskModel {
         map.printMap();
     }
 
+    /**
+     * Checks if a player has earned a continent, that is owned all
+     * the countries within that continent
+     * @param player
+     * @return
+     */
     private int checkHasContinent(Player player){
         int hasNA = 0;
         int hasSA = 0;

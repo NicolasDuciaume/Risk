@@ -1,5 +1,6 @@
 /*
 Author: Nicolas Duciaume
+Comments: Christopher D'silva
  */
 package Model;
 
@@ -12,22 +13,34 @@ import java.util.ArrayList;
 public class AiPlayer extends Player {
     private RiskModel model;
     private int numOfReinforcements = 0;
+
     /**
-     * Model.Player constructor with one parameter.
-     *
-     * @param name the name of the player
+     * AiPlayer with two parameters
+     * @param name - name of the AI
+     * @param model - the RiskModel class
      */
     public AiPlayer(String name, RiskModel model) {
         super(name);
         this.model = model;
     }
 
+    /**
+     * Summarizes the different tasks the AI will perform
+     * @param view - the current Game view
+     */
     public void aiMove(GameView view){
         aiReinforce(view);
         aiAttack(view);
         aiMovement(view);
     }
 
+    /**
+     * Let's defender choose the number of dice they
+     * would like to defend with
+     * @param defender
+     * @param attacker
+     * @return
+     */
     public int messageToDefender(Country defender, Country attacker){
         JComboBox temp = new JComboBox();
         JPanel a = new JPanel();
@@ -50,6 +63,12 @@ public class AiPlayer extends Player {
         return t;
     }
 
+    /**
+     * Gets Attacker die depending on the the number
+     * of armies on that country
+     * @param attacker
+     * @return
+     */
     public int getAttackerDie(Country attacker){
         int attackerDie = 0;
         if(attacker.getArmiesOnCountry() == 2){
@@ -64,6 +83,10 @@ public class AiPlayer extends Player {
         return attackerDie;
     }
 
+    /**
+     * Reinforcements are placed
+     * @param view
+     */
     public void aiReinforce(GameView view){
         numOfReinforcements = model.reinforce();
         int difference = 0;
@@ -89,6 +112,10 @@ public class AiPlayer extends Player {
         view.updateMap();
     }
 
+    /**
+     * Details how the AI will move troops
+     * @param view
+     */
     public void aiMovement(GameView view){
         int difference = 0;
         int difference2 = 0;
@@ -136,6 +163,10 @@ public class AiPlayer extends Player {
 
     }
 
+    /**
+     * Details how the AI would attack
+     * @param view
+     */
     public void aiAttack(GameView view){
         ArrayList<Country> placedArmies = this.getPlacedArmies();
         for(int x = 0; x < placedArmies.size(); x++){
