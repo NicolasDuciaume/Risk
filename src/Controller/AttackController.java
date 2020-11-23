@@ -57,17 +57,21 @@ public class AttackController implements ActionListener {
             doAttackStepOne(Country);
         }
 
-        comboBox.setSelectedIndex(0);
-        String C = (String) comboBox.getSelectedItem();
-        for(Country c: Attacker.getNeighbors()){
-            if(C.equals(c.getName())){
-                Defender = c;
+        if(comboBox.getSelectedItem() != null){
+            comboBox.setSelectedIndex(0);
+            String C = (String) comboBox.getSelectedItem();
+            for(Country c: Attacker.getNeighbors()){
+                if(C.equals(c.getName())){
+                    Defender = c;
+                }
             }
+
+            doAttackStepThree();
         }
 
-        doAttackStepThree();
 
     }
+
 
     private void doAttackStepOne(String Country){
 
@@ -75,6 +79,12 @@ public class AttackController implements ActionListener {
             if(c.getPlayerOnCountry() != player){
                 comboBox.addItem(c.getName());
             }
+        }
+
+        if(comboBox.getSelectedItem() == null){
+            JOptionPane.showMessageDialog(view,"You have no neighbors that you can attack from this country");
+            attack.dispose();
+
         }
     }
 
