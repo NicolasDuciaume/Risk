@@ -7,17 +7,17 @@ import java.awt.event.ActionListener;
 
 public class MovementView extends JDialog{
 
-    private JPanel Move;
-    private JLabel MoveLabel1;
-    private JLabel MoveLabel2;
-    private JLabel MoveLabel3;
-    private JLabel MoveLabel4;
-    private JLabel MoveLabel5;
+    private JPanel move;
+    private JLabel moveLabel1;
+    private JLabel moveLabel2;
+    private JLabel moveLabel3;
+    private JLabel moveLabel4;
+    private JLabel moveLabel5;
     private JComboBox comboBox;
-    private JComboBox MoveBox;
+    private JComboBox moveBox;
     private JComboBox number;
-    private JButton m;
-    private JButton dont;
+    private JButton moveBT;
+    private JButton cancelBT;
 
     private JButton test;
 
@@ -31,42 +31,42 @@ public class MovementView extends JDialog{
         border.setBorder(new EmptyBorder(2,3,2,3));
         JPanel borderLayout = new JPanel(new GridBagLayout());
         borderLayout.setBorder(new EmptyBorder(5,5,5,5));
-        m = new JButton("Move!");
-        m.setActionCommand("Move");
-        dont = new JButton("Cancel");
-        dont.setActionCommand("Cancel");
-        Move = new JPanel();
+        moveBT = new JButton("Move!");
+        moveBT.setActionCommand("Move");
+        cancelBT = new JButton("Cancel");
+        cancelBT.setActionCommand("Cancel");
+        move = new JPanel();
         JPanel buttonBorder = new JPanel();
-        Move.setLayout(new GridLayout(10,1,10,6));
+        move.setLayout(new GridLayout(10,1,10,6));
         buttonBorder.setLayout(new GridLayout(1,2,10,6));
 
-        MoveLabel1 = new JLabel("You can move troops from one country to a connected country before ending your turn ", JLabel.CENTER);
-        MoveLabel2 = new JLabel("Select country to move troops from:", JLabel.CENTER);
-        MoveLabel3 = new JLabel("Select connected country to move troops to", JLabel.CENTER);
-        MoveLabel4 = new JLabel("Press move to move troops or cancel to not move at all", JLabel.CENTER);
-        MoveLabel5 = new JLabel("Select the number of troops you want to move", JLabel.CENTER);
+        moveLabel1 = new JLabel("You can move troops from one country to a connected country before ending your turn ", JLabel.CENTER);
+        moveLabel2 = new JLabel("Select country to move troops from:", JLabel.CENTER);
+        moveLabel3 = new JLabel("Select connected country to move troops to", JLabel.CENTER);
+        moveLabel4 = new JLabel("Press move to move troops or cancel to not move at all", JLabel.CENTER);
+        moveLabel5 = new JLabel("Select the number of troops you want to move", JLabel.CENTER);
 
         comboBox = new JComboBox();
-        MoveBox = new JComboBox();
+        moveBox = new JComboBox();
         number = new JComboBox();
 
 
 
-        Move.add(MoveLabel1);
-        Move.add(MoveLabel2);
-        Move.add(comboBox);
-        Move.add(MoveLabel3);
-        Move.add(MoveBox);
-        Move.add(MoveLabel5);
-        Move.add(number);
-        Move.add(MoveLabel4);
+        move.add(moveLabel1);
+        move.add(moveLabel2);
+        move.add(comboBox);
+        move.add(moveLabel3);
+        move.add(moveBox);
+        move.add(moveLabel5);
+        move.add(number);
+        move.add(moveLabel4);
 
-        buttonBorder.add(m);
-        buttonBorder.add(dont);
+        buttonBorder.add(moveBT);
+        buttonBorder.add(cancelBT);
 
-        Move.add(buttonBorder);
+        move.add(buttonBorder);
 
-        borderLayout.add(Move);
+        borderLayout.add(move);
         border.add(borderLayout,BorderLayout.CENTER);
 
         add(border);
@@ -81,7 +81,7 @@ public class MovementView extends JDialog{
     }
 
     public JComboBox getMoveBox() {
-        return MoveBox;
+        return moveBox;
     }
 
     public JComboBox getNumber() {
@@ -90,8 +90,8 @@ public class MovementView extends JDialog{
 
     public void addActionListeners(ActionListener listener){
         comboBox.addActionListener(listener);
-        m.addActionListener(listener);
-        dont.addActionListener(listener);
+        moveBT.addActionListener(listener);
+        cancelBT.addActionListener(listener);
     }
 
 

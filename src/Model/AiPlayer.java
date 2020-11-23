@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class AiPlayer extends Player {
     private RiskModel model;
-    private int numberR = 0;
+    private int numOfReinforcements = 0;
     /**
      * Model.Player constructor with one parameter.
      *
@@ -19,21 +19,21 @@ public class AiPlayer extends Player {
         this.model = model;
     }
 
-    public void AiMove(GameView view){
-        AiReinforce(view);
-        AiAttack(view);
-        AiMovement(view);
+    public void aiMove(GameView view){
+        aiReinforce(view);
+        aiAttack(view);
+        aiMovement(view);
     }
 
-    public int messageToDefender(Country defend, Country attacker){
+    public int messageToDefender(Country defender, Country attacker){
         JComboBox temp = new JComboBox();
         JPanel a = new JPanel();
-        JLabel label = new JLabel(super.getName() +"'s " + attacker.getName() + " is attacking " + defend.getName() );
+        JLabel label = new JLabel(super.getName() +"'s " + attacker.getName() + " is attacking " + defender.getName() );
         JLabel label2 = new JLabel("How many dice would you to defend with");
-        if(defend.getArmiesOnCountry() == 1){
+        if(defender.getArmiesOnCountry() == 1){
             temp.addItem(1);
         }
-        else if(defend.getArmiesOnCountry() > 1){
+        else if(defender.getArmiesOnCountry() > 1){
             temp.addItem(1);
             temp.addItem(2);
         }
@@ -61,8 +61,8 @@ public class AiPlayer extends Player {
         return z;
     }
 
-    public void AiReinforce(GameView view){
-        numberR = model.reinforce();
+    public void aiReinforce(GameView view){
+        numOfReinforcements = model.reinforce();
         int difference = 0;
         Country CountryToReinforce = null;
         for(Country owned : this.getPlacedArmies()){
@@ -81,12 +81,12 @@ public class AiPlayer extends Player {
         if(CountryToReinforce == null){
             CountryToReinforce = this.getPlacedArmies().get(0);
         }
-        model.reinforcement(numberR,CountryToReinforce.getName());
-        JOptionPane.showMessageDialog(view,this.getName() + " placed " + numberR + " reinforcement troops on " + CountryToReinforce.getName());
-        view.UpdateMap();
+        model.reinforcement(numOfReinforcements,CountryToReinforce.getName());
+        JOptionPane.showMessageDialog(view,this.getName() + " placed " + numOfReinforcements + " reinforcement troops on " + CountryToReinforce.getName());
+        view.updateMap();
     }
 
-    public void AiMovement(GameView view){
+    public void aiMovement(GameView view){
         int difference = 0;
         int difference2 = 0;
         int difference3 = 0;
@@ -126,14 +126,14 @@ public class AiPlayer extends Player {
                 if(CountryToMove != null){
                     model.movement(CountryToMove,CountryToGet,difference3 - 1);
                     JOptionPane.showMessageDialog(view,this.getName() + " moved " + (difference3 - 1) + " from " + CountryToMove.getName() + " to " + CountryToGet.getName());
-                    view.UpdateMap();
+                    view.updateMap();
                 }
             }
         }
 
     }
 
-    public void AiAttack(GameView view){
+    public void aiAttack(GameView view){
         ArrayList<Country> temp = this.getPlacedArmies();
         for(int x = 0; x < temp.size(); x++){
             Country testing = temp.get(x);
@@ -150,12 +150,12 @@ public class AiPlayer extends Player {
                             if(zz[3] == 1){
                                 JOptionPane.showMessageDialog(view,neighb.getPlayerOnCountry().getName() + " has been eliminated");
                             }
-                            view.UpdateMap();
+                            view.updateMap();
                             if(model.checkEnd()){
                                 JOptionPane.showMessageDialog(view,this.getName() + " has won the game!");
                                 System.exit(0);
                             }
-                            view.UpdateMap();
+                            view.updateMap();
                         }
                     }
                 }

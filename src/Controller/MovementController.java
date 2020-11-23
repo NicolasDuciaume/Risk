@@ -2,10 +2,8 @@ package Controller;
 
 import Model.*;
 import View.*;
-import Controller.*;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -16,7 +14,6 @@ public class MovementController implements ActionListener {
     private Reinforcements reinforcements;
     private RiskModel model;
     private GameView view;
-    private int numberR;
     private ArrayList<Country> temp;
     private ArrayList<String> names;
     private JComboBox comboBox;
@@ -46,33 +43,33 @@ public class MovementController implements ActionListener {
         check();
 
         comboBox.setSelectedIndex(0);
-        StepTwo((String) comboBox.getSelectedItem());
+        stepTwo((String) comboBox.getSelectedItem());
 
-        StepOne();
+        stepOne();
 
 
-        StepThree((String) comboBox2.getSelectedItem());
+        stepThree((String) comboBox2.getSelectedItem());
 
     }
 
     public void check(){
         if(temp.size() == 1){
             JOptionPane.showMessageDialog(view,"Skipping movement phase because you only have 1 country");
-            view.UpdateMap();
+            view.updateMap();
             movement.dispose();
             switchToReinforcement();
         }
         else{
             if(comboBox.getSelectedItem() == null){
                 JOptionPane.showMessageDialog(view,"Skipping movement phase because all owned countries don't have enough troops on it");
-                view.UpdateMap();
+                view.updateMap();
                 movement.dispose();
                 switchToReinforcement();
             }
         }
     }
 
-    public void StepOne(){
+    public void stepOne(){
         comboBox2.removeAllItems();
         for(Country c: moveFrom.getNeighbors()){
             if(c.getPlayerOnCountry().getName().equals(model.getCurrentPlayerName())){
@@ -82,7 +79,7 @@ public class MovementController implements ActionListener {
         //comboBox2.setSelectedIndex(0);
     }
 
-    public void StepTwo(String count){
+    public void stepTwo(String count){
         number.removeAllItems();
         for(Country c: temp){
             if(count.equals(c.getName())){
@@ -98,12 +95,12 @@ public class MovementController implements ActionListener {
         number.setSelectedIndex(0);
     }
 
-    public void StepThree(String count){
+    public void stepThree(String count){
         s = (int) number.getSelectedItem();
 
         if(count == null){
             JOptionPane.showMessageDialog(view, "Skipping movement phase because you do not have any connected owned countries");
-            view.UpdateMap();
+            view.updateMap();
             movement.dispose();
             switchToReinforcement();
         }
@@ -121,12 +118,12 @@ public class MovementController implements ActionListener {
             model.endTurn();
             //ai do something
             AiPlayer p = (AiPlayer) model.getCurrentPlayer();
-            p.AiMove(view);
+            p.aiMove(view);
             JOptionPane.showMessageDialog(view,"Ai has played!");
-            view.UpdateMap();
+            view.updateMap();
         }
         model.endTurn();
-        view.UpdateTurn(model.getCurrentPlayerName());
+        view.updateTurn(model.getCurrentPlayerName());
         reinforcements = new Reinforcements(this.view);
         reinforcements.addActionListeners(new ReinforcementsController(reinforcements,model,view));
         reinforcements.setVisible(true);
@@ -136,19 +133,19 @@ public class MovementController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == comboBox){
-            StepTwo((String) comboBox.getSelectedItem());
-            StepOne();
+            stepTwo((String) comboBox.getSelectedItem());
+            stepOne();
         }
         else{
             if(e.getActionCommand().equals("Move")){
-                StepThree((String) comboBox2.getSelectedItem());
+                stepThree((String) comboBox2.getSelectedItem());
                 model.movement(moveFrom,moveTo,s);
                 JOptionPane.showMessageDialog(view,moveFrom.getName() + " now has " + moveFrom.getArmiesOnCountry() + " troops and " + moveTo.getName() + " now has " + moveTo.getArmiesOnCountry() + " troops");
-                view.UpdateMap();
+                view.updateMap();
                 movement.dispose();
             }
             else if(e.getActionCommand().equals("Cancel")){
-                view.UpdateMap();
+                view.updateMap();
                 movement.dispose();
             }
             switchToReinforcement();

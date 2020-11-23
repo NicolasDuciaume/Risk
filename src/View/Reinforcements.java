@@ -7,13 +7,13 @@ import java.awt.event.ActionListener;
 
 public class Reinforcements extends JDialog{
 
-    private JPanel Reinforcements;
-    private JLabel ReinforcementsLabel1;
-    private JLabel ReinforcementsLabel2;
+    private JPanel reinforcements;
+    private JLabel reinforcementsLabel1;
+    private JLabel reinforcementsLabel2;
     private JComboBox comboBox;
     private JComboBox comboBox2;
 
-    private JButton reinf;
+    private JButton reinforceBT;
 
     public Reinforcements(GameView main){
         super(main);
@@ -25,25 +25,25 @@ public class Reinforcements extends JDialog{
         border.setBorder(new EmptyBorder(2,3,2,3));
         JPanel borderLayout = new JPanel(new GridBagLayout());
         borderLayout.setBorder(new EmptyBorder(5,5,5,5));
-        Reinforcements = new JPanel();
-        Reinforcements.setLayout(new GridLayout(10,1,10,6));
+        reinforcements = new JPanel();
+        reinforcements.setLayout(new GridLayout(10,1,10,6));
 
-        ReinforcementsLabel1 = new JLabel("Time for some reinforcements", JLabel.CENTER);
-        ReinforcementsLabel2 = new JLabel("", JLabel.CENTER);
+        reinforcementsLabel1 = new JLabel("Time for some reinforcements", JLabel.CENTER);
+        reinforcementsLabel2 = new JLabel("", JLabel.CENTER);
         comboBox = new JComboBox();
         comboBox2 = new JComboBox();
-        reinf = new JButton("Reinforce!");
+        reinforceBT = new JButton("Reinforce!");
 
-        reinf.setActionCommand("Reinforce!");
+        reinforceBT.setActionCommand("Reinforce!");
 
 
-        Reinforcements.add(ReinforcementsLabel1);
-        Reinforcements.add(ReinforcementsLabel2);
-        Reinforcements.add(comboBox);
-        Reinforcements.add(comboBox2);
-        Reinforcements.add(reinf);
+        reinforcements.add(reinforcementsLabel1);
+        reinforcements.add(reinforcementsLabel2);
+        reinforcements.add(comboBox);
+        reinforcements.add(comboBox2);
+        reinforcements.add(reinforceBT);
 
-        borderLayout.add(Reinforcements);
+        borderLayout.add(reinforcements);
         border.add(borderLayout,BorderLayout.CENTER);
 
         add(border);
@@ -54,15 +54,15 @@ public class Reinforcements extends JDialog{
 
     public void addActionListeners(ActionListener listener){
         comboBox2.addActionListener(listener);
-        reinf.addActionListener(listener);
+        reinforceBT.addActionListener(listener);
     }
 
     public JLabel getLabel(){
-        return ReinforcementsLabel2;
+        return reinforcementsLabel2;
     }
 
     public JPanel getReinforcements() {
-        return Reinforcements;
+        return reinforcements;
     }
 
     public JComboBox getComboBox() {

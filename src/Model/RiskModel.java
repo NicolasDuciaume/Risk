@@ -90,18 +90,23 @@ public class RiskModel {
 	private void standardCaseGameSetup() {
 		Random rand = new Random();
 		for (int x = 0; x < playersInGame.size(); x++){
-		    Player play = playersInGame.get(x);
-		    Country temp = fullMap.get(rand.nextInt(fullMap.size()));
-		    while(temp.getPlayerOnCountry() != null)
-		    {
-		        temp = fullMap.get(rand.nextInt(fullMap.size()));
-		    }
-		    play.addCountry(temp);
-		    temp.addArmiesOnCountry(1);
-		    temp.setPlayerOnCountry(play);
-		    play.remArmiesToPlace();
-		}
+            setUpGame(rand, x);
+        }
 	}
+
+    private void setUpGame(Random rand, int x) {
+        Player play = playersInGame.get(x);
+        Country temp = fullMap.get(rand.nextInt(fullMap.size()));
+        while(temp.getPlayerOnCountry() != null)
+        {
+            temp = fullMap.get(rand.nextInt(fullMap.size()));
+        }
+        play.addCountry(temp);
+        temp.addArmiesOnCountry(1);
+        temp.setPlayerOnCountry(play);
+        play.remArmiesToPlace();
+    }
+
     /**
      * This function is responsible for setting up the game
      * when we have 4 or 5 players and the total number of 
@@ -111,17 +116,8 @@ public class RiskModel {
 	private void gameSetUpFornonDevisibleCountriesByPlayersCase() {
 		Random rand = new Random();
 		for (int x = 0; x < 2; x++){
-		    Player play = playersInGame.get(x);
-		    Country temp = fullMap.get(rand.nextInt(fullMap.size()));
-		    while(temp.getPlayerOnCountry() != null)
-		    {
-		        temp = fullMap.get(rand.nextInt(fullMap.size()));
-		    }
-		    play.addCountry(temp);
-		    temp.addArmiesOnCountry(1);
-		    temp.setPlayerOnCountry(play);
-		    play.remArmiesToPlace();
-		}
+            setUpGame(rand, x);
+        }
 	}
 
 
@@ -302,7 +298,7 @@ public class RiskModel {
         }
     }
 
-    public void AiPlayerAddition(int num, int arms){
+    public void aiPlayerAddition(int num, int arms){
         for(int x = 0; x < num ;x++){
             playersInGame.add(new AiPlayer("Ai " + (x+1) , this));
         }
@@ -325,7 +321,7 @@ public class RiskModel {
                         break;
                     case 1:
                         playerAddition(1, 50);
-                        AiPlayerAddition(1, 50);
+                        aiPlayerAddition(1, 50);
                         break;
                 }
                 break;
@@ -337,11 +333,11 @@ public class RiskModel {
                         break;
                     case 1:
                         playerAddition(2, 35);
-                        AiPlayerAddition(1, 35);
+                        aiPlayerAddition(1, 35);
                         break;
                     case 2:
                         playerAddition(1, 35);
-                        AiPlayerAddition(2, 35);
+                        aiPlayerAddition(2, 35);
                         break;
                 }
                 break;
@@ -353,15 +349,15 @@ public class RiskModel {
                         break;
                     case 1:
                         playerAddition(3, 30);
-                        AiPlayerAddition(1, 30);
+                        aiPlayerAddition(1, 30);
                         break;
                     case 2:
                         playerAddition(2, 30);
-                        AiPlayerAddition(2, 30);
+                        aiPlayerAddition(2, 30);
                         break;
                     case 3:
                         playerAddition(1, 30);
-                        AiPlayerAddition(3, 30);
+                        aiPlayerAddition(3, 30);
                         break;
                 }
                 break;
@@ -373,19 +369,19 @@ public class RiskModel {
                         break;
                     case 1:
                         playerAddition(4, 25);
-                        AiPlayerAddition(1, 25);
+                        aiPlayerAddition(1, 25);
                         break;
                     case 2:
                         playerAddition(3, 25);
-                        AiPlayerAddition(2, 25);
+                        aiPlayerAddition(2, 25);
                         break;
                     case 3:
                         playerAddition(2, 25);
-                        AiPlayerAddition(3, 25);
+                        aiPlayerAddition(3, 25);
                         break;
                     case 4:
                         playerAddition(1, 25);
-                        AiPlayerAddition(4, 25);
+                        aiPlayerAddition(4, 25);
                         break;
                 }
                 break;
@@ -397,23 +393,23 @@ public class RiskModel {
                         break;
                     case 1:
                         playerAddition(5, 20);
-                        AiPlayerAddition(1, 20);
+                        aiPlayerAddition(1, 20);
                         break;
                     case 2:
                         playerAddition(4, 20);
-                        AiPlayerAddition(2, 20);
+                        aiPlayerAddition(2, 20);
                         break;
                     case 3:
                         playerAddition(3, 20);
-                        AiPlayerAddition(3, 20);
+                        aiPlayerAddition(3, 20);
                         break;
                     case 4:
                         playerAddition(2, 20);
-                        AiPlayerAddition(4, 20);
+                        aiPlayerAddition(4, 20);
                         break;
                     case 5:
                         playerAddition(1, 20);
-                        AiPlayerAddition(5, 20);
+                        aiPlayerAddition(5, 20);
                         break;
                 }
                 break;

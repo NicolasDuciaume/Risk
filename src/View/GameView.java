@@ -2,7 +2,6 @@ package View;
 
 import Controller.GameController;
 import Model.Country;
-import Model.Player;
 import Model.RiskModel;
 
 import javax.swing.*;
@@ -223,7 +222,7 @@ public class GameView extends JFrame {
 		mapLabel.add(Play);
 
 		initialMap();
-		UpdateMap();
+		updateMap();
 
 		NT.setActionCommand("NT");
 		Alberta.setActionCommand("Alberta");
@@ -343,7 +342,7 @@ public class GameView extends JFrame {
 	/**
 	 * The method responsible for updating the map
 	 */
-	public void UpdateMap() {
+	public void updateMap() {
 		ArrayList<Country> full = model.getFullMap();
 		for (int x = 0; x < full.size(); x++) {
 			Country temp = full.get(x);
@@ -385,7 +384,7 @@ public class GameView extends JFrame {
 	 * 
 	 * @param label the lable
 	 */
-	public void UpdateTurn(String label) {
+	public void updateTurn(String label) {
 		Play.setText(label);
 		if (Play.getText().equals("Player 1")) {
 			Play.setForeground(Color.RED);

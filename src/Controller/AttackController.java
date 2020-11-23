@@ -2,13 +2,10 @@ package Controller;
 
 import Model.*;
 import View.*;
-import Controller.*;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 public class AttackController implements ActionListener {
 
@@ -21,8 +18,8 @@ public class AttackController implements ActionListener {
     private JComboBox defendBox;
     private Player player;
     private Player playDefend;
-    private Country Attacker;
-    private Country Defender;
+    private Country attacker;
+    private Country defender;
     int numAttackerOptions;
     int numDefenderOptions;
     private JLabel label1;
@@ -47,10 +44,10 @@ public class AttackController implements ActionListener {
 
         for(Country c: player.getPlacedArmies()){
             if(c.getName().equals(Country)){
-                Attacker = c;
+                attacker = c;
             }
         }
-        if(Attacker.getArmiesOnCountry() == 1){
+        if(attacker.getArmiesOnCountry() == 1){
             JOptionPane.showMessageDialog(view,"You do not own have enough troops on this country to attack");
         }
         else{
@@ -60,9 +57,9 @@ public class AttackController implements ActionListener {
         if(comboBox.getSelectedItem() != null){
             comboBox.setSelectedIndex(0);
             String C = (String) comboBox.getSelectedItem();
-            for(Country c: Attacker.getNeighbors()){
+            for(Country c: attacker.getNeighbors()){
                 if(C.equals(c.getName())){
-                    Defender = c;
+                    defender = c;
                 }
             }
 
@@ -75,7 +72,7 @@ public class AttackController implements ActionListener {
 
     private void doAttackStepOne(String Country){
 
-        for(Country c: Attacker.getNeighbors()){
+        for(Country c: attacker.getNeighbors()){
             if(c.getPlayerOnCountry() != player){
                 comboBox.addItem(c.getName());
             }
@@ -93,7 +90,7 @@ public class AttackController implements ActionListener {
         attackBox.removeAllItems();
         defendBox.removeAllItems();
 
-        int tempNum1 = Attacker.getArmiesOnCountry();
+        int tempNum1 = attacker.getArmiesOnCountry();
         if(tempNum1 == 2){
             numAttackerOptions = 1;
         }
@@ -108,8 +105,8 @@ public class AttackController implements ActionListener {
             attackBox.addItem(s);
         }
 
-        int tempNum = Defender.getArmiesOnCountry();
-        String subName = Defender.getPlayerOnCountry().getName().substring(0,2);
+        int tempNum = defender.getArmiesOnCountry();
+        String subName = defender.getPlayerOnCountry().getName().substring(0,2);
         if(subName.equals("Ai")){
             label1.setVisible(false);
             label2.setText("Ai player has selected his amount of dice");
@@ -147,9 +144,9 @@ public class AttackController implements ActionListener {
 
         if(e.getSource() == comboBox){
             String C = (String) comboBox.getSelectedItem();
-            for(Country c: Attacker.getNeighbors()){
+            for(Country c: attacker.getNeighbors()){
                 if(C.equals(c.getName())){
-                    Defender = c;
+                    defender = c;
                 }
             }
             doAttackStepThree();
@@ -158,19 +155,19 @@ public class AttackController implements ActionListener {
         if(e.getActionCommand().equals("ATTACK")){
             String A = (String) attackBox.getSelectedItem();
             numDAtt = Integer.parseInt(A);
-            playDefend = Defender.getPlayerOnCountry();
+            playDefend = defender.getPlayerOnCountry();
 
             String D = (String) defendBox.getSelectedItem();
             numDDef = Integer.parseInt(D);
-            int [] zz = model.attack(player,playDefend,Defender,Attacker,numDAtt,numDDef);
-            JOptionPane.showMessageDialog(view,Attacker.getName() + " Lost " +zz[0] + "Troops \r\n" + Defender.getName() + " Lost " + zz[1] + " Troops \r\n");
+            int [] zz = model.attack(player,playDefend, defender, attacker,numDAtt,numDDef);
+            JOptionPane.showMessageDialog(view, attacker.getName() + " Lost " +zz[0] + "Troops \r\n" + defender.getName() + " Lost " + zz[1] + " Troops \r\n");
             if(zz[2] == 1){
-                JOptionPane.showMessageDialog(view,player.getName() + " took control of " + Defender.getName());
+                JOptionPane.showMessageDialog(view,player.getName() + " took control of " + defender.getName());
             }
             if(zz[3] == 1){
                 JOptionPane.showMessageDialog(view,playDefend.getName() + " has been eliminated");
             }
-            view.UpdateMap();
+            view.updateMap();
             if(model.checkEnd()){
                 JOptionPane.showMessageDialog(view,player.getName() + " has won the game!");
                 System.exit(0);

@@ -2,10 +2,8 @@ package Controller;
 
 import Model.*;
 import View.*;
-import Controller.*;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -16,7 +14,7 @@ public class ReinforcementsController implements ActionListener {
     private RiskModel model;
     private GameView view;
     private JLabel num;
-    private int numberR;
+    private int numOfReinforcements;
     private ArrayList<Country> temp;
     private ArrayList<String> names;
     private JComboBox comboBox;
@@ -28,9 +26,9 @@ public class ReinforcementsController implements ActionListener {
         this.model = model;
         this.view = view;
 
-        numberR = model.reinforce();
+        numOfReinforcements = model.reinforce();
         num = reinforcements.getLabel();
-        num.setText("You can place " + numberR + " troops");
+        num.setText("You can place " + numOfReinforcements + " troops");
         comboBox = reinforcements.getComboBox();
         comboBox2 = reinforcements.getComboBox2();
 
@@ -39,7 +37,7 @@ public class ReinforcementsController implements ActionListener {
         for(Country c: temp){
            comboBox.addItem(c.getName());
         }
-        for(int x = 1; x <= numberR; x++){
+        for(int x = 1; x <= numOfReinforcements; x++){
             comboBox2.addItem(x);
         }
 
@@ -54,16 +52,16 @@ public class ReinforcementsController implements ActionListener {
             String S = (String) comboBox.getSelectedItem();
             s = (int) comboBox2.getSelectedItem();
             model.reinforcement(s,S);
-            numberR = numberR - s;
-            num.setText("You can place " + numberR + " troops");
+            numOfReinforcements = numOfReinforcements - s;
+            num.setText("You can place " + numOfReinforcements + " troops");
             comboBox2.removeAllItems();
-            for(int x = 1; x <= numberR; x++){
+            for(int x = 1; x <= numOfReinforcements; x++){
                 comboBox2.addItem(x);
             }
-            if(numberR == 0){
+            if(numOfReinforcements == 0){
                 reinforcements.dispose();
             }
-            view.UpdateMap();
+            view.updateMap();
         }
 
     }

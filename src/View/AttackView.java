@@ -7,18 +7,16 @@ import java.awt.event.ActionListener;
 
 public class AttackView extends JDialog{
 
-    private JPanel Attack;
-    private JLabel AttackLabel1;
-    private JLabel AttackLabel2;
-    private JLabel AttackLabel3;
-    private JLabel AttackLabel4;
-    private JLabel AttackLabel5;
+    private JPanel attack;
+    private JLabel attackLabel1;
+    private JLabel attackLabel2;
+    private JLabel attackLabel3;
+    private JLabel attackLabel4;
+    private JLabel attackLabel5;
     private JComboBox comboBox;
     private JComboBox attackBox;
     private JComboBox defendBox;
-    private JButton at;
-
-    private JButton test;
+    private JButton attackBT;
 
     public AttackView(GameView main){
         super(main);
@@ -30,33 +28,33 @@ public class AttackView extends JDialog{
         border.setBorder(new EmptyBorder(2,3,2,3));
         JPanel borderLayout = new JPanel(new GridBagLayout());
         borderLayout.setBorder(new EmptyBorder(5,5,5,5));
-        at = new JButton("ATTACK!");
-        at.setActionCommand("ATTACK");
-        Attack = new JPanel();
-        Attack.setLayout(new GridLayout(10,1,10,6));
+        attackBT = new JButton("ATTACK!");
+        attackBT.setActionCommand("ATTACK");
+        attack = new JPanel();
+        attack.setLayout(new GridLayout(10,1,10,6));
 
-        AttackLabel1 = new JLabel("Who do you Wish to attack", JLabel.CENTER);
-        AttackLabel2 = new JLabel("Attacker how many dices would you like", JLabel.CENTER);
-        AttackLabel3 = new JLabel("Between 1 and 3, must have one more army on Country than amount of dice", JLabel.CENTER);
-        AttackLabel4 = new JLabel("Defender how many dices would you like", JLabel.CENTER);
-        AttackLabel5 = new JLabel("Between 1 and 2. If 2, you must have at least 2 armies on the Country", JLabel.CENTER);
+        attackLabel1 = new JLabel("Who do you Wish to attack", JLabel.CENTER);
+        attackLabel2 = new JLabel("Attacker how many dices would you like", JLabel.CENTER);
+        attackLabel3 = new JLabel("Between 1 and 3, must have one more army on Country than amount of dice", JLabel.CENTER);
+        attackLabel4 = new JLabel("Defender how many dices would you like", JLabel.CENTER);
+        attackLabel5 = new JLabel("Between 1 and 2. If 2, you must have at least 2 armies on the Country", JLabel.CENTER);
 
         comboBox = new JComboBox();
         attackBox = new JComboBox();
         defendBox = new JComboBox();
 
 
-        Attack.add(AttackLabel1);
-        Attack.add(comboBox);
-        Attack.add(AttackLabel2);
-        Attack.add(AttackLabel3);
-        Attack.add(attackBox);
-        Attack.add(AttackLabel4);
-        Attack.add(AttackLabel5);
-        Attack.add(defendBox);
-        Attack.add(at);
+        attack.add(attackLabel1);
+        attack.add(comboBox);
+        attack.add(attackLabel2);
+        attack.add(attackLabel3);
+        attack.add(attackBox);
+        attack.add(attackLabel4);
+        attack.add(attackLabel5);
+        attack.add(defendBox);
+        attack.add(attackBT);
 
-        borderLayout.add(Attack);
+        borderLayout.add(attack);
         border.add(borderLayout,BorderLayout.CENTER);
 
         add(border);
@@ -79,21 +77,21 @@ public class AttackView extends JDialog{
     }
 
     public JLabel getAttackLabel2() {
-        return AttackLabel2;
+        return attackLabel2;
     }
     public JLabel getAttackLabel3() {
-        return AttackLabel3;
+        return attackLabel3;
     }
     public JLabel getAttackLabel4() {
-        return AttackLabel4;
+        return attackLabel4;
     }
     public JLabel getAttackLabel5() {
-        return AttackLabel5;
+        return attackLabel5;
     }
 
     public void addActionListeners(ActionListener listener){
         comboBox.addActionListener(listener);
-        at.addActionListener(listener);
+        attackBT.addActionListener(listener);
     }
 
 
