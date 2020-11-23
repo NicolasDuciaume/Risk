@@ -1,3 +1,8 @@
+/*
+Author: Kamran Sagheir
+Refactoring: Nicolas Duciaume
+Comments: Hussain Al-Baidhani
+ */
 package Model;
 
 import java.util.Arrays;

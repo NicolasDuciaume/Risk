@@ -1,3 +1,8 @@
+/*
+Author: Kamran Sagheir & Hussain Al-Baidhani
+Refactoring: Nicolas Duciaume
+Comments: Hussain Al-Baidhani
+ */
 package View;
 
 import javax.swing.*;

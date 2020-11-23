@@ -1,3 +1,8 @@
+/*
+Author: Nicolas Duciaume
+Refactoring: Kamran Sagheir
+Comments: Kamran Sagheir
+ */
 package Model;
 
 import java.util.Scanner;

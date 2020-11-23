@@ -1,3 +1,6 @@
+/*
+Author: Kamran Sagheir & Hussain Al-Baidhani
+ */
 package testSuite;
 
 import static org.junit.jupiter.api.Assertions.*;

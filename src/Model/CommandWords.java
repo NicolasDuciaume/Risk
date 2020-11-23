@@ -1,3 +1,7 @@
+/*
+Author: Nicolas Duciaume
+Comments: Hussain Al-Baidhani
+ */
 package Model;
 
 public class CommandWords {

@@ -1,3 +1,8 @@
+/*
+Author: Nicolas Duciaume & Christopher D'silva
+Refactoring: Kamran Sagheir & Hussain Al-Baidhani
+Comments: Hussain Al-Baidhani:
+ */
 package Model;
 import java.util.ArrayList;
 import java.util.Random;

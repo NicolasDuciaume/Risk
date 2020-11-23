@@ -1,3 +1,8 @@
+/*
+Author: Nicolas Duciaume and Christopher D'silva
+Refactoring: Kamran Sagheir
+ */
+
 package Controller;
 
 import Model.*;

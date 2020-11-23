@@ -1,3 +1,8 @@
+/*
+Author: Nicolas Duciaume & Christopher D'silva
+Refactoring: Hussain Al-Baidhani
+Comments: Kamran Sagheir
+ */
 package Model;
 
 import java.util.ArrayList;

@@ -1,3 +1,7 @@
+/*
+Author: Nicolas Duciaume
+ */
+
 package Controller;
 
 import Model.*;

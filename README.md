@@ -26,11 +26,8 @@ To view the code; follow the following steps:
 
 - Added the move command.
 - Added reinforcement troops at the beginning of each round proportional to the number of countries held
-- Added a JFrame Graphical user interface 
-- Added a background world map and placed the countries on it.
-- Added Junit tests for all the model classes
-- Made the code more decoupled and increasing the cohision
-- Fixed the Class Diagram and sequence diagram related to a specific scenario (attacking)
+- Added An Ai player that can be played against
+- Added a screen a player selection which allows you to pick how many Ai's you want in the game
 
 
 # Rest of the deliverables for Iteration 2:
@@ -45,20 +42,19 @@ The rest of the deliverables for this iteration are as follows:
 
 # Known Issues: 
 
-There is 1 known issues that effect the funcitonality of the Risk game. The Risk game is designed as per the rules specified by the document; "SYSC 3110 Project – RISK!".
+There is 2 known issues that effect the funcitonality of the Risk game. The Risk game is designed as per the rules specified by the document; "SYSC 3110 Project – RISK!".
 
-The image path of the Game map will need to be manual entered in the source code in order for the image map to show up on the GUI. 
+- The image path of the Game map will need to be manual entered in the source code in order for the image map to show up on the GUI. 
+- At the movement phase we were only able to add in the adjacent tiles and not the paths because of a lack of understanding of recursion in java thus will have to investigate this further
 
 Enhancements can definately be made to the project such as:
-- Adding bonus for army placement.
-- Addition of phase for troupe movement phase.
-- Addition of “AI” player.
+- Allowing for custom maps to be inputed into the game through XML or JSON
+- Adding a save/load feature to not lose progress in a game
 
 # Roadmap:
-For the iteration 3 of Sysc 3110 project, the team is planning on doing the following:
-- Addition of AI player to the game.
-- Addition of bonuses for the placement og armies on countries.
-- Implementation of troop movement.
+For the iteration 4 of Sysc 3110 project, the team is planning on doing the following:
+- Addition of a Save/Load system
+- Addition of a custom map upload system
 - Unit tests for the Model.
 - Readme file 
 - Source Code 

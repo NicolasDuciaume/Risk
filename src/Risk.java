@@ -1,3 +1,7 @@
+/*
+Author: Nicolas Duciaume
+ */
+
 import Controller.RiskController;
 import Model.*;
 import View.*;

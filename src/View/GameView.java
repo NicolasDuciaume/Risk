@@ -1,3 +1,6 @@
+/*
+Author: Nicolas Duciaume
+ */
 package View;
 
 import Controller.GameController;
