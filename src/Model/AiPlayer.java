@@ -25,11 +25,11 @@ public class AiPlayer extends Player {
         AiMovement(view);
     }
 
-    public int messageToDefender(Country defend){
+    public int messageToDefender(Country defend, Country attacker){
         JComboBox temp = new JComboBox();
         JPanel a = new JPanel();
-        JLabel label = new JLabel(super.getName() + " is attacking " + defend.getName() );
-        JLabel label2 = new JLabel("How many dice would you to defend wit");
+        JLabel label = new JLabel(super.getName() +"'s " + attacker.getName() + " is attacking " + defend.getName() );
+        JLabel label2 = new JLabel("How many dice would you to defend with");
         if(defend.getArmiesOnCountry() == 1){
             temp.addItem(1);
         }
@@ -38,7 +38,7 @@ public class AiPlayer extends Player {
             temp.addItem(2);
         }
         temp.setSelectedIndex(0);
-        a.setLayout(new GridLayout());
+        a.setLayout(new GridLayout(3,1));
         a.add(label);
         a.add(label2);
         a.add(temp);
@@ -142,7 +142,7 @@ public class AiPlayer extends Player {
                 for(Country neighb : testing.getNeighbors()){
                     if(!neighb.getPlayerOnCountry().getName().equals(this.getName())){
                         if(neighb.getArmiesOnCountry() < testing.getArmiesOnCountry()){
-                            int [] zz = model.attack(this, neighb.getPlayerOnCountry(), neighb,testing,getAttackerDie(testing),messageToDefender(neighb));
+                            int [] zz = model.attack(this, neighb.getPlayerOnCountry(), neighb,testing,getAttackerDie(testing),messageToDefender(neighb, testing));
                             JOptionPane.showMessageDialog(view,testing.getName() + " Lost " +zz[0] + "Troops \r\n" + neighb.getName() + " Lost " + zz[1] + " Troops \r\n");
                             if(zz[2] == 1){
                                 JOptionPane.showMessageDialog(view,this.getName() + " took control of " + neighb.getName());

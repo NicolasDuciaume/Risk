@@ -74,9 +74,6 @@ public class MovementController implements ActionListener {
 
     public void StepOne(){
         comboBox2.removeAllItems();
-
-
-
         for(Country c: moveFrom.getNeighbors()){
             if(c.getPlayerOnCountry().getName().equals(model.getCurrentPlayerName())){
                 comboBox2.addItem(c.getName());
