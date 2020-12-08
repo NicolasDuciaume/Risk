@@ -17,6 +17,7 @@ public class Country {
     private ArrayList<Country> neighbors;
     private Player playerOnCountry;
     private int armiesOnCountry;
+    private ArrayList<String> stringOfNeighbors;
 
     /**
      * The constructor with one parameter
@@ -26,6 +27,14 @@ public class Country {
         this.name = name;
         neighbors = new ArrayList<Country>();
         armiesOnCountry = 0;
+    }
+
+    public ArrayList<String> getStringOfNeighbors(){
+        return stringOfNeighbors;
+    }
+
+    public void setStringOfNeighbors(ArrayList<String> t){
+        stringOfNeighbors = t;
     }
     /**
      * This function adds the neighbors to the current country

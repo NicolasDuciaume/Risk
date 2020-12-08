@@ -1,0 +1,189 @@
+{
+	"File": "/RiskMile4/src/View/AmongUsMap.jpg",
+	"Buttons": [
+		{
+			"Name": "UpperEngine",
+			"XLoc": 171,
+			"YLoc":	114,
+			"WLoc": 147,
+			"HLoc": 161,
+			"Neighbors": [
+				"Reactor",
+				"Security",
+				"LowerEngine",
+				"Medbay",
+				"Cafeteria"
+			]
+		},
+		{
+			"Name": "Reactor",
+			"XLoc": 52,
+			"YLoc":	280,
+			"WLoc": 137,
+			"HLoc": 196,
+			"Neighbors": [
+				"UpperEngine",
+				"Security",
+				"LowerEngine"
+			]
+		},
+		{
+			"Name": "Security",
+			"XLoc": 317,
+			"YLoc":	278,
+			"WLoc": 85,
+			"HLoc": 166,
+			"Neighbors": [
+				"Reactor",
+				"UpperEngine",
+				"LowerEngine",
+				"Medbay",
+				"Electrical"
+			]
+		},
+		{
+			"Name": "LowerEngine",
+			"XLoc": 175,
+			"YLoc":	481,
+			"WLoc": 145,
+			"HLoc": 160,
+			"Neighbors": [
+				"Reactor",
+				"Security",
+				"UpperEngine",
+				"Electrical",
+				"Storage"
+			]
+		},
+		{
+			"Name": "Electrical",
+			"XLoc": 444,
+			"YLoc":	424,
+			"WLoc": 149,
+			"HLoc": 179,
+			"Neighbors": [
+				"LowerEngine",
+				"Storage",
+				"Security",
+				"Medbay"
+			]
+		},
+		{
+			"Name": "Medbay",
+			"XLoc": 422,
+			"YLoc":	235,
+			"WLoc": 138,
+			"HLoc": 164,
+			"Neighbors": [
+				"UpperEngine",
+				"Cafeteria",
+				"Security",
+				"Medbay"
+			]
+		},
+		{
+			"Name": "Cafeteria",
+			"XLoc": 572,
+			"YLoc":	28,
+			"WLoc": 292,
+			"HLoc": 317,
+			"Neighbors": [
+				"UpperEngine",
+				"Medbay",
+				"Storage",
+				"Admin",
+				"Weapons",
+				"O2"
+			]
+		},
+		{
+			"Name": "Storage",
+			"XLoc": 599,
+			"YLoc":	471,
+			"WLoc": 180,
+			"HLoc": 269,
+			"Neighbors": [
+				"Electrical",
+				"Cafeteria",
+				"Admin",
+				"Communication",
+				"Shields",
+				"LowerEngine"
+			]
+		},
+		{
+			"Name": "Communication",
+			"XLoc": 789,
+			"YLoc":	624,
+			"WLoc": 154,
+			"HLoc": 116,
+			"Neighbors": [
+				"Storage",
+				"Shields"
+			]
+		},
+		{
+			"Name": "Admin",
+			"XLoc": 803,
+			"YLoc":	397,
+			"WLoc": 152,
+			"HLoc": 133,
+			"Neighbors": [
+				"Cafeteria",
+				"Storage"
+			]
+		},
+		{
+			"Name": "Shields",
+			"XLoc": 949,
+			"YLoc":	511,
+			"WLoc": 147,
+			"HLoc": 154,
+			"Neighbors": [
+				"Storage",
+				"Communication",
+				"O2",
+				"Navigation",
+				"Weapons"
+			]
+		},
+		{
+			"Name": "Navigation",
+			"XLoc": 1196,
+			"YLoc":	282,
+			"WLoc": 113,
+			"HLoc": 140,
+			"Neighbors": [
+				"O2",
+				"Shields",
+				"Weapons"
+			]
+		},
+		{
+			"Name": "O2",
+			"XLoc": 895,
+			"YLoc":	273,
+			"WLoc": 80,
+			"HLoc": 102,
+			"Neighbors": [
+				"Navigation",
+				"Shields",
+				"Weapons",
+				"Cafeteria"
+			]
+		},
+		{
+			"Name": "Weapons",
+			"XLoc": 948,
+			"YLoc":	99,
+			"WLoc": 142,
+			"HLoc": 153,
+			"Neighbors": [
+				"O2",
+				"Shields",
+				"Navigation",
+				"Cafeteria"
+			]
+		}
+	]
+}

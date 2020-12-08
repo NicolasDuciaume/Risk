@@ -10,11 +10,14 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+
+
 @SuppressWarnings("serial")
 public class RiskView extends JFrame {
 
 	private JPanel mainMenuPL;
 	private JButton newGameBT;
+	private JButton CustomMap;
 	private JButton quitBT;
 
 	/**
@@ -34,7 +37,7 @@ public class RiskView extends JFrame {
 
 	/**
 	 * The method responsible for setting up the GUI main menu
-	 * 
+	 *
 	 * @return the JPanel
 	 */
 	private JPanel mainMenu() {
@@ -43,7 +46,7 @@ public class RiskView extends JFrame {
 		JPanel borderLayout = new JPanel(new GridBagLayout());
 		borderLayout.setBorder(new EmptyBorder(5, 5, 5, 5));
 		mainMenuPL = new JPanel();
-		mainMenuPL.setLayout(new GridLayout(6, 1, 5, 5));
+		mainMenuPL.setLayout(new GridLayout(7, 1, 5, 5));
 
 		JLabel label1 = new JLabel("Welcome to the game of RISK!", JLabel.CENTER);
 		label1.setFont(new Font("Serif", Font.BOLD, 20));
@@ -60,11 +63,15 @@ public class RiskView extends JFrame {
 		newGameBT.setActionCommand("newGame");
 		quitBT.setActionCommand("quit");
 
+		CustomMap = new JButton("Custom Game");
+		CustomMap.setActionCommand("CUSTOM");
+
 		mainMenuPL.add(label1);
 		mainMenuPL.add(label2);
 		mainMenuPL.add(label3);
 		mainMenuPL.add(label4);
 		mainMenuPL.add(newGameBT);
+		mainMenuPL.add(CustomMap);
 		mainMenuPL.add(quitBT);
 
 		borderLayout.add(mainMenuPL);
@@ -75,11 +82,12 @@ public class RiskView extends JFrame {
 
 	/**
 	 * The acitonListener for the class
-	 * 
+	 *
 	 * @param listener the action listener
 	 */
 	public void addActionListener(ActionListener listener) {
 		newGameBT.addActionListener(listener);
+		CustomMap.addActionListener(listener);
 		quitBT.addActionListener(listener);
 	}
 

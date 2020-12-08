@@ -18,6 +18,7 @@ public class RiskModel {
     private int cur = 0;
     public Map map;
     private Dice dice;
+    private int numOfCountries;
 
     private ArrayList<Country> fullMap;
     private ArrayList<Country> NorthAmerica;
@@ -33,15 +34,25 @@ public class RiskModel {
     public RiskModel(){
         parser = new Parser();
         map = new Map();
-        NorthAmerica = map.getNorthAmerica();
-        SouthAmerica = map.getSouthAmerica();
-        Europe = map.getEurope();
-        Africa = map.getAfrica();
-        Asia = map.getAsia();
-        Australia = map.getAustralia();
+        //CustomMap = new Custom();
+        //NorthAmerica = map.getNorthAmerica();
+        //SouthAmerica = map.getSouthAmerica();
+       // Europe = map.getEurope();
+        //Africa = map.getAfrica();
+        //Asia = map.getAsia();
+        //Australia = map.getAustralia();
         fullMap = new ArrayList<Country>();
-        fullMap = map.getCompleteGameMap();
+        //fullMap = map.getCompleteGameMap();
         dice = new Dice();
+    }
+
+    public Map getMap(){
+        return map;
+    }
+
+    public void setFullMap(){
+        fullMap = map.getCompleteGameMap();
+        numOfCountries = fullMap.size();
     }
     /**
      * This class is responsible for adding the armies on the map
@@ -65,12 +76,12 @@ public class RiskModel {
      * game with default settings
      */
     public void populateInit(){
-        while(map.getOccupiedCountries() != 42){
-            if(((playersInGame.size() == 4 ) || (playersInGame.size() == 5)) && (map.getOccupiedCountries() == 40)){ //because they 42 is not divisible by 4 or 5
+        while(map.getOccupiedCountries() != numOfCountries){
+            if(((numOfCountries % playersInGame.size() != 0)) && (map.getOccupiedCountries() == (numOfCountries - (numOfCountries % playersInGame.size())))){ //because they 42 is not divisible by 4 or 5
                 gameSetUpFornonDevisibleCountriesByPlayersCase();
             }
             else{
-            	standardCaseGameSetup();
+                standardCaseGameSetup();
             }
         }
     }
@@ -78,12 +89,12 @@ public class RiskModel {
      * This function is responsible for the case when we have have to set up the game
      * such that the number of countries are divisible by the number of players i.e., 2 and 42
      */
-	private void standardCaseGameSetup() {
-		Random rand = new Random();
-		for (int x = 0; x < playersInGame.size(); x++){
+    private void standardCaseGameSetup() {
+        Random rand = new Random();
+        for (int x = 0; x < playersInGame.size(); x++){
             setUpGame(rand, x);
         }
-	}
+    }
 
     /**
      * Inner method within gameSetUps
@@ -109,12 +120,12 @@ public class RiskModel {
      * countries i.e., 45 is not divisible by 4 or 5
      * @param
      **/
-	private void gameSetUpFornonDevisibleCountriesByPlayersCase() {
-		Random rand = new Random();
-		for (int x = 0; x < 2; x++){
+    private void gameSetUpFornonDevisibleCountriesByPlayersCase() {
+        Random rand = new Random();
+        for (int x = 0; x < 2; x++){
             setUpGame(rand, x);
         }
-	}
+    }
 
 
     /**
@@ -202,7 +213,7 @@ public class RiskModel {
             reinforcements = currentPlayer.getPlacedArmies().size() / 3;
         }
 
-        reinforcements = checkHasContinent(currentPlayer) + reinforcements;
+        //reinforcements = checkHasContinent(currentPlayer) + reinforcements;
 
         System.out.println("You can place " + reinforcements + " troops");
 
@@ -281,21 +292,21 @@ public class RiskModel {
      * This function checks if the end of the game is reached or not
      * @return
      */
-	public boolean checkEnd(){
-	    boolean Finished = false;
-	    int playersAlive = playersInGame.size();
+    public boolean checkEnd(){
+        boolean Finished = false;
+        int playersAlive = playersInGame.size();
         if(playersAlive == 1){
             Finished = true;
         }
         return Finished;
     }
-	/**
-	 * This function takes a number representing the number of players that will be
-	 * playing the game and initializes the game for them
-	 * @param //numberOfPlayers the number of players that will be playing the game
-	 */
+    /**
+     * This function takes a number representing the number of players that will be
+     * playing the game and initializes the game for them
+     * @param //numberOfPlayers the number of players that will be playing the game
+     */
 
-	public void playerAddition(int num , int arms){
+    public void playerAddition(int num , int arms){
         for(int x = 0; x < num ;x++){
             playersInGame.add(new Player("Player " + (x+1)));
             playersInGame.get(x).setInitArmies(arms);
@@ -324,7 +335,7 @@ public class RiskModel {
      * @param Ai
      */
     public void playerSelection(String numberOfPlayers , int Ai){
-		//toUpperCase to make it case insensitive.
+        //toUpperCase to make it case insensitive.
         switch (numberOfPlayers.toUpperCase().trim()){
             case "2":
             case "2 PLAYERS":
@@ -435,15 +446,15 @@ public class RiskModel {
      * @return
      */
     public boolean isNextPlayAi(){
-	    for(int x = 0; x < playersInGame.size(); x++){
-	        if(playersInGame.get(x).getName().equals(getCurrentPlayerName())){
-	            if(playersInGame.get(x) != playersInGame.get(playersInGame.size() -1 )){
+        for(int x = 0; x < playersInGame.size(); x++){
+            if(playersInGame.get(x).getName().equals(getCurrentPlayerName())){
+                if(playersInGame.get(x) != playersInGame.get(playersInGame.size() -1 )){
                     String sub = playersInGame.get(x + 1).getName().substring(0,2);
                     if(sub.equals("Ai")){
                         return true;
                     }
                 }
-	            else{
+                else{
                     String sub = playersInGame.get(0).getName().substring(0,2);
                     if(sub.equals("Ai")){
                         return true;
@@ -451,15 +462,15 @@ public class RiskModel {
                 }
             }
         }
-	    return false;
+        return false;
     }
     /**
      * This function is responsible for printing out the help
      */
     @SuppressWarnings("unused")
-	private void printHelp(){
-	    System.out.println("The possible commands are:");
-	    parser.getCommands(); //prints out the available commands
+    private void printHelp(){
+        System.out.println("The possible commands are:");
+        parser.getCommands(); //prints out the available commands
     }
     /**
      * This function is responsible for making an attack
@@ -642,25 +653,25 @@ public class RiskModel {
      * @param C
      */
     public void reinforcement(int rein, String C){
-       for(Country c: currentPlayer.getPlacedArmies()){
-           if(C.equals(c.getName())){
-               c.addArmiesOnCountry(rein);
-               currentPlayer.setArmies(rein);
-           }
-       }
+        for(Country c: currentPlayer.getPlacedArmies()){
+            if(C.equals(c.getName())){
+                c.addArmiesOnCountry(rein);
+                currentPlayer.setArmies(rein);
+            }
+        }
     }
 
     /**
      * This function prints out the countries along with the armies on on it.
      * @param countries
      */
-	@SuppressWarnings("unused")
-	private void printCountriesAlongWithArmies(ArrayList<Country> countries) {
-		for(int x = 0; x < countries.size(); x++){
+    @SuppressWarnings("unused")
+    private void printCountriesAlongWithArmies(ArrayList<Country> countries) {
+        for(int x = 0; x < countries.size(); x++){
             Country temp = countries.get(x);
             System.out.println(temp.getName() + " which has " + temp.getArmiesOnCountry() + " on it");
         }
-	}
+    }
 
     /**
      * Gets the current full map
@@ -671,8 +682,8 @@ public class RiskModel {
     }
 
     /**
-	 * This function ends the player turn
-	 */
+     * This function ends the player turn
+     */
     public void endTurn(){
         if(cur == playersInGame.size() - 1){
             cur = 0;
@@ -709,8 +720,8 @@ public class RiskModel {
      * This function prints out the map
      */
     @SuppressWarnings("unused")
-	private void mapPrint(){
-	    System.out.println("The current map is: ");
+    private void mapPrint(){
+        System.out.println("The current map is: ");
         map.printMap();
     }
 
@@ -730,6 +741,7 @@ public class RiskModel {
         int bonus = 0;
         ArrayList<Country> temp = player.getPlacedArmies();
         System.out.println("Reinforcement Stage!");
+
         for(int x = 0; x < temp.size(); x++){
             Country pt = temp.get(x);
             for(int y = 0; y < NorthAmerica.size(); y++){

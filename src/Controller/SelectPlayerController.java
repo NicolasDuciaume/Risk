@@ -10,23 +10,27 @@ import View.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class SelectPlayerController implements ActionListener {
 
     private SelectPlayerMenu selectPlayerMenu;
     private RiskModel model;
     private RiskView view;
-    
+    private String cust;
+
+
     /**
      * The constructor with three parameters
      * @param selectPlayerMenu the player menu
      * @param model the game model
      * @param view the game view
      */
-    public SelectPlayerController(SelectPlayerMenu selectPlayerMenu, RiskModel model, RiskView view){
+    public SelectPlayerController(SelectPlayerMenu selectPlayerMenu, RiskModel model, RiskView view, String cust){
         this.selectPlayerMenu = selectPlayerMenu;
         this.model = model;
         this.view = view;
+        this.cust = cust;
     }
 
     public int setAis(int num){
@@ -70,9 +74,23 @@ public class SelectPlayerController implements ActionListener {
         }
 
         selectPlayerMenu.setVisible(false);
-        model.populate();
+        //model.populate(cust.isCustom());
         view.dispose();
-        new GameView(model);
+        if(!cust.equals("")){
+            try {
+                new GameView(model, cust);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        }
+        else{
+            try {
+                new GameView(model, "/RiskMile4/src/View/testRisk.json");
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        }
+
 
     }
 }

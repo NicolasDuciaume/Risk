@@ -30,11 +30,19 @@ public class Map {
      * Default constructor of the Model.Map class
      */
     public Map(){
-        initializeCountries();
+        completeGameMap = new ArrayList<Country>();
+        NorthAmerica = new ArrayList<>();
+        SouthAmerica = new ArrayList<>();
+        Europe = new ArrayList<>();
+        Africa = new ArrayList<>();
+        Asia = new ArrayList<>();
+        Australia = new ArrayList<>();
 
-        initializeMap();
+        //initializeCountries();
 
-        initializeContinents();
+       // initializeMap();
+
+        //initializeContinents();
     }
     /**
      * This function is responsible for initializing the complete game map.
@@ -91,6 +99,26 @@ public class Map {
         completeGameMap.add(NG);
         completeGameMap.add(WAUS);
 	}
+
+	public void addToMap(String t, ArrayList<String> neighborsString){
+	    Country temp = new Country(t);
+	    temp.setStringOfNeighbors(neighborsString);
+	    completeGameMap.add(temp);
+    }
+
+    public void SetNeighbors(){
+	    for(Country c: completeGameMap){
+	        ArrayList<String> neighbString = c.getStringOfNeighbors();
+	        for(String s: neighbString){
+	            for(Country temp: completeGameMap){
+	                if(s.equals(temp.getName())){
+	                    c.addNeighbor(temp);
+                    }
+                }
+            }
+        }
+    }
+
     /**
      * This function is responsible for initializing the countries on the map 
      */

@@ -1,0 +1,542 @@
+{
+	"File": "/RiskMile4/src/View/Map.jpg",
+	"Buttons": [
+		{
+			"Name": "Alaska",
+			"XLoc": 31,
+			"YLoc":	71,
+			"WLoc": 83,
+			"HLoc": 72,
+			"Neighbors": [
+				"Kamchatka",
+				"Northwest Territory",
+				"Alberta"
+			]
+		},
+		{
+			"Name": "Alberta",
+			"XLoc": 111,
+			"YLoc":	212,
+			"WLoc": 117,
+			"HLoc": 75,
+			"Neighbors": [
+				"Northwest Territory",
+				"Ontario",
+				"Western United States",
+				"Alaska"
+			]
+		},
+		{
+			"Name": "Central America",
+			"XLoc": 111,
+			"YLoc":	464,
+			"WLoc": 249,
+			"HLoc": 134,
+			"Neighbors": [
+				"Western United States",
+				"Eastern United States",
+				"Venezuela"
+			]
+		},
+		{
+			"Name": "Eastern United States",
+			"XLoc": 239,
+			"YLoc":	326,
+			"WLoc": 153,
+			"HLoc": 154,
+			"Neighbors": [
+				"Central America",
+				"Western United States",
+				"Ontario",
+				"Quebec"
+			]
+		},
+		{
+			"Name": "Greenland",
+			"XLoc": 405,
+			"YLoc":	37,
+			"WLoc": 117,
+			"HLoc": 193,
+			"Neighbors": [
+				"Northwest Territory",
+				"Ontario",
+				"Quebec",
+				"Iceland"
+			]
+		},
+		{
+			"Name": "Northwest Territory",
+			"XLoc": 130,
+			"YLoc":	139,
+			"WLoc": 91,
+			"HLoc": 61,
+			"Neighbors": [
+				"Alaska",
+				"Greenland",
+				"Ontario",
+				"Alberta"
+			]
+		},
+		{
+			"Name": "Ontario",
+			"XLoc": 235,
+			"YLoc":	122,
+			"WLoc": 62,
+			"HLoc": 189,
+			"Neighbors": [
+				"Northwest Territory",
+				"Greenland",
+				"Quebec",
+				"Eastern United States",
+				"Alberta",
+				"Western United States"
+			]
+		},
+		{
+			"Name": "Quebec",
+			"XLoc": 305,
+			"YLoc":	190,
+			"WLoc": 111,
+			"HLoc": 133,
+			"Neighbors": [
+				"Greenland",
+				"Ontario",
+				"Eastern United States"
+			]
+		},
+		{
+			"Name": "Western United States",
+			"XLoc": 71,
+			"YLoc":	296,
+			"WLoc": 154,
+			"HLoc": 127,
+			"Neighbors": [
+				"Central America",
+				"Eastern United States",
+				"Alberta",
+				"Ontario"
+			]
+		},
+		{
+			"Name": "Argentina",
+			"XLoc": 419,
+			"YLoc":	757,
+			"WLoc": 89,
+			"HLoc": 168,
+			"Neighbors": [
+				"Brazil",
+				"Peru"
+			]
+		},
+		{
+			"Name": "Brazil",
+			"XLoc": 477,
+			"YLoc":	639,
+			"WLoc": 135,
+			"HLoc": 112,
+			"Neighbors": [
+				"Argentina",
+				"Peru",
+				"Venezuela",
+				"North Africa"
+			]
+		},
+		{
+			"Name": "Peru",
+			"XLoc": 338,
+			"YLoc":	696,
+			"WLoc": 144,
+			"HLoc": 58,
+			"Neighbors": [
+				"Argentina",
+				"Brazil",
+				"Venezuela"
+			]
+		},
+		{
+			"Name": "Venezuela",
+			"XLoc": 343,
+			"YLoc":	580,
+			"WLoc": 104,
+			"HLoc": 54,
+			"Neighbors": [
+				"Brazil",
+				"Peru",
+				"Central America"
+			]
+		},
+		{
+			"Name": "Great Britain",
+			"XLoc": 704,
+			"YLoc":	209,
+			"WLoc": 72,
+			"HLoc": 82,
+			"Neighbors": [
+				"Western Europe",
+				"Iceland",
+				"Scandinavia",
+				"Northern Europe"
+			]
+		},
+		{
+			"Name": "Iceland",
+			"XLoc": 628,
+			"YLoc":	149,
+			"WLoc": 80,
+			"HLoc": 66,
+			"Neighbors": [
+				"Great Britain",
+				"Greenland"
+			]
+		},
+		{
+			"Name": "Northern Europe",
+			"XLoc": 796,
+			"YLoc":	254,
+			"WLoc": 76,
+			"HLoc": 58,
+			"Neighbors": [
+				"Great Britain",
+				"Scandinavia",
+				"Western Europe",
+				"Southern Europe",
+				"Ukraine"
+			]
+		},
+		{
+			"Name": "Scandinavia",
+			"XLoc": 773,
+			"YLoc":	128,
+			"WLoc": 124,
+			"HLoc": 100,
+			"Neighbors": [
+				"Great Britain",
+				"Ukraine",
+				"Northern Europe"
+			]
+		},
+		{
+			"Name": "Southern Europe",
+			"XLoc": 808,
+			"YLoc":	313,
+			"WLoc": 74,
+			"HLoc": 68,
+			"Neighbors": [
+				"Western Europe",
+				"North Africa",
+				"Ukraine",
+				"Egypt",
+				"Northern Europe"
+			]
+		},
+		{
+			"Name": "Ukraine",
+			"XLoc": 888,
+			"YLoc":	204,
+			"WLoc": 86,
+			"HLoc": 168,
+			"Neighbors": [
+				"Middle East",
+				"Ural",
+				"Southern Europe",
+				"Afghanistan",
+				"Scandinavia",
+				"Northern Europe"
+			]
+		},
+		{
+			"Name": "Western Europe",
+			"XLoc": 701,
+			"YLoc":	301,
+			"WLoc": 93,
+			"HLoc": 89,
+			"Neighbors": [
+				"Northern Europe",
+				"Southern Europe",
+				"Great Britain",
+				"North Africa"
+			]
+		},
+		{
+			"Name": "Congo",
+			"XLoc": 814,
+			"YLoc":	568,
+			"WLoc": 101,
+			"HLoc": 105,
+			"Neighbors": [
+				"North Africa",
+				"East Africa",
+				"South Africa",
+				"Egypt"
+			]
+		},
+		{
+			"Name": "East Africa",
+			"XLoc": 926,
+			"YLoc":	596,
+			"WLoc": 57,
+			"HLoc": 91,
+			"Neighbors": [
+				"Egypt",
+				"Congo",
+				"South Africa",
+				"Madagascar"
+			]
+		},
+		{
+			"Name": "Egypt",
+			"XLoc": 857,
+			"YLoc":	444,
+			"WLoc": 100,
+			"HLoc": 119,
+			"Neighbors": [
+				"North Africa",
+				"East Africa",
+				"Southern Europe",
+				"Middle East",
+				"Congo"
+			]
+		},
+		{
+			"Name": "Madagascar",
+			"XLoc": 996,
+			"YLoc":	655,
+			"WLoc": 54,
+			"HLoc": 99,
+			"Neighbors": [
+				"East Africa",
+				"South Africa"
+			]
+		},
+		{
+			"Name": "North Africa",
+			"XLoc": 665,
+			"YLoc":	408,
+			"WLoc": 154,
+			"HLoc": 161,
+			"Neighbors": [
+				"Congo",
+				"Egypt",
+				"Western Europe",
+				"Southern Europe",
+				"Brazil"
+			]
+		},
+		{
+			"Name": "South Africa",
+			"XLoc": 825,
+			"YLoc":	680,
+			"WLoc": 125,
+			"HLoc": 110,
+			"Neighbors": [
+				"East Africa",
+				"Madagascar",
+				"Congo"
+			]
+		},
+		{
+			"Name": "Afghanistan",
+			"XLoc": 994,
+			"YLoc":	260,
+			"WLoc": 128,
+			"HLoc": 102,
+			"Neighbors": [
+				"China",
+				"Middle East",
+				"India",
+				"Ural",
+				"Ukraine"
+			]
+		},
+		{
+			"Name": "China",
+			"XLoc": 1148,
+			"YLoc":	330,
+			"WLoc": 151,
+			"HLoc": 86,
+			"Neighbors": [
+				"India",
+				"Afghanistan",
+				"Siam",
+				"Mongolia",
+				"Siberia"
+			]
+		},
+		{
+			"Name": "India",
+			"XLoc": 1068,
+			"YLoc":	409,
+			"WLoc": 124,
+			"HLoc": 126,
+			"Neighbors": [
+				"China",
+				"Siam",
+				"Middle East",
+				"Afghanistan"
+			]
+		},
+		{
+			"Name": "Irkutsk",
+			"XLoc": 1256,
+			"YLoc":	160,
+			"WLoc": 87,
+			"HLoc": 85,
+			"Neighbors": [
+				"Mongolia",
+				"Kamchatka",
+				"Yakutsk",
+				"Siberia"
+			]
+		},
+		{
+			"Name": "Japan",
+			"XLoc": 1396,
+			"YLoc":	276,
+			"WLoc": 41,
+			"HLoc": 104,
+			"Neighbors": [
+				"Kamchatka",
+				"Mongolia"
+			]
+		},
+		{
+			"Name": "Kamchatka",
+			"XLoc": 1375,
+			"YLoc":	10,
+			"WLoc": 127,
+			"HLoc": 266,
+			"Neighbors": [
+				"Alaska",
+				"Yakutsk",
+				"Irkutsk",
+				"Japan",
+				"Mongolia"
+			]
+		},
+		{
+			"Name": "Middle East",
+			"XLoc": 951,
+			"YLoc":	390,
+			"WLoc": 114,
+			"HLoc": 101,
+			"Neighbors": [
+				"Ukraine",
+				"Egypt",
+				"India",
+				"Afghanistan"
+			]
+		},
+		{
+			"Name": "Mongolia",
+			"XLoc": 1238,
+			"YLoc":	272,
+			"WLoc": 129,
+			"HLoc": 70,
+			"Neighbors": [
+				"Japan",
+				"China",
+				"Kamchatka",
+				"Irkutsk",
+				"Siberia"
+			]
+		},
+		{
+			"Name": "Siam",
+			"XLoc": 1221,
+			"YLoc":	416,
+			"WLoc": 68,
+			"HLoc": 99,
+			"Neighbors": [
+				"India",
+				"China",
+				"Indonesia"
+			]
+		},
+		{
+			"Name": "Siberia",
+			"XLoc": 1140,
+			"YLoc":	36,
+			"WLoc": 93,
+			"HLoc": 252,
+			"Neighbors": [
+				"Yakutsk",
+				"Mongolia",
+				"Irkutsk",
+				"China",
+				"Ural",
+				"Afghanistan"
+			]
+		},
+		{
+			"Name": "Ural",
+			"XLoc": 1040,
+			"YLoc":	60,
+			"WLoc": 90,
+			"HLoc": 198,
+			"Neighbors": [
+				"Siberia",
+				"Afghanistan",
+				"Ukraine"
+			]
+		},
+		{
+			"Name": "Yakutsk",
+			"XLoc": 1259,
+			"YLoc":	42,
+			"WLoc": 94,
+			"HLoc": 92,
+			"Neighbors": [
+				"Kamchatka",
+				"Irkutsk",
+				"Siberia"
+			]
+		},
+		{
+			"Name": "Eastern Australia",
+			"XLoc": 1438,
+			"YLoc":	631,
+			"WLoc": 76,
+			"HLoc": 165,
+			"Neighbors": [
+				"Western Australia",
+				"New Guinea"
+			]
+		},
+		{
+			"Name": "Indonesia",
+			"XLoc": 1231,
+			"YLoc":	541,
+			"WLoc": 151,
+			"HLoc": 86,
+			"Neighbors": [
+				"New Guinea",
+				"Siam",
+				"Western Australia"
+			]
+		},
+		{
+			"Name": "New Guinea",
+			"XLoc": 1411,
+			"YLoc":	549,
+			"WLoc": 128,
+			"HLoc": 73,
+			"Neighbors": [
+				"Indonesia",
+				"Western Australia",
+				"Eastern Australia"
+			]
+		},
+		{
+			"Name": "Western Australia",
+			"XLoc": 1312,
+			"YLoc":	638,
+			"WLoc": 115,
+			"HLoc": 140,
+			"Neighbors": [
+				"New Guinea",
+				"Indonesia",
+				"Eastern Australia"
+			]
+		}
+	]
+}
