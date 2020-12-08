@@ -1,5 +1,97 @@
 {
 	"File": "/RiskMile4/src/View/Map.jpg",
+	"PlayerLabel": [
+		556,
+		68,
+		241,
+		39
+	],
+	"EndButton": [
+		1077,
+		855,
+		131,
+		58
+	],
+	"Continents": [
+		{
+			"Name": "Africa",
+			"Bonus": 6,
+			"Countries": [
+				"Congo",
+				"East Africa",
+				"Egypt",
+				"Madagascar",
+				"North Africa",
+				"South Africa"
+			]
+		},
+		{
+			"Name": "Australia",
+			"Bonus": 4,
+			"Countries": [
+				"New Guinea",
+				"Indonesia",
+				"Eastern Australia",
+				"Western Australia"
+			]
+		},
+		{
+			"Name": "Asia",
+			"Bonus": 12,
+			"Countries": [
+				"Afghanistan",
+				"China",
+				"India",
+				"Irkutsk",
+				"Japan",
+				"Kamchatka",
+				"Middle East",
+				"Mongolia",
+				"Siam",
+				"Siberia",
+				"Ural",
+				"Yakutsk"
+			]
+		},
+		{
+			"Name": "Europe",
+			"Bonus": 7,
+			"Countries": [
+				"Great Britain",
+				"Scandinavia",
+				"Western Europe",
+				"Southern Europe",
+				"Ukraine",
+				"Northern Europe",
+				"Iceland"
+			]
+		},
+		{
+			"Name": "NorthAmerica",
+			"Bonus": 9,
+			"Countries": [
+				"Alaska",
+				"Alberta",
+				"Central America",
+				"Western United States",
+				"Eastern United States",
+				"Greenland",
+				"Quebec",
+				"Ontario",
+				"Northwest Territory"
+			]
+		},
+		{
+			"Name": "SouthAmerica",
+			"Bonus": 4,
+			"Countries": [
+				"Argentina",
+				"Brazil",
+				"Peru",
+				"Venezuela"
+			]
+		}
+	],
 	"Buttons": [
 		{
 			"Name": "Alaska",

@@ -81,7 +81,12 @@ public class GameView extends JFrame {
 		command.setFont(new Font("Serif", Font.BOLD, 20));
 		play = new JLabel("Player 1", JLabel.CENTER);
 		play.setFont(new Font("Serif", Font.BOLD, 20));
-		play.setBounds(556, 68, 241, 39);
+		JSONArray labelBounds = tomJsonObject.getJSONArray("PlayerLabel");
+		int[] b = {0,0,0,0};
+		for(int z = 0; z < labelBounds.length(); z++){
+			b[z] = labelBounds.getInt(z);
+		}
+		play.setBounds(b[0], b[1], b[2], b[3]);
 		play.setForeground(Color.RED);
 		endTurn = new JButton("End Turn");
 		endTurn.setActionCommand("EndTurn");
@@ -121,59 +126,34 @@ public class GameView extends JFrame {
 		model.setFullMap();
 		model.populate();
 
-		endTurn.setBounds(1077, 855, 131, 58);
+		if(tomJsonObject.has("Continents")){
+			JSONArray ContinentsJson = tomJsonObject.getJSONArray("Continents");
+			for(int i = 0; i < ContinentsJson.length(); i++){
+				ArrayList<String> countriesInContinent = new ArrayList<>();
+				JSONObject tempJson = ContinentsJson.getJSONObject(i);
+				String name = tempJson.getString("Name");
+				int bonus = tempJson.getInt("Bonus");
+				JSONArray count = tempJson.getJSONArray("Countries");
+				for (int x = 0; x < count.length(); x++) {
+					countriesInContinent.add((String) count.get(x));
+				}
+				mapping.addContinents(name,countriesInContinent,bonus);
+			}
+		}
+
+		JSONArray endBounds = tomJsonObject.getJSONArray("EndButton");
+		for(int z = 0; z < endBounds.length(); z++){
+			b[z] = endBounds.getInt(z);
+		}
+
+		endTurn.setBounds(b[0], b[1], b[2], b[3]);
 		mapLabel.add(endTurn);
 		mapLabel.add(play);
-
-		//initialMap();
-
 
 
 		updateMap();
 
-		/*
-		NT.setActionCommand("NT");
-		Alberta.setActionCommand("Alberta");
-		Alaska.setActionCommand("Alaska");
-		Ontario.setActionCommand("Ontario");
-		Quebec.setActionCommand("Quebec");
-		Greenland.setActionCommand("Greenland");
-		WUS.setActionCommand("WUS");
-		EUS.setActionCommand("EUS");
-		CA.setActionCommand("CA");
-		Venezuela.setActionCommand("Venezuela");
-		Brazil.setActionCommand("Brazil");
-		Argentina.setActionCommand("Argentina");
-		Peru.setActionCommand("Peru");
-		Iceland.setActionCommand("Iceland");
-		GB.setActionCommand("GB");
-		Scandinavia.setActionCommand("Scandinavia");
-		Ukraine.setActionCommand("Ukraine");
-		NE.setActionCommand("NE");
-		WE.setActionCommand("WE");
-		SE.setActionCommand("SE");
-		NA.setActionCommand("NA");
-		SA.setActionCommand("SA");
-		Egypt.setActionCommand("Egypt");
-		Congo.setActionCommand("Congo");
-		EA.setActionCommand("EA");
-		Madagascar.setActionCommand("Madagascar");
-		Ural.setActionCommand("Ural");
-		Afghanistan.setActionCommand("Afghanistan");
-		ME.setActionCommand("ME");
-		India.setActionCommand("India");
-		China.setActionCommand("China");
-		Siam.setActionCommand("Siam");
-		Siberia.setActionCommand("Siberia");
-		Yakutsk.setActionCommand("Yakutsk");
-		Irkutsk.setActionCommand("Irkutsk");
-		Kamchatka.setActionCommand("Kamchatka");
-		Mongolia.setActionCommand("Mongolia");
-		Japan.setActionCommand("Japan");
-		Indonesia.setActionCommand("Indonesia");
-		NG.setActionCommand("NG");
-		WAUS.setActionCommand("WAUS");
-		EAUS.setActionCommand("EAUS");*/
+
 
 		command.setBounds(520, 19, 419, 59);
 		mapLabel.add(command);

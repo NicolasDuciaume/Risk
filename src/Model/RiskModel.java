@@ -34,7 +34,6 @@ public class RiskModel {
     public RiskModel(){
         parser = new Parser();
         map = new Map();
-        //CustomMap = new Custom();
         //NorthAmerica = map.getNorthAmerica();
         //SouthAmerica = map.getSouthAmerica();
        // Europe = map.getEurope();
@@ -129,75 +128,11 @@ public class RiskModel {
 
 
     /**
-     * This method is responsible for instantiating the introduction
-     * of the game upon game start up
-     */
-    /*public void introduction()
-    {
-        System.out.println("Welcome to the game of RISK!\n"
-        		+ "The goal is simple: players aim to conquer their enemies' territories\n"
-        		+ "by building an army, moving their troops in, and engaging in battle.\n"
-        		+ "Depending on the roll of the dice, a player will either defeat the enemy or be defeated.\n\n"
-        		+ "select the number of players:");
-
-        for(int x = 2; x <= 6; x++){
-            System.out.println(x + " Players");
-        }
-        playerSelection(parser.getUserInput());
-        while(playersInGame.size() == 0){
-            System.out.println("Please select a valid option:");
-            playerSelection(parser.getUserInput());
-        }
-        System.out.println("You have selected " + playersInGame.size());
-        System.out.println("Starting Game...");
-    }*/
-    /**
      * This method is responsible for interfacing with the user as the game proceeds
      */
     public void play()
     {
         currentPlayer = playersInGame.get(0);
-
-    	/*
-        //introduction();
-        //populate();
-        //map.printMap();
-
-        while (!checkEnd()){
-            for(int x = 0; x < playersInGame.size(); x++){
-                Player play = playersInGame.get(x);
-                if(play.getArmies() != 0){
-                    int reinforcements;
-                    System.out.println(play.getName() + "'s turn:");
-                    if(play.getPlacedArmies().size() < 9){
-                        reinforcements = 3;
-                    }
-                    else{
-                        reinforcements = play.getPlacedArmies().size() / 3;
-                    }
-
-                    reinforcements = checkHasContinent(play) + reinforcements;
-
-                    System.out.println("You can place " + reinforcements + " troops");
-
-                    reinforcement(reinforcements, play);
-
-
-                    //System.out.println("\nSelect a command:");
-                    //parser.getCommands();
-                    boolean endTurn = false;
-                    while(!endTurn){
-                        //Command command = parser.getCommand();
-                        //endTurn = processCommand(command, play);
-                    }
-                }
-                else{
-                    playersInGame.remove(x);
-                }
-            }
-        }
-        Player play = playersInGame.get(0);
-        System.out.println(play.getName() + "has won the game!");*/
     }
 
     /**
@@ -213,7 +148,7 @@ public class RiskModel {
             reinforcements = currentPlayer.getPlacedArmies().size() / 3;
         }
 
-        //reinforcements = checkHasContinent(currentPlayer) + reinforcements;
+        reinforcements = checkHasContinent(currentPlayer) + reinforcements;
 
         System.out.println("You can place " + reinforcements + " troops");
 
@@ -234,59 +169,6 @@ public class RiskModel {
         return false;
     }
 
-    /**
-     * This method is responsible for processing the user entered commands and making
-     * calls to appropriate methods based on the entered command
-     * @param command the user entered command
-     * @param player the player which entered the command
-     * @return true if the command was processed successfully
-     */
-    /*
-    private boolean processCommand(Command command, Player player){
-        boolean end = false;
-
-        if(command.isUnknown()){
-            System.out.println("Please select a valid command");
-            return false;
-        }
-        else {
-        	String commandWord = command.getCommandWord().trim().toLowerCase();
-        	switch(commandWord) {
-        	case "help":
-        		printHelp();
-        		break;
-        	case "map":
-        		mapPrint();
-	            System.out.println("Select a command:");
-	            break;
-        	case "pass" :
-        		endTurn();
- 	            end = true;
- 	            player.setMoved(false);
- 	            break;
-        	case "attack":
-        		attack(player);
- 	            System.out.println("Select a command:");
- 	            break;
-        	case "quit":
-	        	System.out.println("GAME OVER.");
-	        	System.exit(0);
-	        	break;
-        	}
-	        //Troop movement phase is to be implemented in Milestone 3
-
-	        /*else if(commandWord.equals("move")){
-	            if (!player.isMoved()){
-	                move(player);
-	            }
-	            else{
-	                System.out.println("You have already moved armies this turn");
-	            }
-	            System.out.println("Select a command:");
-	        }
-        }
-        return end;
-    }*/
 
     /**
      * This function checks if the end of the game is reached or not
@@ -532,106 +414,7 @@ public class RiskModel {
 
         return finalRes;
     }
-    /**
-     * To be provided later
-     * This function provides the move functionality to the game.
-     * @param //player the player that wants to move
-     * @return true if move has been made
-     */
-    /*
-    private boolean move(Player player) {
-        System.out.println("With which Country would you like to move armies from:");
-        ArrayList<Country> playCount = player.getPlacedArmies();
-        for (int x = 0; x < playCount.size(); x++) {
-            Country temp = playCount.get(x);
-            System.out.println(temp.getName() + " which has " + temp.getArmiesOnCountry() + " on it");
-        }
 
-        boolean correctSelect = false;
-        Country mover = null;
-        while (!correctSelect) {
-            String attackerInput = parser.getUserInput();
-            if (attackerInput.equals("back")) {
-                return true;
-            }
-            for (int y = 0; y < playCount.size(); y++) {
-                Country temp = playCount.get(y);
-                if (temp.getName().equals(attackerInput)) {
-                    mover = temp;
-                    correctSelect = true;
-                }
-            }
-            if (correctSelect == false) {
-                System.out.println("Please select a valid country");
-            }
-        }
-
-        ArrayList<Country> neighbors = mover.getNeighbors();
-        System.out.println("Neighbor Countries you can move to:");
-        boolean noOwnedNeighbors = true;
-        for (int x = 0; x < neighbors.size(); x++) {
-            Country temp = neighbors.get(x);
-            if (mover.getPlayerOnCountry() == temp.getPlayerOnCountry()) {
-                System.out.println(temp.getName() + " which has " + temp.getArmiesOnCountry() + " on it");
-                noOwnedNeighbors = false;
-            }
-        }
-
-        if (noOwnedNeighbors == true) {
-            System.out.println("You have know neighbors to this country that you can move troops to");
-            return false;
-        }
-
-        System.out.println("Which Country would you like to move your troops to");
-        boolean correctNeighbor = false;
-        Country moving = null;
-        while (!correctNeighbor) {
-            String neighbor = parser.getUserInput();
-            if (neighbor.equals("back")) {
-                return true;
-            }
-            for (int y = 0; y < playCount.size(); y++) {
-                Country temp = playCount.get(y);
-                if (temp.getName().equals(neighbor)) {
-                    moving = temp;
-                    correctNeighbor = true;
-                }
-            }
-            if (correctNeighbor == false) {
-                System.out.println("Please select a valid country");
-            }
-        }
-
-        System.out.println("How many armies would you like to move? (must leave 1 army)");
-        boolean CorrectNumber = false;
-        while (!CorrectNumber) {
-            String ans = parser.getUserInput();
-            if (ans.equals("back")){
-                return true;
-            }
-            else if(!isNumeric(ans)){
-                System.out.println("Please input a number");
-            }
-            else {
-                int num = mover.getArmiesOnCountry();
-                int numToMove = Integer.valueOf(ans);
-                if ((numToMove < num) && (numToMove >= 0)) {
-                    System.out.println("Moving armies...");
-                    mover.removeArmiesOnCountry(numToMove);
-                    moving.addArmiesOnCountry(numToMove);
-                    System.out.println(mover.getName() + " now has " + mover.getArmiesOnCountry());
-                    System.out.println(moving.getName() + " now has " + moving.getArmiesOnCountry());
-                    CorrectNumber = true;
-                } else {
-                    System.out.println("Please select a valid number of armies to move");
-                }
-            }
-        }
-
-        player.setMoved(true);
-
-        return false;
-    } */
 
     /**
      * Troop movement method that moves armies from one country to another
@@ -732,79 +515,24 @@ public class RiskModel {
      * @return
      */
     private int checkHasContinent(Player player){
-        int hasNA = 0;
-        int hasSA = 0;
-        int hasE = 0;
-        int hasAF = 0;
-        int hasA = 0;
-        int hasAUS = 0;
         int bonus = 0;
         ArrayList<Country> temp = player.getPlacedArmies();
         System.out.println("Reinforcement Stage!");
 
-        for(int x = 0; x < temp.size(); x++){
-            Country pt = temp.get(x);
-            for(int y = 0; y < NorthAmerica.size(); y++){
-                Country tt = NorthAmerica.get(y);
-                if(tt.getName().equals(pt.getName())){
-                    hasNA++;
-                }
-            }
-            for(int y = 0; y < SouthAmerica.size(); y++){
-                Country tt = SouthAmerica.get(y);
-                if(tt.getName().equals(pt.getName())){
-                    hasSA++;
-                }
-            }
-            for(int y = 0; y < Europe.size(); y++){
-                Country tt = Europe.get(y);
-                if(tt.getName().equals(pt.getName())){
-                    hasE++;
-                }
-            }
-            for(int y = 0; y < Asia.size(); y++){
-                Country tt = Asia.get(y);
-                if(tt.getName().equals(pt.getName())){
-                    hasA++;
-                }
-            }
-            for(int y = 0; y < Africa.size(); y++){
-                Country tt = Africa.get(y);
-                if(tt.getName().equals(pt.getName())){
-                    hasAF++;
-                }
-            }
-            for(int y = 0; y < Australia.size(); y++){
-                Country tt = Australia.get(y);
-                if(tt.getName().equals(pt.getName())){
-                    hasAUS++;
-                }
-            }
-        }
+        ArrayList<Continents> continents = map.getContinents();
 
-        if(hasNA == 9){
-            bonus = bonus + 5;
-            System.out.println("You own North America thus get 5 additional reinforcement troops");
-        }
-        else if(hasSA == 4){
-            bonus = bonus + 2;
-            System.out.println("You own South America thus get 2 additional reinforcement troops");
-        }
-        else if(hasE == 7){
-            bonus = bonus + 5;
-            System.out.println("You own Europe thus get 5 additional reinforcement troops");
-        }
-        else if(hasAF == 6){
-            bonus = bonus + 3;
-            System.out.println("You own Africa thus get 3 additional reinforcement troops");
-        }
-        else if(hasA == 12){
-            bonus = bonus + 7;
-            System.out.println("You own Asia thus get 7 additional reinforcement troops");
-        }
-        else if(hasAUS == 4){
-            bonus = bonus + 2;
-            System.out.println("You own Australia thus get 2 additional reinforcement troops");
+        for(Continents t: continents){
+            boolean hasCountinent = true;
+            ArrayList<Country> temp2 = t.getCountriesInContinent();
+            for(Country t2: temp2){
+                if(!temp.contains(t2)){
+                    hasCountinent = false;
+                }
+            }
+            if(hasCountinent){
+                System.out.println("You own " + t.getName());
+                bonus = bonus + t.getBonus();
+            }
         }
 
         return bonus;

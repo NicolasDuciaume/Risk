@@ -1,5 +1,17 @@
 {
 	"File": "/RiskMile4/src/View/AmongUsMap.jpg",
+	"PlayerLabel": [
+		39,
+		693,
+		227,
+		57
+	],
+	"EndButton": [
+		1162,
+		673,
+		191,
+		71
+	],
 	"Buttons": [
 		{
 			"Name": "UpperEngine",

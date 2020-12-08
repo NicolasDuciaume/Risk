@@ -74,7 +74,6 @@ public class SelectPlayerController implements ActionListener {
         }
 
         selectPlayerMenu.setVisible(false);
-        //model.populate(cust.isCustom());
         view.dispose();
         if(!cust.equals("")){
             try {

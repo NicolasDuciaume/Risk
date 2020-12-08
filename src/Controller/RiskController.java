@@ -13,7 +13,6 @@ import java.awt.event.ActionListener;
 public class RiskController implements ActionListener {
 
     private RiskModel model;
-    private Custom custom;
     private RiskView view;
     private String t = "";
 
@@ -26,7 +25,7 @@ public class RiskController implements ActionListener {
     public RiskController(RiskModel model,RiskView view){
         this.model = model;
         this.view = view;
-        custom = new Custom();
+
 
         view.addActionListener(this);
     }
