@@ -6,8 +6,10 @@ package Controller;
 
 import Model.*;
 import View.*;
+import org.xml.sax.SAXException;
 
 import javax.swing.*;
+import javax.xml.parsers.ParserConfigurationException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -78,14 +80,14 @@ public class SelectPlayerController implements ActionListener {
         if(!cust.equals("")){
             try {
                 new GameView(model, cust);
-            } catch (IOException ioException) {
+            } catch (IOException | ParserConfigurationException | SAXException ioException) {
                 ioException.printStackTrace();
             }
         }
         else{
             try {
                 new GameView(model, "/RiskMile4/src/View/testRisk.json");
-            } catch (IOException ioException) {
+            } catch (IOException | ParserConfigurationException | SAXException ioException) {
                 ioException.printStackTrace();
             }
         }

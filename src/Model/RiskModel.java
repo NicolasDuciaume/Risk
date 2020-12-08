@@ -21,12 +21,6 @@ public class RiskModel {
     private int numOfCountries;
 
     private ArrayList<Country> fullMap;
-    private ArrayList<Country> NorthAmerica;
-    private ArrayList<Country> SouthAmerica;
-    private ArrayList<Country> Europe;
-    private ArrayList<Country> Africa;
-    private ArrayList<Country> Asia;
-    private ArrayList<Country> Australia;
 
     /**
      * The default constructor of the Game class
@@ -34,14 +28,7 @@ public class RiskModel {
     public RiskModel(){
         parser = new Parser();
         map = new Map();
-        //NorthAmerica = map.getNorthAmerica();
-        //SouthAmerica = map.getSouthAmerica();
-       // Europe = map.getEurope();
-        //Africa = map.getAfrica();
-        //Asia = map.getAsia();
-        //Australia = map.getAustralia();
         fullMap = new ArrayList<Country>();
-        //fullMap = map.getCompleteGameMap();
         dice = new Dice();
     }
 

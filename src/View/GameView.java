@@ -9,6 +9,9 @@ import Model.Map;
 import Model.RiskModel;
 
 import javax.swing.*;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -19,6 +22,8 @@ import java.io.File;
 import org.apache.commons.io.FileUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.w3c.dom.*;
+import org.xml.sax.SAXException;
 
 @SuppressWarnings("serial")
 public class GameView extends JFrame {
@@ -40,7 +45,7 @@ public class GameView extends JFrame {
 	private ArrayList<JButton> completeGameMap;
 	private String t;
 
-	public GameView(RiskModel model, String t) throws IOException {
+	public GameView(RiskModel model, String t) throws IOException, ParserConfigurationException, SAXException {
 		super("Risk");
 		this.model = model;
 		this.t = t;
@@ -51,7 +56,13 @@ public class GameView extends JFrame {
 
 		completeGameMap = new ArrayList<>();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		add(game());
+		if(t.substring(t.length() - 4, t.length()).equals("json")){
+			add(game());
+		}
+		else if(t.substring(t.length() - 3, t.length()).equals("xml")){
+			add(gameXML());
+		}
+
 
 		setLocationRelativeTo(null);
 		// setPreferredSize(new Dimension(500,600));
@@ -167,6 +178,116 @@ public class GameView extends JFrame {
 
 		return Game;
 	}
+
+	private JPanel gameXML() throws IOException, ParserConfigurationException, SAXException {
+		Game = new JPanel();
+		Game.setLayout(new GridLayout(1, 1, 5, 5));
+		File file = new File(t);
+		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+		DocumentBuilder db = dbf.newDocumentBuilder();
+		Document doc = db.parse(file);
+		doc.getDocumentElement().normalize();
+
+		String maploc = doc.getElementsByTagName("File").item(0).getTextContent();
+		map = new ImageIcon(maploc);
+		mapLabel = new JLabel(map);
+		mapLabel.setLayout(null);
+		command = new JLabel("Press your owned country to select command", JLabel.CENTER);
+		command.setFont(new Font("Serif", Font.BOLD, 20));
+		play = new JLabel("Player 1", JLabel.CENTER);
+		play.setFont(new Font("Serif", Font.BOLD, 20));
+		String labelbounds = doc.getElementsByTagName("PlayerLabel").item(0).getTextContent();
+		String[] strings = labelbounds.split("-");
+		play.setBounds(Integer.parseInt(strings[0]), Integer.parseInt(strings[1]), Integer.parseInt(strings[2]), Integer.parseInt(strings[3]));
+		play.setForeground(Color.RED);
+		endTurn = new JButton("End Turn");
+		endTurn.setActionCommand("EndTurn");
+
+		NodeList nodeList = doc.getElementsByTagName("Buttons");
+		for(int itr = 0; itr < nodeList.getLength(); itr++){
+			Node node = nodeList.item(itr);
+			ArrayList<String> www2 = new ArrayList<>();
+			if (node.getNodeType() == Node.ELEMENT_NODE)
+			{
+				Element eElement = (Element) node;
+				String name = eElement.getElementsByTagName("Name").item(0).getTextContent();
+				String xloc = eElement.getElementsByTagName("XLoc").item(0).getTextContent();
+				String yloc = eElement.getElementsByTagName("YLoc").item(0).getTextContent();
+				String hloc = eElement.getElementsByTagName("HLoc").item(0).getTextContent();
+				String wloc = eElement.getElementsByTagName("WLoc").item(0).getTextContent();
+				String neighborsTemp = eElement.getElementsByTagName("Neighbors").item(0).getTextContent();
+
+				JButton temp = new JButton("");
+				setButtons(temp,Integer.parseInt(xloc),Integer.parseInt(yloc),Integer.parseInt(wloc),Integer.parseInt(hloc));
+				temp.setActionCommand(name);
+				countries.add(name);
+				completeGameMap.add(temp);
+				if(neighborsTemp.equals("")){
+					JOptionPane.showMessageDialog(this,"Countries do not have Neighbors");
+					System.exit(0);
+				}
+				else{
+					String[] neighborsArray = neighborsTemp.split("-");
+					for(String s: neighborsArray){
+						www2.add(s);
+					}
+				}
+				mapping.addToMap(name,www2);
+
+			}
+		}
+
+		mapping.SetNeighbors();
+		model.setFullMap();
+		model.populate();
+
+
+
+		NodeList nodeList2 = doc.getElementsByTagName("Continents");
+		for(int itr = 0; itr < nodeList.getLength(); itr++) {
+			Node node = nodeList2.item(itr);
+			ArrayList<String> countriesInContinent = new ArrayList<>();
+			if(node != null){
+				if (node.getNodeType() == Node.ELEMENT_NODE){
+					Element eElement = (Element) node;
+					String name = eElement.getElementsByTagName("Name").item(0).getTextContent();
+					String bonus = eElement.getElementsByTagName("Bonus").item(0).getTextContent();
+					String CountriesInCont = eElement.getElementsByTagName("Name").item(0).getTextContent();
+					String[] C = CountriesInCont.split("-");
+					for (String s: C){
+						countriesInContinent.add(s);
+					}
+					mapping.addContinents(name,countriesInContinent,Integer.parseInt(bonus));
+				}
+			}
+		}
+
+
+		String endbounds = doc.getElementsByTagName("EndButton").item(0).getTextContent();
+		String[] endButton = endbounds.split("-");
+
+		endTurn.setBounds(Integer.parseInt(endButton[0]), Integer.parseInt(endButton[1]), Integer.parseInt(endButton[2]), Integer.parseInt(endButton[3]));
+		mapLabel.add(endTurn);
+		mapLabel.add(play);
+
+
+		updateMap();
+
+
+
+		command.setBounds(520, 19, 419, 59);
+		mapLabel.add(command);
+
+		//mapScrollPane = new JScrollPane(mapLabel);
+		//mapScrollPane.setPreferredSize(new Dimension(1610, 960));
+
+		Game.add(mapLabel);
+
+		model.play();
+
+		return Game;
+	}
+
 
 	/**
 	 * The method responsible for setting up the game buttons
