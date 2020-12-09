@@ -45,7 +45,7 @@ There is 2 known issues that effect the funcitonality of the Risk game. The Risk
 - If the image does not load you have to add the specified directory of the image to the json or xml under "File".
     i.e. for the normal game it will be in testRisk.json seeing that it what is loaded for a default game 
 - At the movement phase we were only able to add in the adjacent tiles and not the paths because of a lack of understanding of recursion in java thus will have to investigate this further
-
+- For whatever reason If executing the jar on its own, the filepath for the maps will not work because the directories change when creating a jar file thus jar must be kept within the source directory to be launched and work correctly
 # Usage of Custom games
 
 To play a custom game you must enter the file path of where the json or xml file is stored thus you would enter
