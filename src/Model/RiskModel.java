@@ -35,18 +35,33 @@ public class RiskModel implements Serializable{
         dice = new Dice();
     }
 
+    /**
+     * This function sets the string which contains the file to load the map from
+     * @param cust - the string of the file location to load the map
+     */
     public void setCustom(String cust){
         custom = cust;
     }
 
+    /**
+     * This function gets the string which contains the file to load the map from
+     * @return the string of the file location to load the map
+     */
     public String getCustom(){
         return custom;
     }
 
+    /**
+     * This function gets the map of the game
+     * @return the map of the game
+     */
     public Map getMap(){
         return map;
     }
 
+    /**
+     * This function sets the full map of the game
+     */
     public void setFullMap(){
         fullMap = map.getCompleteGameMap();
         numOfCountries = fullMap.size();
@@ -480,6 +495,10 @@ public class RiskModel implements Serializable{
 
     }
 
+    /**
+     * This function returns the current player
+     * @return current player
+     */
     public Player getCurrentPlayer(){
         return currentPlayer;
     }
@@ -538,7 +557,10 @@ public class RiskModel implements Serializable{
 
         return bonus;
     }
-
+    /**
+     * This function saves the current game to a file
+     * @param fileName - the name of the file to save to
+     */
     public void save(String fileName){
         try{
             FileOutputStream fileOutputStream = new FileOutputStream(fileName);
@@ -552,6 +574,11 @@ public class RiskModel implements Serializable{
         }
     }
 
+    /**
+     * This function loads a saved game
+     * @param fileName - the name of the file to load from
+     * @return the model saved
+     */
     public static RiskModel load(String fileName){
         RiskModel riskModel = null;
         try{
@@ -570,41 +597,6 @@ public class RiskModel implements Serializable{
      * The main  function that runs the game
      */
     public static void main(String[] args) throws IOException{
-        //RiskModel game = new RiskModel();
-        //game.play();
-        /*game.playersInGame = new ArrayList<>();
-        game.playersInGame.add(new Player("Derrick"));
-
-        System.out.println(game.playersInGame.get(0).getName());
-
-
-
-        //Testing serialization
-        game.save("Test.txt");
-
-        //Testing deserialization
-        RiskModel newModel = RiskModel.load("Test.txt");
-
-        System.out.println(newModel.playersInGame.get(0).getName());
-
-        //Testing FileFilter
-
-        File f = new File(System.getProperty("user.dir"));
-        FilenameFilter filterFiles = new FilenameFilter() {
-            @Override
-            public boolean accept(File dir, String name) {
-                return name.toLowerCase(Locale.ROOT).endsWith(".txt");
-            }
-        };
-        File[] files = f.listFiles(filterFiles);
-        for(File file : files){
-            if(file.isDirectory()){
-                System.out.print("directory:");
-            }else{
-                System.out.print("     file:");
-            }
-            System.out.println(file.getCanonicalPath());
-        }*/
 
     }
 }

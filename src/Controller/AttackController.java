@@ -11,6 +11,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 public class AttackController implements ActionListener {
 
     private AttackView attack;
@@ -32,7 +33,13 @@ public class AttackController implements ActionListener {
     private int numDAtt;
     private int numDDef;
 
-
+    /**
+     * The constructor with two parameters for the GameController class
+     * @param attack the view class of the attack
+     * @param model the model class
+     * @param view the view class
+     * @param Country the string of the country attacking
+     */
     public AttackController(AttackView attack, RiskModel model, GameView view, String Country){
         this.attack = attack;
         this.model = model;
@@ -142,7 +149,9 @@ public class AttackController implements ActionListener {
     }
 
 
-
+    /**
+     * The action listener for the class
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
 

@@ -21,6 +21,10 @@ public class AttackView extends JDialog{
     private JComboBox defendBox;
     private JButton attackBT;
 
+    /**
+     * The default constructor for the attackView class
+     * @param main - the main view of the game
+     */
     public AttackView(GameView main){
         super(main);
         setTitle("Attack Menu");
@@ -67,17 +71,30 @@ public class AttackView extends JDialog{
 
     }
 
+    /**
+     * This function returns the combo box of the country you wish to attack
+     * @return combo box of enemies
+     */
     public JComboBox getComboBox(){
         return comboBox;
     }
 
+    /**
+     * This function returns the combo box of the amount of dice the attacker wants
+     * @return combo box of amount of dice
+     */
     public JComboBox getAttackBox() {
         return attackBox;
     }
 
+    /**
+     * This function returns the combo box of the amount of dice the defender wants
+     * @return combo box of amount of dice
+     */
     public JComboBox getDefendBox() {
         return defendBox;
     }
+
 
     public JLabel getAttackLabel2() {
         return attackLabel2;
@@ -92,6 +109,11 @@ public class AttackView extends JDialog{
         return attackLabel5;
     }
 
+    /**
+     * The acitonListener for the class
+     *
+     * @param listener the action listener
+     */
     public void addActionListeners(ActionListener listener){
         comboBox.addActionListener(listener);
         attackBT.addActionListener(listener);

@@ -18,6 +18,10 @@ public class Reinforcements extends JDialog{
 
     private JButton reinforceBT;
 
+    /**
+     * The default constructor for the Reinforcements class
+     * @param main - the main view of the game
+     */
     public Reinforcements(GameView main){
         super(main);
         setTitle("Reinforcements Menu");
@@ -55,23 +59,44 @@ public class Reinforcements extends JDialog{
 
     }
 
+    /**
+     * The acitonListener for the class
+     *
+     * @param listener the action listener
+     */
     public void addActionListeners(ActionListener listener){
         comboBox2.addActionListener(listener);
         reinforceBT.addActionListener(listener);
     }
 
+    /**
+     * This function returns the label that says how many troops you can move left
+     * @return label of amount of troops to move
+     */
     public JLabel getLabel(){
         return reinforcementsLabel2;
     }
 
+    /**
+     * This function returns the jpanel for the reinforcement
+     * @return JPanel for the reinforcments
+     */
     public JPanel getReinforcements() {
         return reinforcements;
     }
 
+    /**
+     * This function returns the combo box of the name of countries you own that you can reinforce
+     * @return combo box of names of countries you own
+     */
     public JComboBox getComboBox() {
         return comboBox;
     }
 
+    /**
+     * This function returns the combo box of the amount of troops you want to send to the specified country
+     * @return combo box of number of troops you want to send
+     */
     public JComboBox getComboBox2() {
         return comboBox2;
     }

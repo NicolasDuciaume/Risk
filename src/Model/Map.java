@@ -24,13 +24,21 @@ public class Map implements Serializable {
         continents = new ArrayList<>();
     }
 
-
+    /**
+     * This function adds a country to the map
+     * @param t - string containing the name
+     * @param neighborsString - array of string of neighbors names to be set in the country for later addition
+     */
 	public void addToMap(String t, ArrayList<String> neighborsString){
 	    Country temp = new Country(t);
 	    temp.setStringOfNeighbors(neighborsString);
 	    completeGameMap.add(temp);
     }
 
+    /**
+     * This function adds the neighbors of the countries in the map by using there array of strings of neighbors
+     * @return boolean value for if the map is valid
+     */
     public boolean SetNeighbors(){
 	    for(Country c: completeGameMap){
 	        ArrayList<String> neighbString = c.getStringOfNeighbors();
@@ -45,6 +53,10 @@ public class Map implements Serializable {
 	    return checkInvalid();
     }
 
+    /**
+     * This function checks to see if the map is valid
+     * @return boolean value for if the map is valid
+     */
     public boolean checkInvalid(){
         for(Country c: completeGameMap){
             if(c.getNeighbors().isEmpty()){
@@ -61,11 +73,20 @@ public class Map implements Serializable {
     }
 
 
-
+    /**
+     * This function returns the continents in the map
+     * @return Array of continents within the map
+     */
     public ArrayList<Continents> getContinents() {
         return continents;
     }
 
+    /**
+     * This function adds Continents to the map
+     * @param name - the name of the continent
+     * @param t - the array of strings with the names of the countries in the continent
+     * @param bonus - the bonus troops you get for owning the continent
+     */
     public void addContinents(String name, ArrayList<String> t, int bonus){
         ArrayList<Country> temp = new ArrayList<>();
         for(String s: t){

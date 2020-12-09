@@ -22,12 +22,21 @@ public class LoadGameController implements ActionListener {
     private RiskModel model;
     private RiskView view;
 
+    /**
+     * The constructor with two parameters for the GameController class
+     * @param loadGameMenu the view class of the loading game menu
+     * @param model the moddel class
+     * @param view the view class
+     */
     public LoadGameController(LoadGameMenu loadGameMenu, RiskModel model, RiskView view){
         this.loadGameMenu = loadGameMenu;
         this.model = model;
         this.view = view;
     }
 
+    /**
+     * The action listener for the class
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("Load 1")){

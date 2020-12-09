@@ -1,7 +1,6 @@
 /*
 Author: Christopher D'silva
-Refactoring:
-Comments:
+Comments: Nicolas Duciaume
  */
 
 package View;
@@ -21,7 +20,10 @@ public class LoadGameMenu extends JDialog {
     private JPanel loadGameMenu;
     private JLabel loadGameMenuLabel;
     private JButton[] numOfSavedGames;
-
+    /**
+     * The default constructor for the LoadGameMenu class
+     * @param main - the main view of the game
+     */
     public LoadGameMenu(RiskView main) throws IOException {
         super(main);
         setTitle("Load Game Menu");
@@ -81,6 +83,11 @@ public class LoadGameMenu extends JDialog {
         setLocationRelativeTo(null);
     }
 
+    /**
+     * The acitonListener for the class
+     *
+     * @param listener the action listener
+     */
     public void addActionListeners(ActionListener listener){
         for(int i = 0; i < numOfSavedGames.length; i++){
             numOfSavedGames[i].addActionListener(listener);

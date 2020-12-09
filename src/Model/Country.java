@@ -30,10 +30,17 @@ public class Country implements Serializable {
         armiesOnCountry = 0;
     }
 
+    /**
+     * This function gets array of strings of the name of the neighboring countries to be added as neighbors later
+     * @return the array of strings containing the names of the neighbors
+     */
     public ArrayList<String> getStringOfNeighbors(){
         return stringOfNeighbors;
     }
-
+    /**
+     * This function sets array of strings of the name of the neighboring countries to be added as neighbors later
+     * @param t - The array of strings of the names of the neighboring country
+     */
     public void setStringOfNeighbors(ArrayList<String> t){
         stringOfNeighbors = t;
     }

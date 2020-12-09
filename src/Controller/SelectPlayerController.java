@@ -27,6 +27,7 @@ public class SelectPlayerController implements ActionListener {
      * @param selectPlayerMenu the player menu
      * @param model the game model
      * @param view the game view
+     * @param cust the string of file holding the map being used
      */
     public SelectPlayerController(SelectPlayerMenu selectPlayerMenu, RiskModel model, RiskView view, String cust){
         this.selectPlayerMenu = selectPlayerMenu;

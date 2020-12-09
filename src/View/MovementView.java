@@ -22,6 +22,10 @@ public class MovementView extends JDialog{
     private JButton moveBT;
     private JButton cancelBT;
 
+    /**
+     * The default constructor for the MovementView class
+     * @param main - the main view of the game
+     */
     public MovementView(GameView main){
         super(main);
         setTitle("Movement Menu");
@@ -77,18 +81,35 @@ public class MovementView extends JDialog{
 
     }
 
+    /**
+     * This function returns the combo box of the name of the country you want to move troop from
+     * @return combo box of name of countries owned
+     */
     public JComboBox getComboBox(){
         return comboBox;
     }
 
+    /**
+     * This function returns the combo box of the name of the country you want to move troop to
+     * @return combo box of name of countries owned
+     */
     public JComboBox getMoveBox() {
         return moveBox;
     }
 
+    /**
+     * This function returns the combo box of the amount of troops you want to move
+     * @return combo box of number of troops you want to move
+     */
     public JComboBox getNumber() {
         return number;
     }
 
+    /**
+     * The acitonListener for the class
+     *
+     * @param listener the action listener
+     */
     public void addActionListeners(ActionListener listener){
         comboBox.addActionListener(listener);
         moveBT.addActionListener(listener);

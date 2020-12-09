@@ -53,14 +53,25 @@ public class Player implements Serializable {
         numberOfArmiesToMove = armies;
     }
 
+    /**
+     * This function sets if the player has done his reinforcements
+     * @param t - The boolean value of if the player has done his reinforcements
+     */
     public void setReinforced(Boolean t){
         reinforced = t;
     }
 
+    /**
+     * This function returns if the player has done his reinforcements
+     * @return boolean value of if the player has done his reinforcements
+     */
     public Boolean getReinforced(){
         return reinforced;
     }
-
+    /**
+     * This function sets the armies
+     * @param arm - the number of armies
+     */
     public void setArmies(int arm){
         armies = armies + arm;
     }

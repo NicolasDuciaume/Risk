@@ -25,6 +25,12 @@ public class ReinforcementsController implements ActionListener {
     private JComboBox comboBox2;
     private int s = 1;
 
+    /**
+     * The constructor with two parameters for the GameController class
+     * @param reinforcements the view class of the reinforcement view
+     * @param model the moddel class
+     * @param view the view class
+     */
     public ReinforcementsController(Reinforcements reinforcements, RiskModel model, GameView view){
         this.reinforcements = reinforcements;
         this.model = model;
@@ -46,6 +52,10 @@ public class ReinforcementsController implements ActionListener {
         }
     }
 
+
+    /**
+     * The action listener for the class
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("Reinforce!")){

@@ -47,6 +47,12 @@ public class GameView extends JFrame {
 	private ArrayList<JButton> completeGameMap;
 	private String t;
 
+	/**
+	 * The default constructor for the GameView class
+	 * @param model - the model of the game
+	 * @param t - the directory of the map file
+	 * @param saved - boolean value of if the game is loading from a saved game
+	 */
 	public GameView(RiskModel model, String t, boolean saved) throws IOException, ParserConfigurationException, SAXException {
 		super("Risk");
 		this.model = model;
@@ -81,7 +87,7 @@ public class GameView extends JFrame {
 	}
 
 	/**
-	 * The method responsible for setting up the GUI for the game
+	 * The method responsible for setting up the GUI for the game if the map is in json format
 	 *
 	 * @return JPanel for the the GUI
 	 */
@@ -219,6 +225,11 @@ public class GameView extends JFrame {
 		return Game;
 	}
 
+	/**
+	 * The method responsible for setting up the GUI for the game if the map is in xml format
+	 *
+	 * @return JPanel for the the GUI
+	 */
 	private JPanel gameXML() throws IOException, ParserConfigurationException, SAXException {
 		Game = new JPanel();
 		Game.setLayout(new GridLayout(1, 1, 5, 5));
@@ -436,6 +447,11 @@ public class GameView extends JFrame {
 		}
 	}
 
+	/**
+	 * The acitonListener for the class
+	 *
+	 * @param listener the action listener
+	 */
 	public void addActionListener(ActionListener listener) {
 		for(int x = 0; x < completeGameMap.size(); x++){
 			completeGameMap.get(x).addActionListener(listener);

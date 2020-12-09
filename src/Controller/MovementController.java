@@ -28,6 +28,12 @@ public class MovementController implements ActionListener {
     private Country moveFrom;
     private Country moveTo;
 
+    /**
+     * The constructor with two parameters for the GameController class
+     * @param movement the view class of the movement view
+     * @param model the moddel class
+     * @param view the view class
+     */
     public MovementController(MovementView movement, RiskModel model, GameView view){
         this.movement = movement;
         this.model = model;
@@ -135,6 +141,9 @@ public class MovementController implements ActionListener {
 
     }
 
+    /**
+     * The action listener for the class
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == comboBox){
