@@ -77,6 +77,7 @@ public class GameView extends JFrame {
 	private JButton EAUS;
 
 	private JButton endTurn;
+	private JButton saveGame;
 
 	private RiskModel model;
 	private ArrayList<JButton> completeGameMap;
@@ -117,6 +118,8 @@ public class GameView extends JFrame {
 		play.setForeground(Color.RED);
 		endTurn = new JButton("End Turn");
 		endTurn.setActionCommand("EndTurn");
+		saveGame = new JButton("Save Game");
+		saveGame.setActionCommand("SaveGame");
 
 		// North America
 		NT = new JButton("");
@@ -221,6 +224,8 @@ public class GameView extends JFrame {
 		setButtons(EAUS, 1438, 631, 76, 165);
 
 		endTurn.setBounds(1077, 855, 131, 58);
+		saveGame.setBounds(1250, 855, 131, 58);
+		mapLabel.add(saveGame);
 		mapLabel.add(endTurn);
 		mapLabel.add(play);
 
@@ -448,6 +453,7 @@ public class GameView extends JFrame {
 		WAUS.addActionListener(listener);
 		EAUS.addActionListener(listener);
 		endTurn.addActionListener(listener);
+		saveGame.addActionListener(listener);
 
 	}
 }

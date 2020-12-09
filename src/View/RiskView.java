@@ -15,6 +15,7 @@ public class RiskView extends JFrame {
 
 	private JPanel mainMenuPL;
 	private JButton newGameBT;
+	private JButton loadGameBT;
 	private JButton quitBT;
 
 	/**
@@ -43,7 +44,7 @@ public class RiskView extends JFrame {
 		JPanel borderLayout = new JPanel(new GridBagLayout());
 		borderLayout.setBorder(new EmptyBorder(5, 5, 5, 5));
 		mainMenuPL = new JPanel();
-		mainMenuPL.setLayout(new GridLayout(6, 1, 5, 5));
+		mainMenuPL.setLayout(new GridLayout(7, 1, 5, 5));
 
 		JLabel label1 = new JLabel("Welcome to the game of RISK!", JLabel.CENTER);
 		label1.setFont(new Font("Serif", Font.BOLD, 20));
@@ -55,9 +56,11 @@ public class RiskView extends JFrame {
 				"Depending on the roll of the dice, a player will either defeat the enemy or be defeated.",
 				JLabel.CENTER);
 		newGameBT = new JButton("New Game");
+		loadGameBT = new JButton("Load Game");
 		quitBT = new JButton("Quit");
 
 		newGameBT.setActionCommand("newGame");
+		loadGameBT.setActionCommand("loadGame");
 		quitBT.setActionCommand("quit");
 
 		mainMenuPL.add(label1);
@@ -65,6 +68,7 @@ public class RiskView extends JFrame {
 		mainMenuPL.add(label3);
 		mainMenuPL.add(label4);
 		mainMenuPL.add(newGameBT);
+		mainMenuPL.add(loadGameBT);
 		mainMenuPL.add(quitBT);
 
 		borderLayout.add(mainMenuPL);
@@ -80,6 +84,7 @@ public class RiskView extends JFrame {
 	 */
 	public void addActionListener(ActionListener listener) {
 		newGameBT.addActionListener(listener);
+		loadGameBT.addActionListener(listener);
 		quitBT.addActionListener(listener);
 	}
 

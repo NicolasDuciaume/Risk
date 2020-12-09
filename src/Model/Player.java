@@ -5,12 +5,14 @@ Comments: Hussain Al-Baidhani
  */
 package Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * This class is responsible for creating an instance of player for the Risk game.
  */
-public class Player {
+public class Player implements Serializable {
+
 
     private String name;
     private int armies;

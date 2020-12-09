@@ -8,9 +8,10 @@ import View.GameView;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class AiPlayer extends Player {
+public class AiPlayer extends Player implements Serializable {
     private RiskModel model;
     private int numOfReinforcements = 0;
 

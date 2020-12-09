@@ -22,6 +22,8 @@ public class GameController implements ActionListener {
     private MovementView movementView;
     private AttackView attack;
 
+    public static int saveNum = 1;
+
     /**
      * The constructor with two parameters for the GameController class
      * @param model the moddel class
@@ -48,7 +50,18 @@ public class GameController implements ActionListener {
             movementView = new MovementView(this.view);
             movementView.addActionListeners(new MovementController(movementView,model,view));
             movementView.setVisible(true);
-
+        }else if(e.getActionCommand().equals("SaveGame")) {
+            //Model serialization
+            int decision = JOptionPane.showConfirmDialog(view,"Are you sure you would like to save this game?","Save Game",JOptionPane.YES_NO_OPTION);
+            if(decision == JOptionPane.YES_OPTION){
+                model.save("Risk " + saveNum +".txt");
+                saveNum++;
+                int continueDialog = JOptionPane.showConfirmDialog(view,"Would you like to continue playing and end the game here?","Continue",JOptionPane.YES_NO_OPTION);
+                if(continueDialog == JOptionPane.NO_OPTION){
+                   view.dispose();
+                   System.exit(0);
+                }
+            }
 
         }else if(e.getActionCommand().equals("Alaska")){
             if(model.isOwned("Alaska")){

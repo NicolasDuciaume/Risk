@@ -4,28 +4,31 @@ Refactoring: Kamran Sagheir & Hussain Al-Baidhani
 Comments: Hussain Al-Baidhani & Christopher D'silva
  */
 package Model;
+
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Random;
 /**
  * The model class of the Risk Game
  *
  */
-public class RiskModel {
+public class RiskModel implements Serializable{
 
     private ArrayList<Player> playersInGame = new ArrayList<Player>();
     private Player currentPlayer;
-    private Parser parser;
-    private int cur = 0;
+    private transient Parser parser;
+    private transient int cur = 0;
     public Map map;
-    private Dice dice;
+    private transient Dice dice;
 
     private ArrayList<Country> fullMap;
-    private ArrayList<Country> NorthAmerica;
-    private ArrayList<Country> SouthAmerica;
-    private ArrayList<Country> Europe;
-    private ArrayList<Country> Africa;
-    private ArrayList<Country> Asia;
-    private ArrayList<Country> Australia;
+    private transient ArrayList<Country> NorthAmerica;
+    private transient ArrayList<Country> SouthAmerica;
+    private transient ArrayList<Country> Europe;
+    private transient ArrayList<Country> Africa;
+    private transient ArrayList<Country> Asia;
+    private transient ArrayList<Country> Australia;
 
     /**
      * The default constructor of the Game class
@@ -798,11 +801,70 @@ public class RiskModel {
         return bonus;
     }
 
+    public void save(String fileName){
+        try{
+            FileOutputStream fileOutputStream = new FileOutputStream(fileName);
+            ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream);
+            outputStream.writeObject(this);
+            outputStream.close();
+            fileOutputStream.close();
+            System.out.println("Serialized data is saved");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public static RiskModel load(String fileName){
+        RiskModel riskModel = null;
+        try{
+            FileInputStream fileInputStream = new FileInputStream(fileName);
+            ObjectInputStream inputStream = new ObjectInputStream(fileInputStream);
+            riskModel = (RiskModel) inputStream.readObject();
+            inputStream.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return riskModel;
+    }
+
     /**
      * The main  function that runs the game
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         RiskModel game = new RiskModel();
-        game.play();
+        game.playersInGame = new ArrayList<>();
+        game.playersInGame.add(new Player("Derrick"));
+
+        System.out.println(game.playersInGame.get(0).getName());
+
+//        game.play();
+
+        //Testing serialization
+        game.save("Test.txt");
+
+        //Testing deserialization
+        RiskModel newModel = RiskModel.load("Test.txt");
+
+        System.out.println(newModel.playersInGame.get(0).getName());
+
+        //Testing FileFilter
+
+        File f = new File(System.getProperty("user.dir"));
+        FilenameFilter filterFiles = new FilenameFilter() {
+            @Override
+            public boolean accept(File dir, String name) {
+                return name.toLowerCase(Locale.ROOT).endsWith(".txt");
+            }
+        };
+        File[] files = f.listFiles(filterFiles);
+        for(File file : files){
+            if(file.isDirectory()){
+                System.out.print("directory:");
+            }else{
+                System.out.print("     file:");
+            }
+            System.out.println(file.getCanonicalPath());
+        }
+
     }
 }

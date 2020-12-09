@@ -5,12 +5,13 @@ Comments: Kamran Sagheir
  */
 package Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 /**
  * The class is responsible for creating the map of the game
  *
  */
-public class Map {
+public class Map implements Serializable {
 
     private Country Alaska, Alberta, CA, EUS, Greenland, NT, Ontario, Quebec, WUS;
     private Country Argentina, Brazil, Peru, Venezuela;

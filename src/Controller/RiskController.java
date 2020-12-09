@@ -8,6 +8,7 @@ import View.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class RiskController implements ActionListener {
 
@@ -15,6 +16,8 @@ public class RiskController implements ActionListener {
     private RiskView view;
 
     private SelectPlayerMenu selectPlayerMenu;
+    private LoadGameMenu loadGameMenu;
+
 	/**
 	 * The constructor with two parameters
 	 * @param model the game model
@@ -37,6 +40,17 @@ public class RiskController implements ActionListener {
             selectPlayerMenu = new SelectPlayerMenu(view);
             selectPlayerMenu.addActionListeners(new SelectPlayerController(selectPlayerMenu,model,view));
             selectPlayerMenu.setVisible(true);
+
+        }else if(e.getActionCommand().equals("loadGame")){
+            System.out.println("Loading Game");
+            try {
+                loadGameMenu = new LoadGameMenu(view);
+                loadGameMenu.addActionListeners(new LoadGameController());
+                loadGameMenu.setVisible(true);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+
 
         }else if(e.getActionCommand().equals("quit")){
             System.out.println("Quitting game");
