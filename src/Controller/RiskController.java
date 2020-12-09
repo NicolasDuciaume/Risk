@@ -9,6 +9,7 @@ import View.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class RiskController implements ActionListener {
 
@@ -17,6 +18,7 @@ public class RiskController implements ActionListener {
     private String t = "";
 
     private SelectPlayerMenu selectPlayerMenu;
+    private LoadGameMenu loadGameMenu;
     /**
      * The constructor with two parameters
      * @param model the game model
@@ -44,6 +46,17 @@ public class RiskController implements ActionListener {
         }else if(e.getActionCommand().equals("quit")){
             System.out.println("Quitting game");
             System.exit(0);
+        }else if(e.getActionCommand().equals("loadGame")){
+            System.out.println("Loading Game");
+
+            try {
+                loadGameMenu = new LoadGameMenu(view);
+                loadGameMenu.addActionListeners(new LoadGameController(loadGameMenu,model,view));
+                loadGameMenu.setVisible(true);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+
         }
         else if(e.getActionCommand().equals("CUSTOM")){
             JTextField a = new JTextField("Enter custom map Directory");

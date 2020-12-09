@@ -6,12 +6,13 @@ Comments: Hussain Al-Baidhani
 package Model;
 
 import java.util.ArrayList;
+import java.io.Serializable;
 /**
  * This class is responsible for dealing with the data
  * belonging to the class, country.
  *
  */
-public class Country {
+public class Country implements Serializable {
 
     private String name;
     private ArrayList<Country> neighbors;

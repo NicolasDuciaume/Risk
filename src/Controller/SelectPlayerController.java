@@ -79,14 +79,15 @@ public class SelectPlayerController implements ActionListener {
         view.dispose();
         if(!cust.equals("")){
             try {
-                new GameView(model, cust);
+                model.setCustom(cust);
+                new GameView(model, cust, false);
             } catch (IOException | ParserConfigurationException | SAXException ioException) {
                 ioException.printStackTrace();
             }
         }
         else{
             try {
-                new GameView(model, "/RiskMile4/src/View/testRisk.json");
+                new GameView(model, model.getCustom(), false);
             } catch (IOException | ParserConfigurationException | SAXException ioException) {
                 ioException.printStackTrace();
             }

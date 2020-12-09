@@ -5,18 +5,20 @@ Comments: Hussain Al-Baidhani
  */
 package Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * This class is responsible for creating an instance of player for the Risk game.
  */
-public class Player {
+public class Player implements Serializable {
 
     private String name;
     private int armies;
     private int numberOfArmiesToMove;
     private ArrayList<Country> placedArmies;
     private boolean moved = false;
+    private boolean reinforced = false;
     /**
      * Model.Player constructor with one parameter.
      * @param name the name of the player
@@ -49,6 +51,14 @@ public class Player {
     public void setInitArmies(int armies) {
         this.armies = armies;
         numberOfArmiesToMove = armies;
+    }
+
+    public void setReinforced(Boolean t){
+        reinforced = t;
+    }
+
+    public Boolean getReinforced(){
+        return reinforced;
     }
 
     public void setArmies(int arm){

@@ -36,6 +36,8 @@ public class GameView extends JFrame {
 	private JLabel command;
 	private JLabel play;
 	private Map mapping;
+	private JButton saveGame;
+	private boolean saved;
 
 	private ArrayList<String> countries;
 
@@ -45,10 +47,11 @@ public class GameView extends JFrame {
 	private ArrayList<JButton> completeGameMap;
 	private String t;
 
-	public GameView(RiskModel model, String t) throws IOException, ParserConfigurationException, SAXException {
+	public GameView(RiskModel model, String t, boolean saved) throws IOException, ParserConfigurationException, SAXException {
 		super("Risk");
 		this.model = model;
 		this.t = t;
+		this.saved = saved;
 		System.out.println(t);
 		mapping = model.getMap();
 
@@ -61,6 +64,10 @@ public class GameView extends JFrame {
 		}
 		else if(t.substring(t.length() - 3, t.length()).equals("xml")){
 			add(gameXML());
+		}
+		else{
+			JOptionPane.showMessageDialog(this,"WrongFile type");
+			System.exit(0);
 		}
 
 
@@ -81,8 +88,16 @@ public class GameView extends JFrame {
 	private JPanel game() throws IOException {
 		Game = new JPanel();
 		Game.setLayout(new GridLayout(1, 1, 5, 5));
-		File file = new File(t);
-		String content = FileUtils.readFileToString(file, "utf-8");
+		//File file = new File(t);
+		String content = "";
+		try{
+			File file = new File(t);
+			content = FileUtils.readFileToString(file, "utf-8");
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(this,"File Does not exist");
+			System.exit(0);
+			e.printStackTrace();
+		}
 		JSONObject tomJsonObject = new JSONObject(content);
 		String maploc = tomJsonObject.getString("File");
 		map = new ImageIcon(maploc);
@@ -99,6 +114,9 @@ public class GameView extends JFrame {
 		}
 		play.setBounds(b[0], b[1], b[2], b[3]);
 		play.setForeground(Color.RED);
+		if(saved){
+			updateTurn(model.getCurrentPlayerName());
+		}
 		endTurn = new JButton("End Turn");
 		endTurn.setActionCommand("EndTurn");
 
@@ -130,12 +148,20 @@ public class GameView extends JFrame {
 					www.add((String) neighbors.get(x));
 				}
 			}
-			mapping.addToMap(name,www);
+			if(!saved){
+				mapping.addToMap(name,www);
+			}
 		}
 
-		mapping.SetNeighbors();
-		model.setFullMap();
-		model.populate();
+		if(!saved){
+			boolean x = mapping.SetNeighbors();
+			if(x){
+				JOptionPane.showMessageDialog(this,"Countries do not have Neighbors");
+				System.exit(0);
+			}
+			model.setFullMap();
+			model.populate();
+		}
 
 		if(tomJsonObject.has("Continents")){
 			JSONArray ContinentsJson = tomJsonObject.getJSONArray("Continents");
@@ -148,7 +174,9 @@ public class GameView extends JFrame {
 				for (int x = 0; x < count.length(); x++) {
 					countriesInContinent.add((String) count.get(x));
 				}
-				mapping.addContinents(name,countriesInContinent,bonus);
+				if(!saved){
+					mapping.addContinents(name,countriesInContinent,bonus);
+				}
 			}
 		}
 
@@ -158,6 +186,16 @@ public class GameView extends JFrame {
 		}
 
 		endTurn.setBounds(b[0], b[1], b[2], b[3]);
+
+		JSONArray saveBounds = tomJsonObject.getJSONArray("SaveButton");
+		for(int z = 0; z < saveBounds.length(); z++){
+			b[z] = saveBounds.getInt(z);
+		}
+
+		saveGame = new JButton("Save Game");
+		saveGame.setActionCommand("SaveGame");
+		saveGame.setBounds(b[0], b[1], b[2], b[3]);
+		mapLabel.add(saveGame);
 		mapLabel.add(endTurn);
 		mapLabel.add(play);
 
@@ -174,7 +212,9 @@ public class GameView extends JFrame {
 
 		Game.add(mapLabel);
 
-		model.play();
+		if(!saved){
+			model.play();
+		}
 
 		return Game;
 	}
@@ -182,6 +222,13 @@ public class GameView extends JFrame {
 	private JPanel gameXML() throws IOException, ParserConfigurationException, SAXException {
 		Game = new JPanel();
 		Game.setLayout(new GridLayout(1, 1, 5, 5));
+		try{
+			File file = new File(t);
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(this,"File Does not exist");
+			System.exit(0);
+			e.printStackTrace();
+		}
 		File file = new File(t);
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		DocumentBuilder db = dbf.newDocumentBuilder();
@@ -200,6 +247,9 @@ public class GameView extends JFrame {
 		String[] strings = labelbounds.split("-");
 		play.setBounds(Integer.parseInt(strings[0]), Integer.parseInt(strings[1]), Integer.parseInt(strings[2]), Integer.parseInt(strings[3]));
 		play.setForeground(Color.RED);
+		if(saved){
+			updateTurn(model.getCurrentPlayerName());
+		}
 		endTurn = new JButton("End Turn");
 		endTurn.setActionCommand("EndTurn");
 
@@ -232,14 +282,22 @@ public class GameView extends JFrame {
 						www2.add(s);
 					}
 				}
-				mapping.addToMap(name,www2);
+				if(!saved){
+					mapping.addToMap(name,www2);
+				}
 
 			}
 		}
 
-		mapping.SetNeighbors();
-		model.setFullMap();
-		model.populate();
+		if(!saved){
+			boolean x = mapping.SetNeighbors();
+			if(x){
+				JOptionPane.showMessageDialog(this,"A Country does not have Neighbors");
+				System.exit(0);
+			}
+			model.setFullMap();
+			model.populate();
+		}
 
 
 
@@ -257,7 +315,9 @@ public class GameView extends JFrame {
 					for (String s: C){
 						countriesInContinent.add(s);
 					}
-					mapping.addContinents(name,countriesInContinent,Integer.parseInt(bonus));
+					if(!saved){
+						mapping.addContinents(name,countriesInContinent,Integer.parseInt(bonus));
+					}
 				}
 			}
 		}
@@ -267,6 +327,14 @@ public class GameView extends JFrame {
 		String[] endButton = endbounds.split("-");
 
 		endTurn.setBounds(Integer.parseInt(endButton[0]), Integer.parseInt(endButton[1]), Integer.parseInt(endButton[2]), Integer.parseInt(endButton[3]));
+
+		String savebounds = doc.getElementsByTagName("SaveButton").item(0).getTextContent();
+		String[] saveButton = savebounds.split("-");
+
+		saveGame = new JButton("Save Game");
+		saveGame.setActionCommand("SaveGame");
+		saveGame.setBounds(Integer.parseInt(saveButton[0]), Integer.parseInt(saveButton[1]), Integer.parseInt(saveButton[2]), Integer.parseInt(saveButton[3]));
+		mapLabel.add(saveGame);
 		mapLabel.add(endTurn);
 		mapLabel.add(play);
 
@@ -283,7 +351,9 @@ public class GameView extends JFrame {
 
 		Game.add(mapLabel);
 
-		model.play();
+		if(!saved){
+			model.play();
+		}
 
 		return Game;
 	}
@@ -370,6 +440,7 @@ public class GameView extends JFrame {
 		for(int x = 0; x < completeGameMap.size(); x++){
 			completeGameMap.get(x).addActionListener(listener);
 		}
+		saveGame.addActionListener(listener);
 		endTurn.addActionListener(listener);
 
 	}

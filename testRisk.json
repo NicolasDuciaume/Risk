@@ -12,6 +12,12 @@
 		131,
 		58
 	],
+	"SaveButton": [
+		1250,
+		855,
+		131,
+		58
+	],
 	"Continents": [
 		{
 			"Name": "Africa",

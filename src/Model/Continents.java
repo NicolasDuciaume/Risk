@@ -1,8 +1,9 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Continents {
+public class Continents implements Serializable {
     private ArrayList<Country> CountriesInContinent;
     private String name;
     private int bonus;

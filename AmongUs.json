@@ -1,14 +1,20 @@
 {
 	"File": "/RiskMile4/src/View/AmongUsMap.jpg",
 	"PlayerLabel": [
-		39,
-		693,
-		227,
-		57
+		357,
+		38,
+		185,
+		48
 	],
 	"EndButton": [
 		1162,
 		673,
+		191,
+		71
+	],
+	"SaveButton": [
+		55,
+		672,
 		191,
 		71
 	],

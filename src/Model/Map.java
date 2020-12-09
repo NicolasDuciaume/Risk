@@ -5,12 +5,13 @@ Comments: Kamran Sagheir
  */
 package Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 /**
  * The class is responsible for creating the map of the game
  *
  */
-public class Map {
+public class Map implements Serializable {
 
 
     private ArrayList<Country> completeGameMap;
@@ -21,7 +22,6 @@ public class Map {
     public Map(){
         completeGameMap = new ArrayList<Country>();
         continents = new ArrayList<>();
-
     }
 
 
@@ -31,7 +31,7 @@ public class Map {
 	    completeGameMap.add(temp);
     }
 
-    public void SetNeighbors(){
+    public boolean SetNeighbors(){
 	    for(Country c: completeGameMap){
 	        ArrayList<String> neighbString = c.getStringOfNeighbors();
 	        for(String s: neighbString){
@@ -42,7 +42,25 @@ public class Map {
                 }
             }
         }
+	    return checkInvalid();
     }
+
+    public boolean checkInvalid(){
+        for(Country c: completeGameMap){
+            if(c.getNeighbors().isEmpty()){
+                return true;
+            }
+            else if(c.getNeighbors().size() == 1){
+                Country temp = c.getNeighbors().get(0);
+                if((temp.getNeighbors().size() == 1) && (temp.getNeighbors().get(0) == c)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
 
     public ArrayList<Continents> getContinents() {
         return continents;
