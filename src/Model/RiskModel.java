@@ -21,7 +21,7 @@ public class RiskModel implements Serializable{
     public Map map;
     private Dice dice;
     private int numOfCountries;
-    private String custom = "/RiskMile4/testRisk.json";
+    private String custom = "./testRisk.json";
 
     private ArrayList<Country> fullMap;
 

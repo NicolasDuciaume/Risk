@@ -48,8 +48,8 @@ There is 2 known issues that effect the funcitonality of the Risk game. The Risk
 
 # Usage of Custom games
 
-To play a custom game you must enter the file path of where the json or xml file is stored thus in my case the file is called
-RiskMile4 thus the path entered would be /RiskMile4/AmongUs.json
+To play a custom game you must enter the file path of where the json or xml file is stored thus you would enter
+./AmongUs.json
 
 # Possible issue:
 
