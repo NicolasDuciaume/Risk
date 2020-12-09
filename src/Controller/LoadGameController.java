@@ -24,11 +24,12 @@ public class LoadGameController implements ActionListener {
 
     /**
      * The constructor with two parameters for the GameController class
+     *
      * @param loadGameMenu the view class of the loading game menu
-     * @param model the moddel class
-     * @param view the view class
+     * @param model        the moddel class
+     * @param view         the view class
      */
-    public LoadGameController(LoadGameMenu loadGameMenu, RiskModel model, RiskView view){
+    public LoadGameController(LoadGameMenu loadGameMenu, RiskModel model, RiskView view) {
         this.loadGameMenu = loadGameMenu;
         this.model = model;
         this.view = view;
@@ -39,23 +40,23 @@ public class LoadGameController implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getActionCommand().equals("Load 1")){
+        if (e.getActionCommand().equals("Load 1")) {
             RiskModel newModel = RiskModel.load("Risk 1.txt");
             this.model = newModel;
         }
-        if(e.getActionCommand().equals("Load 2")){
+        if (e.getActionCommand().equals("Load 2")) {
             RiskModel newModel = RiskModel.load("Risk 2.txt");
             this.model = newModel;
         }
-        if(e.getActionCommand().equals("Load 3")){
+        if (e.getActionCommand().equals("Load 3")) {
             RiskModel newModel = RiskModel.load("Risk 3.txt");
             this.model = newModel;
         }
-        if(e.getActionCommand().equals("Load 4")){
+        if (e.getActionCommand().equals("Load 4")) {
             RiskModel newModel = RiskModel.load("Risk 4.txt");
             this.model = newModel;
         }
-        if(e.getActionCommand().equals("Load 5")){
+        if (e.getActionCommand().equals("Load 5")) {
             RiskModel newModel = RiskModel.load("Risk 5.txt");
             this.model = newModel;
         }
@@ -63,12 +64,8 @@ public class LoadGameController implements ActionListener {
         view.dispose();
         try {
             new GameView(model, model.getCustom(), true);
-        } catch (IOException ioException) {
+        } catch (IOException | ParserConfigurationException | SAXException ioException) {
             ioException.printStackTrace();
-        } catch (ParserConfigurationException parserConfigurationException) {
-            parserConfigurationException.printStackTrace();
-        } catch (SAXException saxException) {
-            saxException.printStackTrace();
         }
     }
 }

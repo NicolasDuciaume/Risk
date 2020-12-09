@@ -15,10 +15,11 @@ public class RiskController implements ActionListener {
 
     private RiskModel model;
     private RiskView view;
-    private String t = "";
+    private String customMapDirectory = "";
 
     private SelectPlayerMenu selectPlayerMenu;
     private LoadGameMenu loadGameMenu;
+
     /**
      * The constructor with two parameters
      * @param model the game model
@@ -27,8 +28,6 @@ public class RiskController implements ActionListener {
     public RiskController(RiskModel model,RiskView view){
         this.model = model;
         this.view = view;
-
-
         view.addActionListener(this);
     }
     /**
@@ -40,12 +39,13 @@ public class RiskController implements ActionListener {
             System.out.println("Start new game");
 
             selectPlayerMenu = new SelectPlayerMenu(view);
-            selectPlayerMenu.addActionListeners(new SelectPlayerController(selectPlayerMenu,model,view,t));
+            selectPlayerMenu.addActionListeners(new SelectPlayerController(selectPlayerMenu,model,view, customMapDirectory));
             selectPlayerMenu.setVisible(true);
 
         }else if(e.getActionCommand().equals("quit")){
             System.out.println("Quitting game");
             System.exit(0);
+
         }else if(e.getActionCommand().equals("loadGame")){
             System.out.println("Loading Game");
 
@@ -59,12 +59,12 @@ public class RiskController implements ActionListener {
 
         }
         else if(e.getActionCommand().equals("CUSTOM")){
-            JTextField a = new JTextField("Enter custom map Directory");
-            JOptionPane.showMessageDialog( null, a, " Custom Map Selection ", JOptionPane.QUESTION_MESSAGE);
-            t = a.getText();
+            JTextField customMapDirectoryTF = new JTextField("Enter custom map Directory");
+            JOptionPane.showMessageDialog( null, customMapDirectoryTF, " Custom Map Selection ", JOptionPane.QUESTION_MESSAGE);
+            customMapDirectory = customMapDirectoryTF.getText();
             System.out.println("Start new game");
             selectPlayerMenu = new SelectPlayerMenu(view);
-            selectPlayerMenu.addActionListeners(new SelectPlayerController(selectPlayerMenu,model,view,t));
+            selectPlayerMenu.addActionListeners(new SelectPlayerController(selectPlayerMenu,model,view, customMapDirectory));
             selectPlayerMenu.setVisible(true);
         }
     }

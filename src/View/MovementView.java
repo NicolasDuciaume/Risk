@@ -8,7 +8,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class MovementView extends JDialog{
+public class MovementView extends JDialog {
 
     private JPanel move;
     private JLabel moveLabel1;
@@ -24,26 +24,27 @@ public class MovementView extends JDialog{
 
     /**
      * The default constructor for the MovementView class
+     *
      * @param main - the main view of the game
      */
-    public MovementView(GameView main){
+    public MovementView(GameView main) {
         super(main);
         setTitle("Movement Menu");
-        setSize(600,600);
+        setSize(600, 600);
         setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
 
         JPanel border = new JPanel(new BorderLayout());
-        border.setBorder(new EmptyBorder(2,3,2,3));
+        border.setBorder(new EmptyBorder(2, 3, 2, 3));
         JPanel borderLayout = new JPanel(new GridBagLayout());
-        borderLayout.setBorder(new EmptyBorder(5,5,5,5));
+        borderLayout.setBorder(new EmptyBorder(5, 5, 5, 5));
         moveBT = new JButton("Move!");
         moveBT.setActionCommand("Move");
         cancelBT = new JButton("Cancel");
         cancelBT.setActionCommand("Cancel");
         move = new JPanel();
         JPanel buttonBorder = new JPanel();
-        move.setLayout(new GridLayout(10,1,10,6));
-        buttonBorder.setLayout(new GridLayout(1,2,10,6));
+        move.setLayout(new GridLayout(10, 1, 10, 6));
+        buttonBorder.setLayout(new GridLayout(1, 2, 10, 6));
 
         moveLabel1 = new JLabel("You can move troops from one country to a connected country before ending your turn ", JLabel.CENTER);
         moveLabel2 = new JLabel("Select country to move troops from:", JLabel.CENTER);
@@ -54,8 +55,6 @@ public class MovementView extends JDialog{
         comboBox = new JComboBox();
         moveBox = new JComboBox();
         number = new JComboBox();
-
-
 
         move.add(moveLabel1);
         move.add(moveLabel2);
@@ -72,25 +71,26 @@ public class MovementView extends JDialog{
         move.add(buttonBorder);
 
         borderLayout.add(move);
-        border.add(borderLayout,BorderLayout.CENTER);
+        border.add(borderLayout, BorderLayout.CENTER);
 
         add(border);
 
         setLocationRelativeTo(null);
 
-
     }
 
     /**
      * This function returns the combo box of the name of the country you want to move troop from
+     *
      * @return combo box of name of countries owned
      */
-    public JComboBox getComboBox(){
+    public JComboBox getComboBox() {
         return comboBox;
     }
 
     /**
      * This function returns the combo box of the name of the country you want to move troop to
+     *
      * @return combo box of name of countries owned
      */
     public JComboBox getMoveBox() {
@@ -99,6 +99,7 @@ public class MovementView extends JDialog{
 
     /**
      * This function returns the combo box of the amount of troops you want to move
+     *
      * @return combo box of number of troops you want to move
      */
     public JComboBox getNumber() {
@@ -110,11 +111,10 @@ public class MovementView extends JDialog{
      *
      * @param listener the action listener
      */
-    public void addActionListeners(ActionListener listener){
+    public void addActionListeners(ActionListener listener) {
         comboBox.addActionListener(listener);
         moveBT.addActionListener(listener);
         cancelBT.addActionListener(listener);
     }
-
 
 }

@@ -20,14 +20,16 @@ public class LoadGameMenu extends JDialog {
     private JPanel loadGameMenu;
     private JLabel loadGameMenuLabel;
     private JButton[] numOfSavedGames;
+
     /**
      * The default constructor for the LoadGameMenu class
+     *
      * @param main - the main view of the game
      */
     public LoadGameMenu(RiskView main) throws IOException {
         super(main);
         setTitle("Load Game Menu");
-        setSize(300,300);
+        setSize(300, 300);
         setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
 
         JPanel border = new JPanel(new BorderLayout());
@@ -50,28 +52,21 @@ public class LoadGameMenu extends JDialog {
         };
         File[] files = f.listFiles(filterFiles);
         int i = 0;
-        for(File file : files){
-//            if(file.isDirectory()){
-//                System.out.print("directory:");
-//            }else{
-//                System.out.print("     file:");
-//            }
-//            System.out.println(file.getCanonicalPath());
-            if(i < numOfSavedGames.length){
-                numOfSavedGames[i] = new JButton("Risk Load " + (i+1));
-
+        for (File file : files) {
+            if (i < numOfSavedGames.length) {
+                numOfSavedGames[i] = new JButton("Risk Load " + (i + 1));
                 i++;
             }
         }
 
         loadGameMenu.add(loadGameMenuLabel);
-        for(int j = 0; j < numOfSavedGames.length; j++){
-            if(numOfSavedGames[j] == null) {
+        for (int j = 0; j < numOfSavedGames.length; j++) {
+            if (numOfSavedGames[j] == null) {
                 numOfSavedGames[j] = new JButton("---EMPTY---");
             }
         }
-        for(int j = 0; j < numOfSavedGames.length; j++){
-            numOfSavedGames[j].setActionCommand("Load " + (j+1));
+        for (int j = 0; j < numOfSavedGames.length; j++) {
+            numOfSavedGames[j].setActionCommand("Load " + (j + 1));
             loadGameMenu.add(numOfSavedGames[j]);
         }
 
@@ -88,8 +83,8 @@ public class LoadGameMenu extends JDialog {
      *
      * @param listener the action listener
      */
-    public void addActionListeners(ActionListener listener){
-        for(int i = 0; i < numOfSavedGames.length; i++){
+    public void addActionListeners(ActionListener listener) {
+        for (int i = 0; i < numOfSavedGames.length; i++) {
             numOfSavedGames[i].addActionListener(listener);
         }
     }

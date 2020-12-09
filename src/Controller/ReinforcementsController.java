@@ -20,7 +20,6 @@ public class ReinforcementsController implements ActionListener {
     private JLabel num;
     private int numOfReinforcements;
     private ArrayList<Country> temp;
-    private ArrayList<String> names;
     private JComboBox comboBox;
     private JComboBox comboBox2;
     private int s = 1;
@@ -52,7 +51,6 @@ public class ReinforcementsController implements ActionListener {
         }
     }
 
-
     /**
      * The action listener for the class
      */
@@ -75,6 +73,5 @@ public class ReinforcementsController implements ActionListener {
         }
 
     }
-
 
 }

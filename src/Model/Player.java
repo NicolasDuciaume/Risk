@@ -19,33 +19,40 @@ public class Player implements Serializable {
     private ArrayList<Country> placedArmies;
     private boolean moved = false;
     private boolean reinforced = false;
+
     /**
      * Model.Player constructor with one parameter.
+     *
      * @param name the name of the player
      */
-    public Player(String name)
-    {
+    public Player(String name) {
         this.name = name;
         armies = 0;
         numberOfArmiesToMove = 0;
         placedArmies = new ArrayList<Country>();
     }
+
     /**
      * This function gets the name of the Model.Player
+     *
      * @return
      */
     public String getName() {
         return name;
     }
+
     /**
      * This function sets the name of the Model.Player
+     *
      * @param name the name of the player
      */
     public void setName(String name) {
         this.name = name;
     }
+
     /**
      * This function sets the armies
+     *
      * @param armies the number of armies to set
      */
     public void setInitArmies(int armies) {
@@ -55,96 +62,119 @@ public class Player implements Serializable {
 
     /**
      * This function sets if the player has done his reinforcements
+     *
      * @param t - The boolean value of if the player has done his reinforcements
      */
-    public void setReinforced(Boolean t){
+    public void setReinforced(Boolean t) {
         reinforced = t;
     }
 
     /**
      * This function returns if the player has done his reinforcements
+     *
      * @return boolean value of if the player has done his reinforcements
      */
-    public Boolean getReinforced(){
+    public Boolean getReinforced() {
         return reinforced;
     }
+
     /**
      * This function sets the armies
+     *
      * @param arm - the number of armies
      */
-    public void setArmies(int arm){
+    public void setArmies(int arm) {
         armies = armies + arm;
     }
+
     /**
-     * This function gets the armies 
+     * This function gets the armies
+     *
      * @return the number of armies
      */
     public int getArmies() {
         return armies;
     }
+
     /**
      * This function removes the armies
+     *
      * @param numberOfArmies the number of armies to be removed.
      */
-    public void removeArmies(int numberOfArmies){
+    public void removeArmies(int numberOfArmies) {
         armies = armies - numberOfArmies;
     }
+
     /**
      * This function is responsible for adding the country to the players controlled countries
+     *
      * @param countryName the country to add armies to in order to claim it
      */
-    public void addCountry(Country countryName){
+    public void addCountry(Country countryName) {
         placedArmies.add(countryName);
     }
+
     /**
-     * This function is responsible for removing the country i.e., removing the hold of the 
+     * This function is responsible for removing the country i.e., removing the hold of the
      * player on the country
+     *
      * @param countryName the country to be removed i.e., the country for which the current player lost hold of
      */
-    public void removeCountry(Country countryName){
-        for(int x = 0; x < placedArmies.size(); x++){
+    public void removeCountry(Country countryName) {
+        for (int x = 0; x < placedArmies.size(); x++) {
             Country temp = placedArmies.get(x);
-            if(countryName.getName() == temp.getName()){
+            if (countryName.getName() == temp.getName()) {
                 placedArmies.remove(x);
             }
         }
     }
-	/**
-	 * This function places the armies on a country
-	 * @param placedArmies
-	 */
+
+    /**
+     * This function places the armies on a country
+     *
+     * @param placedArmies
+     */
     public void setArmiesOn(ArrayList<Country> placedArmies) {
         this.placedArmies = placedArmies;
     }
+
     /**
      * This function gets the armies that are present on a country
+     *
      * @return the armies that are present on a country
      */
     public ArrayList<Country> getPlacedArmies() {
         return placedArmies;
     }
+
     /**
-     * This function gets the number of remaining armies that needs to be placed 
-     * @return the number of remaining armies that needs to be placed 
+     * This function gets the number of remaining armies that needs to be placed
+     *
+     * @return the number of remaining armies that needs to be placed
      */
     public int getArmiesToPlace() {
         return numberOfArmiesToMove;
     }
+
     /**
      * This function updates the number of armies that are left to be placed
      */
     public void remArmiesToPlace() {
         numberOfArmiesToMove = numberOfArmiesToMove - 1;
     }
+
     /**
      * This function checks if the player has moved or not
+     *
      * @return the value of moved flag
      */
     public boolean isMoved() {
         return moved;
     }
+
     /**
      * This function checks the flag that player has moved or not
+     *
      * @param moved the value of moved flag
      */
     public void setMoved(boolean moved) {
