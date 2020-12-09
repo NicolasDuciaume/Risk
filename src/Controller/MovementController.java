@@ -20,7 +20,6 @@ public class MovementController implements ActionListener {
     private RiskModel model;
     private GameView view;
     private ArrayList<Country> temp;
-    private ArrayList<String> names;
     private JComboBox comboBox;
     private JComboBox comboBox2;
     private JComboBox number;

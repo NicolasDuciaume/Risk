@@ -43,10 +43,10 @@ public class Country implements Serializable {
     /**
      * This function sets array of strings of the name of the neighboring countries to be added as neighbors later
      *
-     * @param t - The array of strings of the names of the neighboring country
+     * @param stringOfNeighbors - The array of strings of the names of the neighboring country
      */
-    public void setStringOfNeighbors(ArrayList<String> t) {
-        stringOfNeighbors = t;
+    public void setStringOfNeighbors(ArrayList<String> stringOfNeighbors) {
+        this.stringOfNeighbors = stringOfNeighbors;
     }
 
     /**

@@ -27,11 +27,11 @@ public class Map implements Serializable {
     /**
      * This function adds a country to the map
      *
-     * @param t               - string containing the name
+     * @param name            - string containing the name
      * @param neighborsString - array of string of neighbors names to be set in the country for later addition
      */
-    public void addToMap(String t, ArrayList<String> neighborsString) {
-        Country temp = new Country(t);
+    public void addToMap(String name, ArrayList<String> neighborsString) {
+        Country temp = new Country(name);
         temp.setStringOfNeighbors(neighborsString);
         completeGameMap.add(temp);
     }
@@ -41,7 +41,7 @@ public class Map implements Serializable {
      *
      * @return boolean value for if the map is valid
      */
-    public boolean SetNeighbors() {
+    public boolean setNeighbors() {
         for (Country c : completeGameMap) {
             ArrayList<String> neighbString = c.getStringOfNeighbors();
             for (String s : neighbString) {
@@ -88,12 +88,12 @@ public class Map implements Serializable {
      * This function adds Continents to the map
      *
      * @param name  - the name of the continent
-     * @param t     - the array of strings with the names of the countries in the continent
+     * @param countriesInContinent     - the array of strings with the names of the countries in the continent
      * @param bonus - the bonus troops you get for owning the continent
      */
-    public void addContinents(String name, ArrayList<String> t, int bonus) {
+    public void addContinents(String name, ArrayList<String> countriesInContinent, int bonus) {
         ArrayList<Country> temp = new ArrayList<>();
-        for (String s : t) {
+        for (String s : countriesInContinent) {
             for (Country c : completeGameMap) {
                 if (s.equals(c.getName())) {
                     temp.add(c);

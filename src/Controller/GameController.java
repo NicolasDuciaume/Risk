@@ -47,7 +47,11 @@ public class GameController implements ActionListener {
         view.addActionListener(this);
     }
 
-    public int getFileNumber() {
+    /**
+     * Gets the number of saved files in the working directory
+     * @return file number
+     */
+    private int getFileNumber() {
         File f = new File(System.getProperty("user.dir"));
         FilenameFilter filterFiles = new FilenameFilter() {
             @Override

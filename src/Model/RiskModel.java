@@ -386,7 +386,7 @@ public class RiskModel implements Serializable {
      * @param //player the player that is about to attack
      * @return true if the attach was made
      */
-    public int[] attack(Player attackPlayer, Player defendPlayer, Country Defend, Country Attack, int att, int def) {
+    public int[] attack(Player attackPlayer, Player defendPlayer, Country defend, Country attack, int att, int def) {
         int[] DefenderDice = {0};
         int[] attackerDice = {0};
         attackerDice = dice.roll(att);
@@ -399,11 +399,11 @@ public class RiskModel implements Serializable {
 
         for (int x = (DefenderDice.length - 1); x >= 0; x--) {
             if (DefenderDice[x] >= attackerDice[s]) {
-                Attack.removeArmiesOnCountry(1);
+                attack.removeArmiesOnCountry(1);
                 attackPlayer.removeArmies(1);
                 armiesKilledAtt++;
             } else {
-                Defend.removeArmiesOnCountry(1);
+                defend.removeArmiesOnCountry(1);
                 defendPlayer.removeArmies(1);
                 armiesKilledDef++;
             }
@@ -421,12 +421,12 @@ public class RiskModel implements Serializable {
         int[] finalRes = {armiesKilledAtt, armiesKilledDef, 0, 0};
 
 
-        if (Defend.getArmiesOnCountry() == 0) {
-            defendPlayer.removeCountry(Defend);
-            Defend.setPlayerOnCountry(attackPlayer);
-            attackPlayer.addCountry(Defend);
-            Defend.addArmiesOnCountry(attackerDice.length);
-            Attack.removeArmiesOnCountry(attackerDice.length);
+        if (defend.getArmiesOnCountry() == 0) {
+            defendPlayer.removeCountry(defend);
+            defend.setPlayerOnCountry(attackPlayer);
+            attackPlayer.addCountry(defend);
+            defend.addArmiesOnCountry(attackerDice.length);
+            attack.removeArmiesOnCountry(attackerDice.length);
             finalRes[2] = 1;
         }
 

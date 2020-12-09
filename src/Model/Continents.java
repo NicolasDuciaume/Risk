@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * belonging to the class, Continents.
  */
 public class Continents implements Serializable {
-    private ArrayList<Country> CountriesInContinent;
+    private ArrayList<Country> countriesInContinent;
     private String name;
     private int bonus;
 
@@ -19,12 +19,12 @@ public class Continents implements Serializable {
      * The constructor with three parameter
      *
      * @param name                 - name of the continent
-     * @param CountriesInContinent - The array of country which the continent has
+     * @param countriesInContinent - The array of country which the continent has
      * @param bonus                - The integer value associated with owning the entire continent
      */
-    public Continents(String name, ArrayList<Country> CountriesInContinent, int bonus) {
+    public Continents(String name, ArrayList<Country> countriesInContinent, int bonus) {
         this.name = name;
-        this.CountriesInContinent = CountriesInContinent;
+        this.countriesInContinent = countriesInContinent;
         this.bonus = bonus;
     }
 
@@ -52,7 +52,7 @@ public class Continents implements Serializable {
      * @return the array of countries in the continent
      */
     public ArrayList<Country> getCountriesInContinent() {
-        return CountriesInContinent;
+        return countriesInContinent;
     }
 
     /**
@@ -61,7 +61,7 @@ public class Continents implements Serializable {
      * @param countriesInContinent array of countries to be set into the continent
      */
     public void setCountriesInContinent(ArrayList<Country> countriesInContinent) {
-        CountriesInContinent = countriesInContinent;
+        this.countriesInContinent = countriesInContinent;
     }
 
     /**

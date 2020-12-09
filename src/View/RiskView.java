@@ -17,7 +17,7 @@ public class RiskView extends JFrame {
     private JPanel mainMenuPL;
     private JButton newGameBT;
     private JButton loadGameBT;
-    private JButton CustomMap;
+    private JButton customMapBT;
     private JButton quitBT;
 
     /**
@@ -66,8 +66,8 @@ public class RiskView extends JFrame {
         loadGameBT = new JButton("Load Game");
         loadGameBT.setActionCommand("loadGame");
 
-        CustomMap = new JButton("Custom Game");
-        CustomMap.setActionCommand("CUSTOM");
+        customMapBT = new JButton("Custom Game");
+        customMapBT.setActionCommand("CUSTOM");
 
         mainMenuPL.add(label1);
         mainMenuPL.add(label2);
@@ -75,7 +75,7 @@ public class RiskView extends JFrame {
         mainMenuPL.add(label4);
         mainMenuPL.add(newGameBT);
         mainMenuPL.add(loadGameBT);
-        mainMenuPL.add(CustomMap);
+        mainMenuPL.add(customMapBT);
         mainMenuPL.add(quitBT);
 
         borderLayout.add(mainMenuPL);
@@ -92,7 +92,7 @@ public class RiskView extends JFrame {
     public void addActionListener(ActionListener listener) {
         newGameBT.addActionListener(listener);
         loadGameBT.addActionListener(listener);
-        CustomMap.addActionListener(listener);
+        customMapBT.addActionListener(listener);
         quitBT.addActionListener(listener);
     }
 

@@ -155,7 +155,7 @@ public class GameView extends JFrame {
         }
 
         if (!saved) {
-            boolean x = mapping.SetNeighbors();
+            boolean x = mapping.setNeighbors();
             if (x) {
                 JOptionPane.showMessageDialog(this, "Countries do not have Neighbors");
                 System.exit(0);
@@ -293,7 +293,7 @@ public class GameView extends JFrame {
         }
 
         if (!saved) {
-            boolean x = mapping.SetNeighbors();
+            boolean x = mapping.setNeighbors();
             if (x) {
                 JOptionPane.showMessageDialog(this, "A Country does not have Neighbors");
                 System.exit(0);
