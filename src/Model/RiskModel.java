@@ -18,17 +18,17 @@ public class RiskModel implements Serializable{
     private ArrayList<Player> playersInGame = new ArrayList<Player>();
     private Player currentPlayer;
     private transient Parser parser;
-    private transient int cur = 0;
+    private int cur = 0;
     public Map map;
-    private transient Dice dice;
+    private Dice dice;
 
     private ArrayList<Country> fullMap;
-    private transient ArrayList<Country> NorthAmerica;
-    private transient ArrayList<Country> SouthAmerica;
-    private transient ArrayList<Country> Europe;
-    private transient ArrayList<Country> Africa;
-    private transient ArrayList<Country> Asia;
-    private transient ArrayList<Country> Australia;
+    private ArrayList<Country> NorthAmerica;
+    private ArrayList<Country> SouthAmerica;
+    private ArrayList<Country> Europe;
+    private ArrayList<Country> Africa;
+    private ArrayList<Country> Asia;
+    private ArrayList<Country> Australia;
 
     /**
      * The default constructor of the Game class

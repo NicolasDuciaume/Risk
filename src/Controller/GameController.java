@@ -1,5 +1,5 @@
 /*
-Author: Nicolas Duciaume
+Author: Nicolas Duciaume & Christopher D'silva
 Refactoring: Kamran Sagheir
 Comments: Hussain Al-Baidhani
  */
@@ -11,6 +11,9 @@ import View.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FilenameFilter;
+import java.util.Locale;
 
 import javax.swing.JOptionPane;
 
@@ -21,8 +24,6 @@ public class GameController implements ActionListener {
     private Reinforcements reinforcements;
     private MovementView movementView;
     private AttackView attack;
-
-    public static int saveNum = 1;
 
     /**
      * The constructor with two parameters for the GameController class
@@ -40,6 +41,19 @@ public class GameController implements ActionListener {
         view.addActionListener(this);
     }
 
+    public int getFileNumber(){
+        File f = new File(System.getProperty("user.dir"));
+        FilenameFilter filterFiles = new FilenameFilter() {
+            @Override
+            public boolean accept(File dir, String name) {
+                return name.toLowerCase(Locale.ROOT).endsWith(".txt");
+            }
+        };
+        File[] files = f.listFiles(filterFiles);
+
+        return files.length + 1;
+    }
+
 
     /**
      * The action listener for the class
@@ -54,15 +68,15 @@ public class GameController implements ActionListener {
             //Model serialization
             int decision = JOptionPane.showConfirmDialog(view,"Are you sure you would like to save this game?","Save Game",JOptionPane.YES_NO_OPTION);
             if(decision == JOptionPane.YES_OPTION){
-                model.save("Risk " + saveNum +".txt");
-                saveNum++;
-                int continueDialog = JOptionPane.showConfirmDialog(view,"Would you like to continue playing and end the game here?","Continue",JOptionPane.YES_NO_OPTION);
+                String filename = "Risk " + getFileNumber() +".txt";
+                model.save(filename);
+                JOptionPane.showMessageDialog(view,"File saved in working directory with file name " + filename);
+                int continueDialog = JOptionPane.showConfirmDialog(view,"Would you like to continue playing?","Continue",JOptionPane.YES_NO_OPTION);
                 if(continueDialog == JOptionPane.NO_OPTION){
                    view.dispose();
-                   System.exit(0);
+                   new RiskController(new RiskModel(),new RiskView());
                 }
             }
-
         }else if(e.getActionCommand().equals("Alaska")){
             if(model.isOwned("Alaska")){
                 attack = new AttackView(this.view);

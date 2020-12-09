@@ -5,6 +5,7 @@ Comments: Hussain Al-Baidhani
  */
 package Model;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -12,7 +13,7 @@ import java.util.Random;
  * Represents a dice with a specified number of sides (1-6)
  *
  */
-public class Dice {
+public class Dice implements Serializable {
 
 	private int roll;
 	private Random dice;

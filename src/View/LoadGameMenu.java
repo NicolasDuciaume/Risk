@@ -1,3 +1,9 @@
+/*
+Author: Christopher D'silva
+Refactoring:
+Comments:
+ */
+
 package View;
 
 import javax.swing.*;
@@ -43,14 +49,15 @@ public class LoadGameMenu extends JDialog {
         File[] files = f.listFiles(filterFiles);
         int i = 0;
         for(File file : files){
-            if(file.isDirectory()){
-                System.out.print("directory:");
-            }else{
-                System.out.print("     file:");
-            }
-            System.out.println(file.getCanonicalPath());
+//            if(file.isDirectory()){
+//                System.out.print("directory:");
+//            }else{
+//                System.out.print("     file:");
+//            }
+//            System.out.println(file.getCanonicalPath());
             if(i < numOfSavedGames.length){
                 numOfSavedGames[i] = new JButton("Risk Load " + (i+1));
+
                 i++;
             }
         }
@@ -62,6 +69,7 @@ public class LoadGameMenu extends JDialog {
             }
         }
         for(int j = 0; j < numOfSavedGames.length; j++){
+            numOfSavedGames[j].setActionCommand("Load " + (j+1));
             loadGameMenu.add(numOfSavedGames[j]);
         }
 

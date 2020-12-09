@@ -43,14 +43,14 @@ public class RiskController implements ActionListener {
 
         }else if(e.getActionCommand().equals("loadGame")){
             System.out.println("Loading Game");
+
             try {
                 loadGameMenu = new LoadGameMenu(view);
-                loadGameMenu.addActionListeners(new LoadGameController());
+                loadGameMenu.addActionListeners(new LoadGameController(loadGameMenu,model,view));
                 loadGameMenu.setVisible(true);
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
-
 
         }else if(e.getActionCommand().equals("quit")){
             System.out.println("Quitting game");
