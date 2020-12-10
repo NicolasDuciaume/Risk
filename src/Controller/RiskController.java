@@ -21,7 +21,7 @@ public class RiskController implements ActionListener {
     private LoadGameMenu loadGameMenu;
 
     /**
-     * The constructor with two parameters
+     * The two-parameter constructor
      * @param model the game model
      * @param view the game view
      */
@@ -31,7 +31,7 @@ public class RiskController implements ActionListener {
         view.addActionListener(this);
     }
     /**
-     * The action listener for the class
+     * The class's action listener
      */
     @Override
     public void actionPerformed(ActionEvent e) {
