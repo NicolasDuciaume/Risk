@@ -9,6 +9,9 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+* The class responsible for the selection of player menu
+*/
 @SuppressWarnings("serial")
 public class SelectPlayerMenu extends JDialog {
 
