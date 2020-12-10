@@ -25,6 +25,9 @@ import org.json.JSONObject;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
+/**
+* The class responsible for the game view
+*/
 @SuppressWarnings("serial")
 public class GameView extends JFrame {
 
