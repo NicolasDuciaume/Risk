@@ -8,6 +8,9 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+* The class responsible for reinforcements
+*/
 public class Reinforcements extends JDialog {
 
     private JPanel reinforcements;
