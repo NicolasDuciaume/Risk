@@ -11,6 +11,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+
+
+/**
+* The controller class for the game
+*/
 public class RiskController implements ActionListener {
 
     private RiskModel model;
