@@ -1,7 +1,6 @@
 /*
 Author: Kamran Sagheir & Hussain Al-Baidhani
-Refactoring: Nicolas Duciaume
-Comments: Hussain Al-Baidhani
+Refactoring and comments: Nicolas Duciaume, Hussain Al-Baidhani
  */
 package View;
 
@@ -67,9 +66,7 @@ public class SelectPlayerMenu extends JDialog {
 
         borderLayout.add(selectPlayerMenu);
         border.add(borderLayout, BorderLayout.CENTER);
-
         add(border);
-
         setLocationRelativeTo(null);
 
     }
