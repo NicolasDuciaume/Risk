@@ -13,6 +13,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/**
+* The class responsible for the movement controller
+*/
 public class MovementController implements ActionListener {
 
     private MovementView movement;
