@@ -10,7 +10,9 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-
+/**
+* The class responsible for rislk view.
+*/
 @SuppressWarnings("serial")
 public class RiskView extends JFrame {
 
