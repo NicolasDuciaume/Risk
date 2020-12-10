@@ -13,6 +13,9 @@ import org.junit.jupiter.api.Test;
 import Model.Country;
 import Model.Map;
 
+/**
+* This is a test class for the class Map
+*/
 class mapTest {
 	Map gameMap;
 	@BeforeEach
