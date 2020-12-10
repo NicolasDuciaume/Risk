@@ -11,6 +11,9 @@ import org.junit.jupiter.api.Test;
 
 import Model.Command;
 
+/**
+* This is a test class for the class Command
+*/
 class commandTest {
 	String command;
 	String unknown;
