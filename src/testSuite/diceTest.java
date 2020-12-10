@@ -1,32 +1,38 @@
 /*
-Author: Kamran Sagheir & Hussain Al-Baidhani
+Authors: Kamran Sagheir
+Hussain Al-Baidhani
  */
 package testSuite;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.ArrayList;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import Model.Dice;
+
+/* test class for class dice */
 
 class diceTest {
 
 	Dice dice;
+	
 	@BeforeEach
 	void setUp() throws Exception {
+		
 		dice = new Dice();
 	}
-
+	
 	@Test
 	final void testDice() {
+		
 	}
-
+	/*
+	RollDice
+	*/
 	@Test
 	final void testRollDice() {
+		
 		dice.rollDice();
 		int value = dice.getRoll();
 		boolean result = false;
@@ -39,8 +45,8 @@ class diceTest {
 	
 	@Test
 	final void testGetRoll() {
-		ArrayList<Integer> numbers = new ArrayList<Integer>();
 		
+		ArrayList<Integer> numbers = new ArrayList<Integer>();
 		numbers.add(1);
 		numbers.add(2);
 		numbers.add(3);
