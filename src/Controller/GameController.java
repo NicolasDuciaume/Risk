@@ -30,18 +30,21 @@ public class GameController implements ActionListener {
     private AttackView attack;
     private ArrayList<String> countries;
 
+    
     /**
      * The constructor with two parameters for the GameController class
      *
      * @param model the moddel class
      * @param view  the view class
      */
+    
     public GameController(RiskModel model, GameView view) {
         this.model = model;
         this.view = view;
         this.countries = view.getCountries();
 
         //checks to see if the player has already reinforced in the case you load a save
+        
         if (!model.getCurrentPlayer().getReinforced()) {
             reinforcements = new Reinforcements(this.view);
             reinforcements.addActionListeners(new ReinforcementsController(reinforcements, model, view));
@@ -54,6 +57,7 @@ public class GameController implements ActionListener {
      * Gets the number of saved files in the working directory
      * @return file number
      */
+    
     private int getFileNumber() {
         File f = new File(System.getProperty("user.dir"));
         FilenameFilter filterFiles = new FilenameFilter() {
@@ -70,6 +74,7 @@ public class GameController implements ActionListener {
     /**
      * The action listener for the class
      */
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("EndTurn")) {
@@ -104,6 +109,5 @@ public class GameController implements ActionListener {
             }
         }
     }
-
 
 }
