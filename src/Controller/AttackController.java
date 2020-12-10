@@ -11,7 +11,9 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
+/**
+* The class responsible for the attack control
+*/
 public class AttackController implements ActionListener {
 
     private AttackView attack;
