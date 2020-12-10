@@ -12,6 +12,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/**
+* The controller class for the reinforcement
+*/
 public class ReinforcementsController implements ActionListener {
 
     private Reinforcements reinforcements;
