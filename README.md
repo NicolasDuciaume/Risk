@@ -1,32 +1,30 @@
   
 # SYSC3110 Group project
 
+To play the game, do the following steps: 
 
-To play the game, follow the following steps: 
+1. In the current directory, open a terminal.
+2. Enter the following command:
+	"java -jar game.jar"	
+3. Play the game through the GUI interface.
 
--> In the current directory, open a terminal. 
--> Enter the following command:
-	"java -jar game.jar"
--> Play the game through the GUI interface.
+To view the code:
 
-
-To view the code; follow the following steps:
--> unzip the Risk.zip folder. 
--> Add the "Risk" folder to the IDE and view the code.
+1. unzip the Risk.zip folder.
+2. Add the "Risk" folder to the IDE and view the code.
 
 
 # Contributors
 
 - Hussain Al-Baidhani: hussainalbaidhani@cmail.carleton.ca
-- Nicolas Duciaume: nicolasduciaume@cmail.carleton.ca
 - Kamran Sagheir: kamransagheir@cmail.carleton.ca
+- Nicolas Duciaume: nicolasduciaume@cmail.carleton.ca
 - Christopher D'silva: chrisdsilva@cmail.carleton.ca
 
 # Changes since previous Deliverable
 
-- Added a method to save and load the game
+- Added a save method to save and load the game
 - Added a method to import custom maps through json or xml
-
 
 # Rest of the deliverables for Iteration 4:
 
@@ -40,7 +38,8 @@ The rest of the deliverables for this iteration are as follows:
 
 # Known Issues: 
 
-There is 2 known issues that effect the funcitonality of the Risk game. The Risk game is designed as per the rules specified by the document; "SYSC 3110 Project – RISK!".
+There is 2 known issues that effect the funcitonality of the RISK game.
+The Risk game is designed as per the rules specified by the document; "SYSC 3110 Project – RISK!".
 
 - If the image does not load you have to add the specified directory of the image to the json or xml under "File".
     i.e. for the normal game it will be in testRisk.json seeing that it what is loaded for a default game 
