@@ -18,6 +18,9 @@ import java.util.Locale;
 
 import javax.swing.JOptionPane;
 
+/**
+* The class responsible for the game control
+*/
 public class GameController implements ActionListener {
 
     private RiskModel model;
