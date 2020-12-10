@@ -13,6 +13,9 @@ import org.junit.jupiter.api.Test;
 import Model.Country;
 import Model.Player;
 
+/**
+* This is a test class for the class Player
+*/
 class playerTest {
 	
 	Player player;
