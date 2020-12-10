@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <game>
-<File>./src/View/AmongUsMap.jpg</File>
+<File>./AmongUsMap.jpg</File>
 <PlayerLabel>357-38-185-48</PlayerLabel>
 <EndButton>1162-673-191-71</EndButton>
 <SaveButton>55-672-191-71</SaveButton>
