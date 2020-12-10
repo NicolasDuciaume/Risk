@@ -11,7 +11,7 @@ import java.io.*;
 import java.util.Locale;
 
 /**
- * The model class of the Risk Game
+ * The model class of the RISK Game
  */
 public class RiskModel implements Serializable {
 
@@ -37,10 +37,10 @@ public class RiskModel implements Serializable {
     }
 
     /**
-     * This function sets the string which contains the file to load the map from
-     *
+     * This function sets the string which contains the file, from which  to load the map.
      * @param cust - the string of the file location to load the map
      */
+    
     public void setCustom(String cust) {
         custom = cust;
     }
@@ -50,15 +50,16 @@ public class RiskModel implements Serializable {
      *
      * @return the string of the file location to load the map
      */
+    
     public String getCustom() {
         return custom;
     }
 
     /**
      * This function gets the map of the game
-     *
      * @return the map of the game
      */
+    
     public Map getMap() {
         return map;
     }
@@ -66,7 +67,9 @@ public class RiskModel implements Serializable {
     /**
      * This function sets the full map of the game
      */
+    
     public void setFullMap() {
+        
         fullMap = map.getCompleteGameMap();
         numOfCountries = fullMap.size();
     }
@@ -75,6 +78,7 @@ public class RiskModel implements Serializable {
      * This class is responsible for adding the armies on the map
      */
     public void populate() {
+        
         Random rand = new Random();
         populateInit();
         for (int x = 0; x < playersInGame.size(); x++) {
@@ -115,7 +119,6 @@ public class RiskModel implements Serializable {
 
     /**
      * Inner method within gameSetUps
-     *
      * @param rand
      * @param x
      */
@@ -135,7 +138,6 @@ public class RiskModel implements Serializable {
      * This function is responsible for setting up the game
      * when we have 4 or 5 players and the total number of
      * countries i.e., 45 is not divisible by 4 or 5
-     *
      * @param
      **/
     private void gameSetUpFornonDevisibleCountriesByPlayersCase() {
@@ -147,14 +149,14 @@ public class RiskModel implements Serializable {
 
 
     /**
-     * This method is responsible for interfacing with the user as the game proceeds
+     * This method is responsible for interfacing the user as the game proceeds
      */
     public void play() {
         currentPlayer = playersInGame.get(0);
     }
 
     /**
-     * Determines the number of reinforcements to be placed
+     * Determines the number of reinforcements to be placed at the begining of each round
      *
      * @return
      */
@@ -175,10 +177,10 @@ public class RiskModel implements Serializable {
 
     /**
      * Checks if the current player owns the country
-     *
      * @param s
      * @return
      */
+    
     public Boolean isOwned(String s) {
         for (Country country : currentPlayer.getPlacedArmies()) {
             if (country.getName().equals(s)) {
@@ -202,10 +204,9 @@ public class RiskModel implements Serializable {
         }
         return Finished;
     }
-
+    
     /**
-     * This function takes a number representing the number of players that will be
-     * playing the game and initializes the game for them
+     * This function initializes the game and takes a number representing the number of players that will be playing
      *
      * @param //numberOfPlayers the number of players that will be playing the game
      */
@@ -223,10 +224,12 @@ public class RiskModel implements Serializable {
      * @param num
      * @param arms
      */
+    
     public void aiPlayerAddition(int num, int arms) {
         for (int x = 0; x < num; x++) {
             playersInGame.add(new AiPlayer("Ai " + (x + 1), this));
         }
+        
         int temp = playersInGame.size() - 1;
         for (int y = temp; y >= (temp - num); y--) {
             playersInGame.get(y).setInitArmies(arms);
@@ -240,6 +243,7 @@ public class RiskModel implements Serializable {
      * @param numberOfPlayers
      * @param Ai
      */
+    
     public void playerSelection(String numberOfPlayers, int Ai) {
         //toUpperCase to make it case insensitive.
         switch (numberOfPlayers.toUpperCase().trim()) {
@@ -616,7 +620,7 @@ public class RiskModel implements Serializable {
 
 
     /**
-     * The main  function that runs the game
+     * The main  function that runs the game.
      */
     public static void main(String[] args) throws IOException {
 
