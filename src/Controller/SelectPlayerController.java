@@ -14,6 +14,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+/**
+* The controller class for the player selection
+*/
 public class SelectPlayerController implements ActionListener {
 
     private SelectPlayerMenu selectPlayerMenu;
