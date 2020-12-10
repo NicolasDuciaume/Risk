@@ -15,6 +15,9 @@ import org.junit.jupiter.api.Test;
 import Model.Country;
 import Model.Player;
 
+/**
+* This is the test class for the class Country
+*/
 class countryTest {
 	@BeforeEach
 	void setUp() throws Exception {
