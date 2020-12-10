@@ -15,6 +15,9 @@ import java.io.IOException;
 import java.util.Locale;
 
 
+/**
+* The class responsible for loading game menu
+*/
 public class LoadGameMenu extends JDialog {
 
     private JPanel loadGameMenu;
