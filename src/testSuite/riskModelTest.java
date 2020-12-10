@@ -1,17 +1,18 @@
 /*
-Author: Kamran Sagheir & Hussain Al-Baidhani
+Authors: Kamran Sagheir
+Hussain Al-Baidhani
  */
+
 package testSuite;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.ArrayList;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import Model.RiskModel;
 import Model.Player;
+
+/*Testing the riskModel class*/
 
 class riskModelTest {
 
@@ -19,21 +20,18 @@ class riskModelTest {
 	Player player;
 	@BeforeEach
 	void setUp() throws Exception {
-		game = new RiskModel();
-		
+		game = new RiskModel();	
 	}
 
 	@Test
 	final void testGame() {
 	}
-
-
+	
 	@Test
 	final void testCheckEnd() {
 		boolean value = game.checkEnd();
 		assertFalse(value);
 	}
-
 
 	@Test
 	final void testIsNumeric() {
