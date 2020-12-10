@@ -11,6 +11,10 @@ import org.junit.jupiter.api.Test;
 
 import Model.CommandWords;
 
+/*
+A test class for the class commandWords
+*/
+
 class commandWordsTest {
 	String[] commandWords;
 	String word;
@@ -19,17 +23,14 @@ class commandWordsTest {
 		commandWords = new String[] {"help", "attack", "map", "pass", "quit"};
 		word = "test";
 	}
-
 	@AfterEach
 	void tearDown() throws Exception {
 		word = "";
-		commandWords = new String[] {};
-		
+		commandWords = new String[] {};	
 	}
 
 	@Test
 	final void testIsCommand() {
 		assertEquals(false, (new CommandWords()).isCommand(word));
 	}
-
 }
