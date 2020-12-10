@@ -8,6 +8,9 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+* The class responsible for the movement view
+*/
 public class MovementView extends JDialog {
 
     private JPanel move;
