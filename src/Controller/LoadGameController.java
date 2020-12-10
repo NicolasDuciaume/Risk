@@ -16,6 +16,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+/**
+* THe class responsible for game loading controller
+*/
 public class LoadGameController implements ActionListener {
 
     private LoadGameMenu loadGameMenu;
