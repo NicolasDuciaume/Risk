@@ -1,15 +1,15 @@
 /*
 Author: Kamran Sagheir & Hussain Al-Baidhani
  */
+
 package testSuite;
-
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import Model.Command;
 import Model.Parser;
+
+/* test class for class parser */
 
 class parserTest {
 	Parser parser;
@@ -21,7 +21,7 @@ class parserTest {
 	@Test
 	final void testParser() {
 	}
-
+	
 	@Test
 	final void testGetCommands() {
 		String[] commands = parser.getCommands();
@@ -31,6 +31,4 @@ class parserTest {
 		}
 		assertEquals("help attack map pass quit ", command);
 	}
-
-
 }
