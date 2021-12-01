@@ -16,8 +16,6 @@ To view the code:
 
 # Contributors
 
-- Hussain Al-Baidhani: hussainalbaidhani@cmail.carleton.ca
-- Kamran Sagheir: kamransagheir@cmail.carleton.ca
 - Nicolas Duciaume: nicolasduciaume@cmail.carleton.ca
 - Christopher D'silva: chrisdsilva@cmail.carleton.ca
 
